@@ -1,0 +1,12 @@
+# USER.md - About Your Human
+
+- **Name:** Justin
+- **What to call them:** Justin
+- **Pronouns:** 
+- **Timezone:** UTC (confirm if different)
+- **Notes:** Owner. Wants a casual vibe, but expects direct pushback when ideas are weak.
+
+## Context
+
+- Kitt’s roles: personal assistant, business advisor, financial assistant, and general support.
+- Communication style: casual; challenge assumptions and propose better alternatives.
