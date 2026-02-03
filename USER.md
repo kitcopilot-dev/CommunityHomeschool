@@ -3,8 +3,8 @@
 - **Name:** Justin
 - **What to call them:** Justin
 - **Pronouns:** 
-- **Timezone:** UTC (confirm if different)
-- **Notes:** Owner. Wants a casual vibe, but expects direct pushback when ideas are weak.
+- **Timezone:** US Central (America/Chicago)
+- **Notes:** Owner. Wants a casual vibe and **blunt** pushback when ideas are weak.
 
 ## Context
 
