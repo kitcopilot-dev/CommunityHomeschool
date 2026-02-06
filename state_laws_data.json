@@ -4,349 +4,349 @@
     "regulation_level": "Moderate",
     "summary": "Alabama requires parents to submit an enrollment form to the local education authority by the 5th day of the public school year. Parents must teach 180 days per year. No specific subjects are mandated, and no standardized testing is required. Records of attendance must be maintained.",
     "key_requirements": "{\"notification\":\"Required — enrollment form to local education authority\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Attendance records required\",\"days_required\":\"180 days/year\"}",
-    "official_link": "https://www.aledupublic.org/student/homeschooling"
+    "official_link": "https://www.alabamaachieves.org/homeschool/"
   },
   {
     "state_name": "Alaska",
     "regulation_level": "Low",
     "summary": "Alaska is one of the most permissive states for homeschooling. No notification to the school district is required, no testing is mandated, there are no teacher qualification requirements, and parents are not required to keep records or teach specific subjects.",
     "key_requirements": "{\"notification\":\"Not required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No minimum\"}",
-    "official_link": "https://www.ded.alaska.gov/TopicAreas/HomeschoolInfo.aspx"
+    "official_link": "https://education.alaska.gov/"
   },
   {
     "state_name": "Arizona",
     "regulation_level": "Low",
     "summary": "Arizona requires parents to file a notarized affidavit of intent with the county school superintendent within 30 days of starting homeschool. No teacher qualifications are required and no testing is mandated. Parents must teach 5 core subjects: reading, grammar, math, social studies, and science.",
     "key_requirements": "{\"notification\":\"Required — notarized affidavit within 30 days\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not explicitly required\",\"subjects_required\":\"Reading, grammar, math, social studies, science\"}",
-    "official_link": "https://www.azted.gov/assessment-center/homeschool/"
+    "official_link": "https://www.azed.gov/assessment-center/homeschool/"
   },
   {
     "state_name": "Arkansas",
     "regulation_level": "Moderate",
     "summary": "Arkansas parents must file a Notice of Intent with the local school district superintendent before August 15th each year. Testing is required — students must take either state tests or state-approved alternative testing. No teacher qualifications are needed, but sex offenders may not reside in the home.",
     "key_requirements": "{\"notification\":\"Required — Notice of Intent before Aug 15\",\"testing\":\"Required — state or approved alternative\",\"teacher_quals\":\"None (sex offender restriction applies)\",\"record_keeping\":\"Not required\",\"days_required\":\"No minimum\"}",
-    "official_link": "https://www.ade.ar.gov/homeeducation/"
+    "official_link": "https://dese.ade.arkansas.gov/Offices/learning-services/home-school"
   },
   {
     "state_name": "California",
     "regulation_level": "Moderate",
     "summary": "California offers four legal homeschool pathways: home-based private school, private school ISP, private tutor, or public school ISP. Teacher qualifications, record-keeping, and hours vary by option chosen. Grades 1–6 must cover English, math, social science, science, arts, health, and PE. No state testing is required.",
     "key_requirements": "{\"notification\":\"Required — method depends on chosen pathway\",\"testing\":\"Not required\",\"teacher_quals\":\"Varies by pathway (some require credentials)\",\"record_keeping\":\"Varies by pathway\",\"subjects_required\":\"English, math, social science, science, arts, health, PE (grades 1-6)\"}",
-    "official_link": "https://www.cde.ca.gov/ls/hl/index.asp"
+    "official_link": "https://www.cde.ca.gov/sp/ps/affidavit.asp"
   },
   {
     "state_name": "Colorado",
     "regulation_level": "Moderate",
     "summary": "Colorado requires a Letter of Intent 14 days before starting homeschool each year. Parents must teach at least 172 days/year with 4 hours/day average. Testing is required in grades 3, 5, 7, 9, and 11 via standardized test or qualified evaluator. Seven subjects are mandated.",
     "key_requirements": "{\"notification\":\"Required — Letter of Intent 14 days before start\",\"testing\":\"Required — grades 3, 5, 7, 9, 11\",\"teacher_quals\":\"Parent, legal guardian, or designated adult relative\",\"record_keeping\":\"Attendance, test results, immunization records\",\"days_required\":\"172 days/year, 4 hrs/day average\"}",
-    "official_link": "https://www.cde.state.co.us/cdeschool/homeschooling"
+    "official_link": "https://www.cde.state.co.us/choice/homeschool"
   },
   {
     "state_name": "Connecticut",
     "regulation_level": "Low",
     "summary": "Connecticut does not require notification to the school district, though a Notice of Intent is recommended within 10 days of starting. Seven subjects must be covered (reading, writing, spelling, grammar, geography, arithmetic, US history). No testing is required and no teacher qualifications are mandated.",
     "key_requirements": "{\"notification\":\"Not required (recommended within 10 days)\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required (portfolio recommended)\",\"subjects_required\":\"Reading, writing, spelling, grammar, geography, arithmetic, US history\"}",
-    "official_link": "https://www.ct.gov/sde/dip/page/home_school.asp"
+    "official_link": "https://portal.ct.gov/SDE/Homeschooling/Homeschooling-in-Connecticut"
   },
   {
     "state_name": "Delaware",
     "regulation_level": "Moderate",
     "summary": "Delaware requires parents to officially open a non-public school through the Department of Education before homeschooling. Attendance records must be kept. No specific subjects are mandated, and students are not required to take standardized tests, though progress portfolios are encouraged.",
     "key_requirements": "{\"notification\":\"Required — open non-public school via Dept. of Education\",\"testing\":\"Not required (portfolio encouraged)\",\"teacher_quals\":\"None\",\"record_keeping\":\"Attendance records required\",\"days_required\":\"No minimum specified\"}",
-    "official_link": "https://www.doe.k12.de.us/Pages/HomeschoolPrograms.aspx"
+    "official_link": "https://www.doe.k12.de.us/domain/191"
   },
   {
     "state_name": "Florida",
     "regulation_level": "Moderate",
     "summary": "Florida parents must file a Notice of Intent with the county school superintendent within 30 days of beginning to homeschool. An annual evaluation is required (via test, portfolio review, or other methods) and results must be documented. No teacher qualifications or specific subjects are mandated.",
     "key_requirements": "{\"notification\":\"Required — Notice of Intent within 30 days\",\"testing\":\"Annual evaluation required (multiple options)\",\"teacher_quals\":\"None\",\"record_keeping\":\"Annual portfolio required\",\"days_required\":\"No specific minimum\"}",
-    "official_link": "https://www.floe.org/homeschool"
+    "official_link": "https://www.fldoe.org/schools/school-choice/home-edu/"
   },
   {
     "state_name": "Georgia",
     "regulation_level": "Moderate",
     "summary": "Georgia requires a Declaration of Intent with the Dept. of Education (within 30 days the first year, then annually by Sept 1). Homeschool instructors must have at least a high school diploma or GED. Standardized testing is required in grades 3, 6, and 9. A minimum of 180 days at 4.5 hrs/day is required.",
     "key_requirements": "{\"notification\":\"Required — Declaration of Intent annually\",\"testing\":\"Required — standardized test in grades 3, 6, 9\",\"teacher_quals\":\"High school diploma or GED required\",\"record_keeping\":\"Annual progress assessment report required\",\"days_required\":\"180 days/year, 4.5 hrs/day\"}",
-    "official_link": "https://www.gae.org/home-schooling-info"
+    "official_link": "https://www.gadoe.org/Curriculum-Instruction-and-Assessment/Pages/Home-Schools.aspx"
   },
   {
     "state_name": "Hawaii",
     "regulation_level": "Moderate",
     "summary": "Hawaii requires parents to file a Notice of Intent with the public school principal. An annual progress report must be submitted. Testing is mandatory in grades 3, 5, 8, and 10. Eight subjects are required at the elementary level, seven at the secondary level.",
     "key_requirements": "{\"notification\":\"Required — Notice of Intent to school principal\",\"testing\":\"Required — grades 3, 5, 8, 10\",\"teacher_quals\":\"None specified\",\"record_keeping\":\"Annual progress report + curriculum plan\",\"subjects_required\":\"8 subjects elementary, 7 subjects secondary\"}",
-    "official_link": "https://www.hbe.hawaii.gov/"
+    "official_link": "https://www.hawaiipublicschools.org/ParentsAndStudents/EnrollingInSchool/Choosingaschool/Pages/Homeschooling-FAQs.aspx"
   },
   {
     "state_name": "Idaho",
     "regulation_level": "Low",
     "summary": "Idaho has very minimal homeschool regulations. No notification to the school district is required, no testing is mandated, and no teacher qualifications are needed. Parents have broad freedom in curriculum selection and instructional hours.",
     "key_requirements": "{\"notification\":\"Not required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not specifically required\",\"days_required\":\"No minimum\"}",
-    "official_link": "https://www.sde.idaho.gov/homeschool"
+    "official_link": "https://www.sde.idaho.gov/school-choice/home-school/"
   },
   {
     "state_name": "Illinois",
     "regulation_level": "High",
     "summary": "Illinois has among the strictest homeschool laws. Parents must provide instruction equivalent to a private school (approximately 180 days/year). Required subjects include math, English language arts, science, social studies, art, music, physical education, and health. Testing and detailed records are expected.",
     "key_requirements": "{\"notification\":\"Required — notify school district\",\"testing\":\"Expected — equivalent to public school standards\",\"teacher_quals\":\"Must be a competent teacher\",\"record_keeping\":\"Detailed records required\",\"days_required\":\"~180 days/year, equivalent instruction\",\"subjects_required\":\"Math, ELA, science, social studies, art, music, PE, health\"}",
-    "official_link": "https://www.isbe.net/Docs/Laws_Regs/homeschool.pdf"
+    "official_link": "https://www.isbe.net/Pages/Homeschool.aspx"
   },
   {
     "state_name": "Indiana",
     "regulation_level": "Low",
     "summary": "Indiana is one of the least regulated homeschool states. No notification is required, no testing is mandated, and no specific teacher qualifications are needed. Parents have full control over curriculum, schedule, and educational approach.",
     "key_requirements": "{\"notification\":\"Not required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No minimum\"}",
-    "official_link": "https://www.doe.in.gov/homeschool/"
+    "official_link": "https://www.in.gov/doe/students/homeschool-information/"
   },
   {
     "state_name": "Iowa",
     "regulation_level": "High",
     "summary": "Iowa requires parents to choose between several enrollment options (home school, private school, or extension program). Detailed records must be kept, and annual assessments are required. Parents must cover all subjects mandated by the state, which is a comprehensive list.",
     "key_requirements": "{\"notification\":\"Required — must enroll in an approved option\",\"testing\":\"Required — annual assessment\",\"teacher_quals\":\"Parent must be competent; non-parent tutors need degree\",\"record_keeping\":\"Comprehensive records required\",\"subjects_required\":\"All state-mandated subjects\"}",
-    "official_link": "https://www.ided.state.ia.us/homeschool"
+    "official_link": "https://educateiowa.gov/pk-12/options-educational-choice/competent-private-instruction-homeschooling"
   },
   {
     "state_name": "Kansas",
     "regulation_level": "High",
     "summary": "Kansas requires parents to designate their home as a private school and register it with the state. Detailed curriculum plans and annual assessments are required. Parents must cover a comprehensive list of required subjects and maintain thorough records.",
     "key_requirements": "{\"notification\":\"Required — register as private school with state\",\"testing\":\"Required — annual assessment recommended\",\"teacher_quals\":\"None formally required\",\"record_keeping\":\"Detailed records and curriculum plans\",\"subjects_required\":\"Math, ELA, science, social studies, history, art, PE, health\"}",
-    "official_link": "https://www.ksde.org/default.aspx?tabid=1427"
+    "official_link": "https://www.ksde.org/Agency/Division-of-Learning-Services/Special-Education-and-Title-Services/Title-Services/Non-Accredited-Private-Schools-Homeschooling"
   },
   {
     "state_name": "Kentucky",
     "regulation_level": "Moderate",
     "summary": "Kentucky requires parents to notify the school district within 10 days of beginning homeschool. Instruction must total at least 1,062 hours per year. No standardized testing is required, but records of instruction and attendance should be maintained. Subjects must include the state's core curriculum.",
     "key_requirements": "{\"notification\":\"Required — notify school district within 10 days\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Recommended (attendance and instruction logs)\",\"days_required\":\"1,062 hours/year\",\"subjects_required\":\"Core curriculum subjects\"}",
-    "official_link": "https://education.ky.gov/homeschool"
+    "official_link": "https://education.ky.gov/federal/fed/Pages/Kentucky-Homeschool-Information.aspx"
   },
   {
     "state_name": "Louisiana",
     "regulation_level": "Moderate",
     "summary": "Louisiana requires parents to file a Declaration of Intent with the local school superintendent. Parents may choose from several pathways. An annual assessment or evaluation is not explicitly required by state law, but records and curriculum plans should be maintained.",
     "key_requirements": "{\"notification\":\"Required — Declaration of Intent to superintendent\",\"testing\":\"Not explicitly required\",\"teacher_quals\":\"None specified\",\"record_keeping\":\"Records and curriculum plan recommended\",\"days_required\":\"No specific minimum\"}",
-    "official_link": "https://www.louisianabelieves.com/docs/default-source/teachers-resources/home-school-law.pdf"
+    "official_link": "https://www.louisianabelieves.com/schools/home-study"
   },
   {
     "state_name": "Maine",
     "regulation_level": "Moderate",
     "summary": "Maine requires parents to notify the local superintendent of schools before homeschooling. An annual assessment is required and must cover the state's required subjects. Parents may choose among several assessment methods. Records must be maintained and made available upon request.",
     "key_requirements": "{\"notification\":\"Required — notify superintendent\",\"testing\":\"Required — annual assessment\",\"teacher_quals\":\"None\",\"record_keeping\":\"Records required, available on request\",\"subjects_required\":\"English, math, science, social studies, health, PE\"}",
-    "official_link": "https://www.maine.gov/doe/schools/homeschool"
+    "official_link": "https://www.maine.gov/doe/learning/homeinstruction"
   },
   {
     "state_name": "Maryland",
     "regulation_level": "High",
     "summary": "Maryland has among the strictest homeschool regulations. Parents must notify the superintendent annually and submit a proposed curriculum. An annual portfolio review or testing is required. The state monitors academic progress closely and requires coverage of all state-mandated subjects.",
     "key_requirements": "{\"notification\":\"Required — annual notification to superintendent with curriculum\",\"testing\":\"Required — annual portfolio review or standardized test\",\"teacher_quals\":\"Parent must meet certain competency standards\",\"record_keeping\":\"Detailed records and annual review required\",\"subjects_required\":\"Math, ELA, science, social studies, art, PE, health, music\"}",
-    "official_link": "https://www.marylandpublicschools.org/homeschool"
+    "official_link": "https://marylandpublicschools.org/about/Pages/DSFSS/SSSP/HomeInstruct/index.aspx"
   },
   {
     "state_name": "Massachusetts",
     "regulation_level": "High",
     "summary": "Massachusetts requires parents to notify the local superintendent before starting homeschool and submit a proposed curriculum for approval. Annual assessment is required, and the local school department monitors compliance. Parents must demonstrate competency in core subjects.",
     "key_requirements": "{\"notification\":\"Required — submit curriculum to superintendent for approval\",\"testing\":\"Required — annual assessment\",\"teacher_quals\":\"Parent must demonstrate competence in required subjects\",\"record_keeping\":\"Detailed records required\",\"subjects_required\":\"Math, ELA, science, social studies, PE, health, history\"}",
-    "official_link": "https://www.doe.mass.edu/frameworks/homeschool.html"
+    "official_link": "https://www.doe.mass.edu/charter/homeschool/"
   },
   {
     "state_name": "Michigan",
     "regulation_level": "Moderate",
     "summary": "Michigan does not require specific notification to the school district, but parents must ensure their children receive an adequate education in core subjects. No standardized testing is mandated by the state. Parents have significant flexibility but should maintain basic records.",
     "key_requirements": "{\"notification\":\"Not specifically required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Basic records recommended\",\"subjects_required\":\"Reading, writing, math, science, social studies, history, art, PE, health\"}",
-    "official_link": "https://www.mde.mi.gov/homeschooling"
+    "official_link": "https://www.michigan.gov/mde/services/educational-options/homeschooling"
   },
   {
     "state_name": "Minnesota",
     "regulation_level": "Moderate",
     "summary": "Minnesota requires parents to notify the school district annually. The state mandates a comprehensive list of required subjects. Annual testing or assessment is required, and parents must maintain detailed records. Instruction must total at least 612 hours per year.",
     "key_requirements": "{\"notification\":\"Required — annual notification to school district\",\"testing\":\"Required — annual assessment or test\",\"teacher_quals\":\"None formally required\",\"record_keeping\":\"Detailed records required\",\"days_required\":\"612 hours/year\",\"subjects_required\":\"Comprehensive state-mandated subject list\"}",
-    "official_link": "https://www.mde.state.mn.us/homeschool"
+    "official_link": "https://education.mn.gov/mde/fam/nphs/home/"
   },
   {
     "state_name": "Mississippi",
     "regulation_level": "Low",
     "summary": "Mississippi has minimal homeschool regulations. No notification to the school district is required, no testing is mandated, and no teacher qualifications are specified. Parents have nearly complete autonomy over curriculum and instructional methods.",
-    "key_requirements": "{\"notification\":\"Not required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No minimum\"}",
-    "official_link": "https://www.mde.state.ms.us/homeschool"
+    "key_requirements": "{\"notification\":\"Required — certificate of enrollment to school attendance officer by Sept 15\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No minimum\"}",
+    "official_link": "https://www.mdek12.org/OCSA/HS"
   },
   {
     "state_name": "Missouri",
     "regulation_level": "Low",
     "summary": "Missouri does not require parents to notify the school district before homeschooling. No standardized testing is mandated, and no teacher qualifications are needed. Parents must teach for at least 1,000 hours per year and cover core subjects including English, math, social studies, science, and health.",
     "key_requirements": "{\"notification\":\"Not required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Basic records recommended\",\"days_required\":\"1,000 hours/year\",\"subjects_required\":\"English, math, social studies, science, health\"}",
-    "official_link": "https://www.dese.mo.gov/homeschool"
+    "official_link": "https://dese.mo.gov/quality-schools/homeschooling"
   },
   {
     "state_name": "Montana",
     "regulation_level": "Low",
     "summary": "Montana has very few homeschool requirements. No notification to any school authority is required, no testing is mandated, and no teacher qualifications are needed. Parents have broad autonomy in structuring their children's education.",
-    "key_requirements": "{\"notification\":\"Not required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No minimum\"}",
-    "official_link": "https://www.msu.edu/homeschool/"
+    "key_requirements": "{\"notification\":\"Required — notify local county superintendent annually\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Attendance and immunization records required\",\"days_required\":\"No minimum\"}",
+    "official_link": "https://opi.mt.gov/Families-Students/Family-Student-Support/Home-Schools"
   },
   {
     "state_name": "Nebraska",
     "regulation_level": "Moderate",
     "summary": "Nebraska requires parents to notify the school district and provide a structured curriculum plan. Instruction must total at least 1,080 hours per year. The state requires coverage of specified subjects and mandates annual assessment. Records must be maintained.",
     "key_requirements": "{\"notification\":\"Required — file with school district\",\"testing\":\"Required — annual assessment\",\"teacher_quals\":\"None formally required\",\"record_keeping\":\"Records and curriculum plan required\",\"days_required\":\"1,080 hours/year\",\"subjects_required\":\"Reading, writing, math, science, social studies, history, health, PE\"}",
-    "official_link": "https://www.nebraska.gov/nde/homeschool/"
+    "official_link": "https://www.education.ne.gov/fos/exempt-schools/"
   },
   {
     "state_name": "Nevada",
     "regulation_level": "Low",
     "summary": "Nevada does not require notification to the school district for homeschooling. No testing is mandated and no teacher qualifications are required. Parents may optionally register with the school district but are not obligated to do so.",
-    "key_requirements": "{\"notification\":\"Not required (optional registration available)\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No minimum\"}",
-    "official_link": "https://www.nevadaparents.org/homeschool"
+    "key_requirements": "{\"notification\":\"Required — file Notice of Intent once when child is 7 or starting\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No minimum\"}",
+    "official_link": "https://doe.nv.gov/homeschooling/"
   },
   {
     "state_name": "New Hampshire",
     "regulation_level": "Moderate",
     "summary": "New Hampshire requires parents to notify the local school district before starting to homeschool. An annual assessment is required, and parents must ensure coverage of state-mandated subjects. Records must be maintained and made available if requested.",
     "key_requirements": "{\"notification\":\"Required — notify school district\",\"testing\":\"Required — annual assessment\",\"teacher_quals\":\"None\",\"record_keeping\":\"Records required\",\"subjects_required\":\"Reading, writing, math, science, social studies, civics, history, health, PE\"}",
-    "official_link": "https://www.nhed.nh.gov/homeschool/"
+    "official_link": "https://www.education.nh.gov/pathways-education/home-education"
   },
   {
     "state_name": "New Jersey",
     "regulation_level": "Moderate",
     "summary": "New Jersey requires parents to send written notice to the local school superintendent. The state mandates instruction in core subjects equivalent to public school standards. No standardized testing is required, but parents must maintain proper records and ensure educational equivalency.",
-    "key_requirements": "{\"notification\":\"Required — written notice to superintendent\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Records required\",\"subjects_required\":\"Math, science, ELA, social studies, arts, PE, health, history, civics\"}",
+    "key_requirements": "{\"notification\":\"Not required (but common to notify superintendent when withdrawing)\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Records required\",\"subjects_required\":\"Math, science, ELA, social studies, arts, PE, health, history, civics\"}",
     "official_link": "https://www.nj.gov/education/homeschool/"
   },
   {
     "state_name": "New Mexico",
     "regulation_level": "Low",
     "summary": "New Mexico has very minimal homeschool oversight. No notification to the school district is required, no testing is mandated, and no teacher qualifications are specified. Parents have wide latitude in choosing curriculum and instructional methods.",
-    "key_requirements": "{\"notification\":\"Not required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No minimum\"}",
-    "official_link": "https://www.ped.nm.gov/homeschool/"
+    "key_requirements": "{\"notification\":\"Required — notify state each year within 30 days of start\",\"testing\":\"Not required\",\"teacher_quals\":\"High school diploma or GED required\",\"record_keeping\":\"Not required\",\"days_required\":\"180 days/year\"}",
+    "official_link": "https://webnew.ped.state.nm.us/bureaus/options-parents-families/home-schools/"
   },
   {
     "state_name": "New York",
     "regulation_level": "High",
     "summary": "New York has strict homeschool requirements. Parents must send written notice to the superintendent and submit an annual instructional plan. Testing or assessment is required annually. The state monitors progress and parents must demonstrate adequate instruction in all required subjects.",
     "key_requirements": "{\"notification\":\"Required — written notice to superintendent + annual plan\",\"testing\":\"Required — annual assessment\",\"teacher_quals\":\"Parent must demonstrate competence\",\"record_keeping\":\"Detailed records and annual progress report\",\"subjects_required\":\"Math, ELA, science, social studies, arts, PE, health, music, civics\"}",
-    "official_link": "https://www.nysed.gov/homeschool"
+    "official_link": "http://www.p12.nysed.gov/sss/homeinstruction/"
   },
   {
     "state_name": "North Carolina",
     "regulation_level": "Moderate",
     "summary": "North Carolina requires parents to file a Declaration of Intent with the state or operate under an umbrella school. Annual standardized testing is required, and students must take a nationally normed test or be evaluated. Core subjects must be covered and records maintained.",
-    "key_requirements": "{\"notification\":\"Required — Declaration of Intent with state\",\"testing\":\"Required — annual standardized test\",\"teacher_quals\":\"None\",\"record_keeping\":\"Records required\",\"subjects_required\":\"Reading, writing, math, science, social studies, history, PE, health\"}",
-    "official_link": "https://www.dpi.nc.gov/homeschool"
+    "key_requirements": "{\"notification\":\"Required — Declaration of Intent with state\",\"testing\":\"Required — annual standardized test\",\"teacher_quals\":\"Parent must have at least high school diploma\",\"record_keeping\":\"Records required\",\"subjects_required\":\"Reading, writing, math, science, social studies, history, PE, health\"}",
+    "official_link": "https://ncadmin.nc.gov/citizens/home-school-information"
   },
   {
     "state_name": "North Dakota",
     "regulation_level": "Moderate",
     "summary": "North Dakota requires parents to apply for home school approval with the local school board. The parent-teacher must have a high school diploma. Instruction must be at least 4 hours per day for 180 days. Annual testing is required.",
-    "key_requirements": "{\"notification\":\"Required — apply for home school approval\",\"testing\":\"Required — annual assessment\",\"teacher_quals\":\"High school diploma required\",\"record_keeping\":\"Records required\",\"days_required\":\"180 days, 4 hrs/day\",\"subjects_required\":\"All state-required subjects\"}",
-    "official_link": "https://www.nd.edu/homeschool/"
+    "key_requirements": "{\"notification\":\"Required — notify annually with education plan\",\"testing\":\"Required — standardized test in grades 4, 6, 8, 10\",\"teacher_quals\":\"High school diploma or equivalent required\",\"record_keeping\":\"Records required\",\"days_required\":\"175 days, 4 hrs/day\",\"subjects_required\":\"All state-required subjects\"}",
+    "official_link": "https://www.nd.gov/dpi/parentscommunity/parents/home-education"
   },
   {
     "state_name": "Ohio",
     "regulation_level": "Moderate",
     "summary": "Ohio requires parents to notify the school district and submit an education plan. An annual assessment is required — parents may choose between standardized testing, portfolio review, or evaluation by a qualified person. The parent-teacher must have completed high school.",
     "key_requirements": "{\"notification\":\"Required — notify school district with education plan\",\"testing\":\"Required — standardized test, portfolio, or evaluator\",\"teacher_quals\":\"High school diploma or equivalent required\",\"record_keeping\":\"Records and assessment results required\",\"subjects_required\":\"Reading, writing, math, social studies, science, health, PE\"}",
-    "official_link": "https://education.ohio.gov/Topics-and-Issues/Homeschool"
+    "official_link": "https://education.ohio.gov/Topics/Quality-School-Choice/Home-Schooling"
   },
   {
     "state_name": "Oklahoma",
     "regulation_level": "Low",
     "summary": "Oklahoma has minimal homeschool requirements. No notification to the school district is needed, no testing is mandated, and no teacher qualifications are required. Parents have full autonomy over their children's education at home.",
     "key_requirements": "{\"notification\":\"Not required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No minimum\"}",
-    "official_link": "https://www.sde.ok.gov/homeschool/"
+    "official_link": "https://sde.ok.gov/home-school"
   },
   {
     "state_name": "Oregon",
     "regulation_level": "Moderate",
     "summary": "Oregon requires parents to notify the school district before starting homeschool. An annual assessment is required and must include core subjects. Parents may choose from several assessment options including standardized testing or professional evaluation.",
-    "key_requirements": "{\"notification\":\"Required — notify school district\",\"testing\":\"Required — annual assessment\",\"teacher_quals\":\"None\",\"record_keeping\":\"Records recommended\",\"subjects_required\":\"Reading, writing, math, science, social studies, health, PE\"}",
-    "official_link": "https://www.oregon.gov/ode/homeschool/"
+    "key_requirements": "{\"notification\":\"Required — notify school district initially (once)\",\"testing\":\"Required — grades 3, 5, 8, 10\",\"teacher_quals\":\"None\",\"record_keeping\":\"Records recommended\",\"subjects_required\":\"Reading, writing, math, science, social studies, health, PE\"}",
+    "official_link": "https://www.oregon.gov/ode/learning-options/HomeSchool/Pages/default.aspx"
   },
   {
     "state_name": "Pennsylvania",
     "regulation_level": "High",
     "summary": "Pennsylvania has strict homeschool requirements. Parents must send written notice to the school district and provide a curriculum plan. The parent-teacher must have a high school diploma or equivalent. Annual testing is required, and parents must maintain detailed records and portfolios.",
-    "key_requirements": "{\"notification\":\"Required — written notice to school district + curriculum plan\",\"testing\":\"Required — annual standardized test or portfolio review\",\"teacher_quals\":\"High school diploma or equivalent required\",\"record_keeping\":\"Detailed annual portfolio or records required\",\"subjects_required\":\"Math, ELA, science, social studies, health, PE, art, music, history\"}",
-    "official_link": "https://www.pde.pa.gov/K12/Pages/Home-Schooling.aspx"
+    "key_requirements": "{\"notification\":\"Required — written notice to school district + curriculum plan\",\"testing\":\"Required — annual standardized test (grades 3, 5, 8) + evaluator\",\"teacher_quals\":\"High school diploma or equivalent required\",\"record_keeping\":\"Detailed annual portfolio required\",\"subjects_required\":\"Math, ELA, science, social studies, health, PE, art, music, history\"}",
+    "official_link": "https://www.education.pa.gov/K-12/Home%20Education%20and%20Private%20Tutoring/Pages/default.aspx"
   },
   {
     "state_name": "Rhode Island",
     "regulation_level": "High",
     "summary": "Rhode Island requires parents to file a plan with the local school committee and demonstrate adequate instruction. Annual evaluation is required, and the school committee may review progress. Teacher qualifications and comprehensive coverage of required subjects are expected.",
-    "key_requirements": "{\"notification\":\"Required — file plan with school committee\",\"testing\":\"Required — annual evaluation\",\"teacher_quals\":\"Must demonstrate adequate knowledge of required subjects\",\"record_keeping\":\"Detailed records and annual review\",\"subjects_required\":\"Math, reading, writing, science, social studies, PE, history, health, civics\"}",
-    "official_link": "https://www.rde.ri.gov/homeschool/"
+    "key_requirements": "{\"notification\":\"Required — file plan with school committee\",\"testing\":\"Required — annual evaluation method agreed with committee\",\"teacher_quals\":\"Must demonstrate adequate knowledge of subjects\",\"record_keeping\":\"Detailed records and annual review\",\"subjects_required\":\"Math, reading, writing, science, social studies, PE, history, health, civics\"}",
+    "official_link": "https://ride.ri.gov/students-families/education-programs/home-schooling"
   },
   {
     "state_name": "South Carolina",
     "regulation_level": "Low",
     "summary": "South Carolina requires parents to file a Declaration of Intent with the local school district, but oversight is minimal. Parents may operate independently or through a home school association. No standardized testing is mandated and no teacher qualifications are required.",
-    "key_requirements": "{\"notification\":\"Required — Declaration of Intent to school district\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Basic records recommended\",\"days_required\":\"180 days/year\"}",
-    "official_link": "https://www.sceedsystem.com/"
+    "key_requirements": "{\"notification\":\"Required — notify district or join homeschool association\",\"testing\":\"Not required (depends on option chosen)\",\"teacher_quals\":\"High school diploma required\",\"record_keeping\":\"Records required\",\"days_required\":\"180 days/year\"}",
+    "official_link": "https://ed.sc.gov/districts-schools/state-accountability/home-schooling/"
   },
   {
     "state_name": "South Dakota",
     "regulation_level": "Moderate",
     "summary": "South Dakota does not require explicit pre-notification but parents must ensure adequate instruction in core subjects. The state expects parents to maintain basic records. No standardized testing is mandated, though parents may voluntarily assess their children's progress.",
-    "key_requirements": "{\"notification\":\"Not explicitly required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Basic records expected\",\"subjects_required\":\"Reading, writing, math, science, social studies, history, health, PE\"}",
-    "official_link": "https://doe.sd.gov/homeschool/"
+    "key_requirements": "{\"notification\":\"Required — file exemption when starting\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Basic records expected\",\"subjects_required\":\"Reading, writing, math, science, social studies, history, health, PE\"}",
+    "official_link": "https://doe.sd.gov/oatq/homeschooling.aspx"
   },
   {
     "state_name": "Tennessee",
     "regulation_level": "Moderate",
     "summary": "Tennessee requires parents to notify the local school in writing before beginning homeschool. An annual evaluation is required — parents may choose from standardized tests, portfolio review, or other approved methods. Core subjects must be covered and records maintained.",
-    "key_requirements": "{\"notification\":\"Required — written notice to local school\",\"testing\":\"Required — annual evaluation (multiple options)\",\"teacher_quals\":\"None\",\"record_keeping\":\"Records required\",\"subjects_required\":\"Reading, math, science, social studies, English, history, PE, health\"}",
-    "official_link": "https://www.tn.gov/education/homeschool.html"
+    "key_requirements": "{\"notification\":\"Required — written notice to local school annually\",\"testing\":\"Required — standardized test in grades 5, 7, 9\",\"teacher_quals\":\"High school diploma required\",\"record_keeping\":\"Attendance records required\",\"subjects_required\":\"Reading, math, science, social studies, English, history, PE, health\"}",
+    "official_link": "https://www.tn.gov/education/families/school-options/home-schooling-in-tn.html"
   },
   {
     "state_name": "Texas",
     "regulation_level": "Low",
     "summary": "Texas is one of the most homeschool-friendly states. No notification to the state or school district is required. Parents have full autonomy over curriculum, testing, and instructional approach. The Texas Supreme Court has upheld broad homeschool rights.",
     "key_requirements": "{\"notification\":\"Not required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required by state\",\"days_required\":\"No minimum specified by state\"}",
-    "official_link": "https://www.tea.texas.gov/homeschool"
+    "official_link": "https://tea.texas.gov/texas-schools/general-information/finding-a-school-for-your-child/home-schooling"
   },
   {
     "state_name": "Utah",
     "regulation_level": "Low",
     "summary": "Utah has minimal homeschool oversight. Parents are not required to notify the state or school district. No standardized testing is mandated and no teacher qualifications are specified. Parents may choose to enroll in a public school correspondence program but are not required to do so.",
-    "key_requirements": "{\"notification\":\"Not required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No specific minimum\"}",
-    "official_link": "https://www.utah.edu/homeschool"
+    "key_requirements": "{\"notification\":\"Required — submit notarized affidavit once\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No specific minimum\"}",
+    "official_link": "https://www.schools.utah.gov/curr/homeschool"
   },
   {
     "state_name": "Vermont",
     "regulation_level": "Moderate",
     "summary": "Vermont requires parents to notify the local superintendent before starting homeschool. An annual assessment is required, and the local school board may review the education plan. Parents must cover all required core subjects and maintain adequate records.",
-    "key_requirements": "{\"notification\":\"Required — notify superintendent\",\"testing\":\"Required — annual assessment\",\"teacher_quals\":\"None\",\"record_keeping\":\"Records and annual plan required\",\"subjects_required\":\"Reading, writing, math, science, social studies, PE, health\"}",
-    "official_link": "https:// Agency.Education.Vermont.gov/homeschool"
+    "key_requirements": "{\"notification\":\"Required — annual written enrollment with curriculum plan\",\"testing\":\"Required — annual assessment (test, evaluator, or portfolio)\",\"teacher_quals\":\"None\",\"record_keeping\":\"Records and annual plan required\",\"subjects_required\":\"Reading, writing, math, science, social studies, PE, health\"}",
+    "official_link": "https://education.vermont.gov/vermont-schools/school-operations/home-study"
   },
   {
     "state_name": "Virginia",
     "regulation_level": "Moderate",
     "summary": "Virginia requires parents to notify the local superintendent and demonstrate meeting educational standards. An annual evaluation is required via standardized test, portfolio review, or other approved methods. Parents must also submit proof that the student's basic health needs are being met.",
-    "key_requirements": "{\"notification\":\"Required — notify superintendent with education plan\",\"testing\":\"Required — annual evaluation (multiple options)\",\"teacher_quals\":\"None formally required\",\"record_keeping\":\"Records and annual evaluation results\",\"subjects_required\":\"Reading, writing, math, science, social studies, health, PE, history\"}",
-    "official_link": "https://www.doe.virginia.gov/NonPublicSchools/Homeschool/"
+    "key_requirements": "{\"notification\":\"Required — annual intent by Aug 15 with description of curriculum\",\"testing\":\"Required — annual assessment (test or evaluation)\",\"teacher_quals\":\"Parent must have high school diploma\",\"record_keeping\":\"Records and annual evaluation results\",\"subjects_required\":\"Reading, writing, math, science, social studies, health, PE, history\"}",
+    "official_link": "https://www.doe.virginia.gov/families/private_home/index.shtml"
   },
   {
     "state_name": "Washington",
     "regulation_level": "Moderate",
     "summary": "Washington requires parents to notify the local school district before beginning homeschool. An annual assessment is required, and parents must meet basic subject requirements. Parents must also ensure their children are current on immunizations unless exempt.",
-    "key_requirements": "{\"notification\":\"Required — notify school district\",\"testing\":\"Required — annual assessment\",\"teacher_quals\":\"None\",\"record_keeping\":\"Records required\",\"subjects_required\":\"Reading, writing, math, science, social studies, history, health, PE\"}",
-    "official_link": "https://www.k12.wa.gov/homeschool"
+    "key_requirements": "{\"notification\":\"Required — annual declaration by Sept 15\",\"testing\":\"Required — annual standardized test or evaluation\",\"teacher_quals\":\"Parent must meet specific education/training criteria\",\"record_keeping\":\"Records required\",\"subjects_required\":\"Reading, writing, math, science, social studies, history, health, PE\"}",
+    "official_link": "https://www.ospi.k12.wa.gov/student-success/learning-alternatives/home-based-instruction"
   },
   {
     "state_name": "West Virginia",
     "regulation_level": "Moderate",
     "summary": "West Virginia requires parents to notify the school superintendent and maintain detailed records. An annual assessment is required, which may be a standardized test, portfolio review, or evaluation by a qualified professional. Core subjects must be covered.",
-    "key_requirements": "{\"notification\":\"Required — notify superintendent\",\"testing\":\"Required — annual assessment\",\"teacher_quals\":\"None\",\"record_keeping\":\"Detailed records required\",\"subjects_required\":\"Reading, writing, math, science, social studies, health, PE\"}",
-    "official_link": "https://bshb.wvbe.state.wv.us/homeschool"
+    "key_requirements": "{\"notification\":\"Required — one-time notice of intent per child\",\"testing\":\"Required — annual assessment (grades 3, 5, 8, 11 must submit)\",\"teacher_quals\":\"Parent must have high school diploma\",\"record_keeping\":\"Detailed records required\",\"subjects_required\":\"Reading, writing, math, science, social studies, health, PE\"}",
+    "official_link": "https://wvde.us/homeschool/"
   },
   {
     "state_name": "Wisconsin",
     "regulation_level": "Moderate",
     "summary": "Wisconsin requires parents to establish a home school and file a notice with the local school district. Instruction must total at least 875 hours per year. The state requires coverage of core subjects and parents must maintain basic records, though no standardized testing is mandated.",
-    "key_requirements": "{\"notification\":\"Required — file notice with school district\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Basic records required\",\"days_required\":\"875 hours/year\",\"subjects_required\":\"Reading, writing, math, science, social studies, history, health, PE\"}",
-    "official_link": "https://docs.pi.wi.gov/homeschool/"
+    "key_requirements": "{\"notification\":\"Required — file notice by Oct 15 annually\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Basic records required\",\"days_required\":\"875 hours/year\",\"subjects_required\":\"Reading, writing, math, science, social studies, history, health, PE\"}",
+    "official_link": "https://dpi.wi.gov/sms/home-based"
   },
   {
     "state_name": "Wyoming",
     "regulation_level": "Low",
     "summary": "Wyoming has minimal homeschool requirements. No notification to the state or school district is required, no testing is mandated, and no teacher qualifications are specified. Parents have broad autonomy in all aspects of their children's home education.",
-    "key_requirements": "{\"notification\":\"Not required\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No minimum\"}",
-    "official_link": "https://www.wde.state.wy.us/"
+    "key_requirements": "{\"notification\":\"Required — annual curriculum plan to local board\",\"testing\":\"Not required\",\"teacher_quals\":\"None\",\"record_keeping\":\"Not required\",\"days_required\":\"No minimum\"}",
+    "official_link": "https://edu.wyoming.gov/beyond-the-classroom/school-programs/home-schools/"
   }
 ]

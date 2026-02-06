@@ -17,6 +17,7 @@ describe('Parent Portal Navigation', () => {
             <input id="loginEmail" />
             <input id="loginPassword" />
             <input id="registerEmail" />
+            <input id="registerPassword" />
             <input id="registerFamilyName" />
             <button id="loginBtn"></button>
             <button id="registerBtn"></button>
@@ -26,8 +27,17 @@ describe('Parent Portal Navigation', () => {
             <button id="viewEventsBtn"></button>
             <button id="viewDashboardBtn"></button>
             <button id="viewLegalGuidesBtn"></button>
+            <button id="saveProfileBtn"></button>
+            <button id="useCurrentProfileLocationBtn"></button>
             <div id="profileEmail"></div>
             <div id="profileFamilyName"></div>
+            <div id="profileDescription"></div>
+            <div id="profileLocation"></div>
+            <div id="profileChildrenAges"></div>
+            <input id="editFamilyName" />
+            <textarea id="editDescription"></textarea>
+            <input id="editLocation" />
+            <input id="editChildrenAges" />
         `;
 
         elements = {
@@ -50,7 +60,15 @@ describe('Parent Portal Navigation', () => {
             viewDashboardBtn: document.getElementById('viewDashboardBtn'),
             viewLegalGuidesBtn: document.getElementById('viewLegalGuidesBtn'),
             profileEmail: document.getElementById('profileEmail'),
-            profileFamilyName: document.getElementById('profileFamilyName')
+            profileFamilyName: document.getElementById('profileFamilyName'),
+            profileDescription: document.getElementById('profileDescription'),
+            profileLocation: document.getElementById('profileLocation'),
+            profileChildrenAges: document.getElementById('profileChildrenAges'),
+            editFamilyName: document.getElementById('editFamilyName'),
+            editDescription: document.getElementById('editDescription'),
+            editLocation: document.getElementById('editLocation'),
+            editChildrenAges: document.getElementById('editChildrenAges'),
+            saveProfileBtn: document.getElementById('saveProfileBtn')
         };
 
         initParentPortal(elements);
@@ -88,18 +106,48 @@ describe('Parent Portal Navigation', () => {
         alertMock.mockRestore();
     });
 
-    it('should allow new user registration', () => {
+    it('should allow new user registration and subsequent login', () => {
         const regEmail = document.getElementById('registerEmail');
+        const regPassword = document.getElementById('registerPassword');
         const regFamily = document.getElementById('registerFamilyName');
         
-        regEmail.value = 'new@user.com';
-        regFamily.value = 'Newbie';
+        regEmail.value = 'jlynch8080@pm.me';
+        regPassword.value = 'test-pass-123';
+        regFamily.value = 'Jlynch';
         
         elements.registerBtn.click();
 
         expect(elements.profileSection.style.display).toBe('block');
-        expect(elements.profileEmail.innerText).toBe('new@user.com');
-        expect(elements.profileFamilyName.innerText).toBe('Newbie Family');
+        expect(elements.profileEmail.innerText).toBe('jlynch8080@pm.me');
+        
+        // Logout
+        elements.logoutBtn.click();
+        expect(elements.authSection.style.display).toBe('block');
+        
+        // Try Login
+        elements.loginEmail.value = 'jlynch8080@pm.me';
+        elements.loginPassword.value = 'test-pass-123';
+        elements.loginBtn.click();
+        
+        expect(elements.profileSection.style.display).toBe('block');
+        expect(elements.profileEmail.innerText).toBe('jlynch8080@pm.me');
+    });
+
+    it('should update profile on save', () => {
+        // Authenticate
+        elements.loginEmail.value = 'justin@village.com';
+        elements.loginPassword.value = 'password123';
+        elements.loginBtn.click();
+        
+        elements.editFamilyName.value = 'Updated Lynch';
+        elements.editDescription.value = 'New description';
+        elements.editLocation.value = 'Texas';
+        
+        elements.saveProfileBtn.click();
+        
+        expect(elements.profileFamilyName.innerText).toBe('Updated Lynch');
+        expect(elements.profileDescription.innerText).toBe('New description');
+        expect(elements.profileLocation.innerText).toBe('Texas');
     });
 
     it('should navigate to edit profile when authenticated', () => {

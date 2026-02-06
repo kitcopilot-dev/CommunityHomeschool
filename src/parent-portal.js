@@ -105,23 +105,55 @@ function initParentPortal(elements) {
     elements.registerBtn?.addEventListener('click', (e) => {
         e.preventDefault();
         const email = document.getElementById('registerEmail')?.value;
+        const password = document.getElementById('registerPassword')?.value;
         const familyName = document.getElementById('registerFamilyName')?.value;
         
-        if (!email || !familyName) {
+        if (!email || !password || !familyName) {
             alert("Please fill in all registration fields.");
             return;
         }
 
         console.log("Registering user:", email);
+        const newUser = { email, password, name: familyName + " Family" };
+        USERS.push(newUser);
+        
         isAuthenticated = true;
+        currentUser = newUser;
         viewOnlyMode = false;
         
-        elements.profileFamilyName.innerText = familyName + " Family";
+        elements.profileFamilyName.innerText = newUser.name;
         elements.profileEmail.innerText = email;
 
         hideAllSections();
         if (elements.profileSection) elements.profileSection.style.display = 'block';
         if (elements.logoutBtn) elements.logoutBtn.style.display = 'block';
+    });
+
+    // Edit Profile Logic
+    document.getElementById('useCurrentProfileLocationBtn')?.addEventListener('click', () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const lat = position.coords.latitude.toFixed(4);
+                const lon = position.coords.longitude.toFixed(4);
+                if (elements.editLocation) elements.editLocation.value = `${lat}, ${lon}`;
+            }, (err) => {
+                alert("Unable to retrieve location: " + err.message);
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    });
+
+    elements.saveProfileBtn?.addEventListener('click', () => {
+        if (currentUser) {
+            currentUser.name = document.getElementById('editFamilyName').value;
+            elements.profileFamilyName.innerText = currentUser.name;
+            elements.profileDescription.innerText = document.getElementById('editDescription').value;
+            elements.profileLocation.innerText = document.getElementById('editLocation').value;
+            elements.profileChildrenAges.innerText = document.getElementById('editChildrenAges').value;
+        }
+        hideAllSections();
+        elements.profileSection.style.display = 'block';
     });
 
     elements.logoutBtn?.addEventListener('click', () => {
