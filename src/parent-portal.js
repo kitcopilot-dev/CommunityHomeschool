@@ -13,7 +13,7 @@ function initParentPortal(elements) {
     // HARDCODED SECURE CREDENTIALS (MOCKING)
     const VALID_USER = {
         email: "justin@village.com",
-        password: "password123" // In a real app, this would be a hash/JWT from a server
+        password: "password123"
     };
 
     let isAuthenticated = false;
@@ -22,16 +22,23 @@ function initParentPortal(elements) {
     console.log("Village Portal Initialized. Dev Mode:", isDev);
 
     function hideAllSections() {
-        [elements.authSection, elements.profileSection, elements.editProfileSection, 
-         elements.eventsSection, elements.dashboardSection, elements.legalGuidesSection, elements.legalDetailSection]
-        .forEach(s => { if(s) s.style.display = 'none'; });
+        const sections = [
+            elements.authSection, 
+            elements.profileSection, 
+            elements.editProfileSection, 
+            elements.eventsSection, 
+            elements.dashboardSection, 
+            elements.legalGuidesSection, 
+            elements.legalDetailSection
+        ];
+        sections.forEach(s => { if(s) s.style.display = 'none'; });
     }
 
     function checkAuth(callback) {
         if (isAuthenticated) {
             callback();
         } else if (viewOnlyMode) {
-            alert("This is a functional part of the app. Please login with a valid account to use it.");
+            alert("Guest View: Please login with a valid account to use functional features.");
             hideAllSections();
             elements.authSection.style.display = 'block';
         } else {
@@ -57,33 +64,56 @@ function initParentPortal(elements) {
         }
     });
 
-    // Login Logic (CRITICAL SECURITY FIX)
+    // Login Logic
     elements.loginBtn?.addEventListener('click', (e) => {
         e.preventDefault();
         const email = elements.loginEmail?.value;
         const password = elements.loginPassword?.value;
 
-        // 1. Check for valid credentials first
+        console.log("Attempting login for:", email);
+
         if (email === VALID_USER.email && password === VALID_USER.password) {
-            console.log("Authenticated Login Successful");
+            console.log("Login: Success (Auth)");
             isAuthenticated = true;
             viewOnlyMode = false;
             elements.profileFamilyName.innerText = 'The Lynch Family';
             elements.profileEmail.innerText = email;
         } 
-        // 2. Allow "Guest/View Only" bypass ONLY in Dev mode and ONLY with empty fields
         else if (isDev && !email && !password) {
-            console.log("Dev Mode Bypass: Entering View-Only");
+            console.log("Login: Success (Guest Bypass)");
             isAuthenticated = false;
             viewOnlyMode = true;
             elements.profileFamilyName.innerText = 'Guest (View Only Mode)';
             elements.profileEmail.innerText = 'guest@village.com';
         } 
-        // 3. Fail on incorrect credentials
         else {
+            console.warn("Login: Failed (Invalid Credentials)");
             alert("Invalid email or password.");
             return;
         }
+
+        hideAllSections();
+        if (elements.profileSection) elements.profileSection.style.display = 'block';
+        if (elements.logoutBtn) elements.logoutBtn.style.display = 'block';
+    });
+
+    // Registration Simulation
+    elements.registerBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('registerEmail')?.value;
+        const familyName = document.getElementById('registerFamilyName')?.value;
+        
+        if (!email || !familyName) {
+            alert("Please fill in all registration fields.");
+            return;
+        }
+
+        console.log("Registering user:", email);
+        isAuthenticated = true;
+        viewOnlyMode = false;
+        
+        elements.profileFamilyName.innerText = familyName + " Family";
+        elements.profileEmail.innerText = email;
 
         hideAllSections();
         if (elements.profileSection) elements.profileSection.style.display = 'block';
@@ -126,7 +156,6 @@ function initParentPortal(elements) {
         });
     });
 
-    // Sub-navigation and common actions
     elements.backFromDashboardBtn?.addEventListener('click', () => {
         hideAllSections();
         elements.profileSection.style.display = 'block';
@@ -135,10 +164,6 @@ function initParentPortal(elements) {
     elements.cancelEditBtn?.addEventListener('click', () => {
         hideAllSections();
         elements.profileSection.style.display = 'block';
-    });
-
-    elements.registerBtn?.addEventListener('click', () => {
-        elements.loginBtn?.click();
     });
 
     async function loadLegalGuides() {
@@ -212,7 +237,6 @@ function initParentPortal(elements) {
     });
 }
 
-// Support for Vitest
 if (typeof exports !== 'undefined') {
     module.exports = { initParentPortal };
 }

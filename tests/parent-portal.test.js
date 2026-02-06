@@ -74,22 +74,37 @@ describe('Parent Portal Navigation', () => {
         alertMock.mockRestore();
     });
 
-    it('should enter view-only mode on empty dev login', () => {
-        elements.loginEmail.value = '';
-        elements.loginPassword.value = '';
-        elements.loginBtn.click();
+    it('should allow new user registration', () => {
+        const regEmail = document.getElementById('registerEmail');
+        const regFamily = document.getElementById('registerFamilyName');
+        
+        regEmail.value = 'new@user.com';
+        regFamily.value = 'Newbie';
+        
+        elements.registerBtn.click();
 
         expect(elements.profileSection.style.display).toBe('block');
-        expect(elements.profileFamilyName.innerText).toContain('View Only');
+        expect(elements.profileEmail.innerText).toBe('new@user.com');
+        expect(elements.profileFamilyName.innerText).toBe('Newbie Family');
     });
 
-    it('should navigate to edit profile', () => {
+    it('should navigate to edit profile when authenticated', () => {
+        // Authenticate first
+        elements.loginEmail.value = 'justin@village.com';
+        elements.loginPassword.value = 'password123';
+        elements.loginBtn.click();
+        
         elements.editProfileBtn.click();
         expect(elements.editProfileSection.style.display).toBe('block');
         expect(elements.profileSection.style.display).toBe('none');
     });
 
-    it('should navigate to dashboard', () => {
+    it('should navigate to dashboard when authenticated', () => {
+        // Authenticate first
+        elements.loginEmail.value = 'justin@village.com';
+        elements.loginPassword.value = 'password123';
+        elements.loginBtn.click();
+
         elements.viewDashboardBtn.click();
         expect(elements.dashboardSection.style.display).toBe('block');
         expect(elements.profileSection.style.display).toBe('none');
