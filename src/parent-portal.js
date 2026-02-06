@@ -11,9 +11,9 @@ function initParentPortal(elements) {
                   window.location.port === '8000';
     
     // PERSISTENCE FOR PROTOTYPE
-    const USERS = JSON.parse(sessionStorage.getItem('village_users')) || [
-        { email: "justin@village.com", password: "password123", name: "The Lynch Family", coords: null },
-        { email: "kitt@village.com", password: "test-password-99", name: "The Test Family", coords: null }
+    let USERS = JSON.parse(sessionStorage.getItem('village_users')) || [
+        { email: "justin@village.com", password: "password123", name: "The Lynch Family", coords: null, desc: "", loc: "", kids: "" },
+        { email: "kitt@village.com", password: "test-password-99", name: "The Test Family", coords: null, desc: "", loc: "", kids: "" }
     ];
 
     let isAuthenticated = sessionStorage.getItem('village_auth') === 'true';
@@ -30,9 +30,31 @@ function initParentPortal(elements) {
     }
 
     function hideAllSections() {
-        [elements.authSection, elements.profileSection, elements.editProfileSection, 
-         elements.eventsSection, elements.dashboardSection, elements.legalGuidesSection, elements.legalDetailSection]
-        .forEach(s => { if(s) s.style.display = 'none'; });
+        const sections = [
+            elements.authSection, 
+            elements.profileSection, 
+            elements.editProfileSection, 
+            elements.eventsSection, 
+            elements.dashboardSection, 
+            elements.legalGuidesSection, 
+            elements.legalDetailSection
+        ];
+        sections.forEach(s => { if(s) s.style.display = 'none'; });
+    }
+
+    function renderProfile() {
+        if (!currentUser) return;
+        if (elements.profileEmail) elements.profileEmail.innerText = currentUser.email;
+        if (elements.profileFamilyName) elements.profileFamilyName.innerText = currentUser.name || "Family";
+        if (elements.profileDescription) elements.profileDescription.innerText = currentUser.desc || "No description provided.";
+        if (elements.profileLocation) elements.profileLocation.innerText = currentUser.loc || "Not set";
+        if (elements.profileChildrenAges) elements.profileChildrenAges.innerText = currentUser.kids || "None listed";
+
+        // Sync back to Edit fields
+        if (elements.editFamilyName) elements.editFamilyName.value = currentUser.name || "";
+        if (elements.editDescription) elements.editDescription.value = currentUser.desc || "";
+        if (elements.editLocation) elements.editLocation.value = currentUser.loc || "";
+        if (elements.editChildrenAges) elements.editChildrenAges.value = currentUser.kids || "";
     }
 
     // Restore session on page load
@@ -40,10 +62,7 @@ function initParentPortal(elements) {
         hideAllSections();
         if (elements.profileSection) elements.profileSection.style.display = 'block';
         if (elements.logoutBtn) elements.logoutBtn.style.display = 'block';
-        if (currentUser) {
-            if (elements.profileEmail) elements.profileEmail.innerText = currentUser.email;
-            if (elements.profileFamilyName) elements.profileFamilyName.innerText = currentUser.name;
-        }
+        renderProfile();
     }
 
     function checkAuth(callback) {
@@ -88,16 +107,14 @@ function initParentPortal(elements) {
             isAuthenticated = true;
             currentUser = foundUser;
             viewOnlyMode = false;
-            if (elements.profileFamilyName) elements.profileFamilyName.innerText = foundUser.name;
-            if (elements.profileEmail) elements.profileEmail.innerText = email;
+            renderProfile();
             saveSession();
         } 
         else if (isDev && !email && !password) {
             isAuthenticated = false;
             viewOnlyMode = true;
-            currentUser = { email: 'guest@village.com', name: 'Guest' };
-            if (elements.profileFamilyName) elements.profileFamilyName.innerText = 'Guest (View Only Mode)';
-            if (elements.profileEmail) elements.profileEmail.innerText = 'guest@village.com';
+            currentUser = { email: 'guest@village.com', name: 'Guest', desc: "Guest Mode", loc: "Localhost", kids: "" };
+            renderProfile();
             saveSession();
         } 
         else {
@@ -122,15 +139,14 @@ function initParentPortal(elements) {
             return;
         }
 
-        const newUser = { email, password, name: familyName + " Family", coords: null };
+        const newUser = { email, password, name: familyName + " Family", coords: null, desc: "", loc: "", kids: "" };
         USERS.push(newUser);
         
         isAuthenticated = true;
         currentUser = newUser;
         viewOnlyMode = false;
         
-        if (elements.profileFamilyName) elements.profileFamilyName.innerText = newUser.name;
-        if (elements.profileEmail) elements.profileEmail.innerText = email;
+        renderProfile();
         saveSession();
 
         hideAllSections();
@@ -163,6 +179,7 @@ function initParentPortal(elements) {
                         const state = data.address.state || "Unknown State";
                         elements.editLocation.value = `${city}, ${state}`;
                     } catch (e) {
+                        console.error("Reverse Geocoding Error:", e);
                         elements.editLocation.value = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
                     }
                 }
@@ -174,11 +191,19 @@ function initParentPortal(elements) {
 
     elements.saveProfileBtn?.addEventListener('click', () => {
         if (currentUser) {
-            currentUser.name = document.getElementById('editFamilyName').value;
-            if (elements.profileFamilyName) elements.profileFamilyName.innerText = currentUser.name;
-            if (elements.profileDescription) elements.profileDescription.innerText = document.getElementById('editDescription').value;
-            if (elements.profileLocation) elements.profileLocation.innerText = document.getElementById('editLocation').value;
-            if (elements.profileChildrenAges) elements.profileChildrenAges.innerText = document.getElementById('editChildrenAges').value;
+            // Update copy
+            currentUser.name = elements.editFamilyName?.value || currentUser.name;
+            currentUser.desc = elements.editDescription?.value || "";
+            currentUser.loc = elements.editLocation?.value || "";
+            currentUser.kids = elements.editChildrenAges?.value || "";
+
+            // Sync back to master list if authenticated
+            if (isAuthenticated) {
+                const index = USERS.findIndex(u => u.email === currentUser.email);
+                if (index !== -1) USERS[index] = currentUser;
+            }
+
+            renderProfile();
             saveSession();
         }
         hideAllSections();
