@@ -360,17 +360,33 @@
         const elements = {
             authSection: document.getElementById('authSection'),
             profileSection: document.getElementById('profileSection'),
+            editProfileSection: document.getElementById('editProfileSection'),
+            eventsSection: document.getElementById('eventsSection'),
+            dashboardSection: document.getElementById('dashboardSection'),
+            legalGuidesSection: document.getElementById('legalGuidesSection'),
             loginBtn: document.getElementById('loginBtn'),
             logoutBtn: document.getElementById('logoutBtn'),
             manageKidsBtn: document.getElementById('manageKidsBtn'),
+            editProfileBtn: document.getElementById('editProfileBtn'),
+            viewEventsBtn: document.getElementById('viewEventsBtn'),
+            viewDashboardBtn: document.getElementById('viewDashboardBtn'),
+            viewLegalGuidesBtn: document.getElementById('viewLegalGuidesBtn'),
+            backFromDashboardBtn: document.getElementById('backFromDashboardBtn'),
+            backFromLegalBtn: document.getElementById('backFromLegalBtn'),
             profileEmail: document.getElementById('profileEmail'),
             profileFamilyName: document.getElementById('profileFamilyName')
         };
 
+        function hideAllSections() {
+            [elements.authSection, elements.profileSection, elements.editProfileSection, 
+             elements.eventsSection, elements.dashboardSection, elements.legalGuidesSection]
+            .forEach(s => { if(s) s.style.display = 'none'; });
+        }
+
         // Simple Login simulation
         elements.loginBtn.addEventListener('click', () => {
             const email = document.getElementById('loginEmail').value || 'justin@village.com';
-            elements.authSection.style.display = 'none';
+            hideAllSections();
             elements.profileSection.style.display = 'block';
             elements.logoutBtn.style.display = 'block';
             elements.profileEmail.innerText = email;
@@ -379,19 +395,55 @@
 
         // Logout simulation
         elements.logoutBtn.addEventListener('click', () => {
+            hideAllSections();
             elements.authSection.style.display = 'block';
-            elements.profileSection.style.display = 'none';
             elements.logoutBtn.style.display = 'none';
         });
 
-        // Link to Manage Kids UI
+        // Navigation
         elements.manageKidsBtn.addEventListener('click', () => {
             window.location.href = 'manage_kids.html';
         });
 
+        elements.editProfileBtn.addEventListener('click', () => {
+            hideAllSections();
+            elements.editProfileSection.style.display = 'block';
+        });
+
+        elements.viewEventsBtn.addEventListener('click', () => {
+            hideAllSections();
+            elements.eventsSection.style.display = 'block';
+        });
+
+        elements.viewDashboardBtn.addEventListener('click', () => {
+            hideAllSections();
+            elements.dashboardSection.style.display = 'block';
+        });
+
+        elements.viewLegalGuidesBtn.addEventListener('click', () => {
+            hideAllSections();
+            elements.legalGuidesSection.style.display = 'block';
+        });
+
+        // Back Buttons
+        elements.backFromDashboardBtn?.addEventListener('click', () => {
+            hideAllSections();
+            elements.profileSection.style.display = 'block';
+        });
+
+        elements.backFromLegalBtn?.addEventListener('click', () => {
+            hideAllSections();
+            elements.profileSection.style.display = 'block';
+        });
+
+        document.getElementById('cancelEditBtn')?.addEventListener('click', () => {
+            hideAllSections();
+            elements.profileSection.style.display = 'block';
+        });
+
         // Register button simulation
         document.getElementById('registerBtn').addEventListener('click', () => {
-            elements.loginBtn.click(); // Just log them in for the demo
+            elements.loginBtn.click();
         });
     </script>
 </body>
