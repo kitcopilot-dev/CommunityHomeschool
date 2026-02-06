@@ -672,9 +672,8 @@
         </div>
     </div>
 
-    <script type="module">
-        import { initManageKids } from './src/manage-kids.js';
-
+    <script src="./src/manage-kids.js"></script>
+    <script>
         const elements = {
             addBtn: document.getElementById('addChildBtn'),
             modalOverlay: document.getElementById('modalOverlay'),
@@ -688,8 +687,11 @@
             vaultBtns: document.querySelectorAll('.vault-btn')
         };
 
-        initManageKids(elements);
+        if (typeof initManageKids === 'function') {
+            initManageKids(elements);
+        } else {
+            console.error("initManageKids function not found. Check src/manage-kids.js");
+        }
     </script>
-
 </body>
 </html>

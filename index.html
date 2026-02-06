@@ -37,6 +37,9 @@
                     <input type="password" id="loginPassword" placeholder="Password" required>
                     <p id="loginMessage" class="message-area"></p>
                     <button id="loginBtn">Login</button>
+                    <div style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+                        <p style="font-size: 0.85rem;">Just exploring? <button id="publicLegalBtn" style="background:none; border:none; color:var(--primary); padding:0; text-decoration:underline; font-size:inherit; font-weight:600; cursor:pointer;">View State Legal Guides</button></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -300,6 +303,13 @@
                 <h2 style="margin-bottom: 0;">Legal Guides</h2>
                 <button id="backFromLegalBtn" style="background: var(--bg-alt); color: var(--text-main); border: 2px solid var(--border);">← Back</button>
             </div>
+            
+            <div style="background: #fffbea; border-left: 4px solid #e6af2e; padding: 1.5rem; border-radius: var(--radius-sm); margin-bottom: 3rem;">
+                <p style="font-size: 0.85rem; color: #856404; margin: 0;">
+                    <strong>⚖️ Disclaimer:</strong> This information is for educational purposes only and does not constitute legal advice. Homeschool laws are subject to change. Always consult with your state's regulatory authorities or a qualified legal professional before beginning your homeschool journey.
+                </p>
+            </div>
+
             <!-- My State Highlight -->
             <div id="myStateHighlight" style="display: none;" class="my-state-banner">
                 <div class="my-state-banner-inner">
@@ -355,8 +365,8 @@
         <p>Built with ❤️ by the Village Community & Kitt</p>
         <p style="opacity: 0.5; font-size: 0.75rem; margin-top: 1rem;">© 2026 Village Homeschool</p>
     </footer>
+    <script src="./src/parent-portal.js"></script>
     <script>
-        // Mock Application Logic for Prototype
         const elements = {
             authSection: document.getElementById('authSection'),
             profileSection: document.getElementById('profileSection'),
@@ -364,6 +374,10 @@
             eventsSection: document.getElementById('eventsSection'),
             dashboardSection: document.getElementById('dashboardSection'),
             legalGuidesSection: document.getElementById('legalGuidesSection'),
+            legalDetailSection: document.getElementById('legalDetailSection'),
+            legalStatesList: document.getElementById('legalStatesList'),
+            loginEmail: document.getElementById('loginEmail'),
+            loginPassword: document.getElementById('loginPassword'),
             loginBtn: document.getElementById('loginBtn'),
             logoutBtn: document.getElementById('logoutBtn'),
             manageKidsBtn: document.getElementById('manageKidsBtn'),
@@ -373,78 +387,22 @@
             viewLegalGuidesBtn: document.getElementById('viewLegalGuidesBtn'),
             backFromDashboardBtn: document.getElementById('backFromDashboardBtn'),
             backFromLegalBtn: document.getElementById('backFromLegalBtn'),
+            cancelEditBtn: document.getElementById('cancelEditBtn'),
+            registerBtn: document.getElementById('registerBtn'),
             profileEmail: document.getElementById('profileEmail'),
             profileFamilyName: document.getElementById('profileFamilyName')
         };
 
-        function hideAllSections() {
-            [elements.authSection, elements.profileSection, elements.editProfileSection, 
-             elements.eventsSection, elements.dashboardSection, elements.legalGuidesSection]
-            .forEach(s => { if(s) s.style.display = 'none'; });
+        // Wire up public button
+        document.getElementById('publicLegalBtn')?.addEventListener('click', () => {
+            elements.viewLegalGuidesBtn.click();
+        });
+
+        if (typeof initParentPortal === 'function') {
+            initParentPortal(elements);
+        } else {
+            console.error("initParentPortal function not found. Check src/parent-portal.js");
         }
-
-        // Simple Login simulation
-        elements.loginBtn.addEventListener('click', () => {
-            const email = document.getElementById('loginEmail').value || 'justin@village.com';
-            hideAllSections();
-            elements.profileSection.style.display = 'block';
-            elements.logoutBtn.style.display = 'block';
-            elements.profileEmail.innerText = email;
-            elements.profileFamilyName.innerText = 'The Lynch Family';
-        });
-
-        // Logout simulation
-        elements.logoutBtn.addEventListener('click', () => {
-            hideAllSections();
-            elements.authSection.style.display = 'block';
-            elements.logoutBtn.style.display = 'none';
-        });
-
-        // Navigation
-        elements.manageKidsBtn.addEventListener('click', () => {
-            window.location.href = 'manage_kids.html';
-        });
-
-        elements.editProfileBtn.addEventListener('click', () => {
-            hideAllSections();
-            elements.editProfileSection.style.display = 'block';
-        });
-
-        elements.viewEventsBtn.addEventListener('click', () => {
-            hideAllSections();
-            elements.eventsSection.style.display = 'block';
-        });
-
-        elements.viewDashboardBtn.addEventListener('click', () => {
-            hideAllSections();
-            elements.dashboardSection.style.display = 'block';
-        });
-
-        elements.viewLegalGuidesBtn.addEventListener('click', () => {
-            hideAllSections();
-            elements.legalGuidesSection.style.display = 'block';
-        });
-
-        // Back Buttons
-        elements.backFromDashboardBtn?.addEventListener('click', () => {
-            hideAllSections();
-            elements.profileSection.style.display = 'block';
-        });
-
-        elements.backFromLegalBtn?.addEventListener('click', () => {
-            hideAllSections();
-            elements.profileSection.style.display = 'block';
-        });
-
-        document.getElementById('cancelEditBtn')?.addEventListener('click', () => {
-            hideAllSections();
-            elements.profileSection.style.display = 'block';
-        });
-
-        // Register button simulation
-        document.getElementById('registerBtn').addEventListener('click', () => {
-            elements.loginBtn.click();
-        });
     </script>
 </body>
 </html>

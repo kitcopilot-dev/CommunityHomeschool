@@ -1,4 +1,4 @@
-export function initManageKids(elements) {
+function initManageKids(elements) {
     if (!elements) return;
 
     elements.addBtn?.addEventListener('click', () => {
@@ -94,4 +94,9 @@ export function initManageKids(elements) {
             if (targetPane) targetPane.style.display = 'block';
         });
     });
+}
+
+// Support for Vitest
+if (typeof exports !== 'undefined') {
+    module.exports = { initManageKids };
 }
