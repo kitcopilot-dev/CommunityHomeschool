@@ -131,20 +131,31 @@ function initParentPortal(elements) {
 
     // Edit Profile Logic
     document.getElementById('useCurrentProfileLocationBtn')?.addEventListener('click', () => {
-        if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        console.log("Use Location clicked. Protocol:", window.location.protocol, "Hostname:", window.location.hostname);
+        
+        // Browsers allow Geolocation on HTTPS OR Localhost
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const isSecure = window.location.protocol === 'https:';
+
+        if (!isSecure && !isLocalhost) {
+            console.warn("Location blocked: Insecure Origin");
             alert("Location requires a secure connection (HTTPS) or Localhost. Since we are on a dev IP, please enter your location manually below.");
             return;
         }
 
         if (navigator.geolocation) {
+            console.log("Requesting position...");
             navigator.geolocation.getCurrentPosition((position) => {
                 const lat = position.coords.latitude.toFixed(4);
                 const lon = position.coords.longitude.toFixed(4);
+                console.log("Position acquired:", lat, lon);
                 if (elements.editLocation) elements.editLocation.value = `${lat}, ${lon}`;
             }, (err) => {
+                console.error("Geolocation Error:", err);
                 alert("Unable to retrieve location: " + err.message);
             });
         } else {
+            console.warn("Geolocation not supported");
             alert("Geolocation is not supported by this browser.");
         }
     });
