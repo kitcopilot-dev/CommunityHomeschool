@@ -5,6 +5,8 @@ describe('Manage Kids Functionality', () => {
     let elements;
 
     beforeEach(() => {
+        sessionStorage.clear();
+        
         document.body.innerHTML = `
             <button id="addChildBtn"></button>
             <div id="modalOverlay" style="display:none"></div>
@@ -18,10 +20,6 @@ describe('Manage Kids Functionality', () => {
             <h1 id="vaultTitle"></h1>
             <p id="vaultSubtitle"></p>
             <button id="backToDashboardBtn"></button>
-            <div class="kid-card">
-                <h3>Test Kid</h3>
-                <button class="vault-btn"></button>
-            </div>
         `;
 
         elements = {
@@ -33,8 +31,7 @@ describe('Manage Kids Functionality', () => {
             vaultSection: document.getElementById('vaultSection'),
             vaultTitle: document.getElementById('vaultTitle'),
             vaultSubtitle: document.getElementById('vaultSubtitle'),
-            backToDashboardBtn: document.getElementById('backToDashboardBtn'),
-            vaultBtns: document.querySelectorAll('.vault-btn')
+            backToDashboardBtn: document.getElementById('backToDashboardBtn')
         };
 
         initManageKids(elements);
@@ -43,13 +40,6 @@ describe('Manage Kids Functionality', () => {
     it('should open modal when add button is clicked', () => {
         elements.addBtn.click();
         expect(elements.modalOverlay.style.display).toBe('flex');
-    });
-
-    it('should show vault when vault button is clicked', () => {
-        elements.vaultBtns[0].click();
-        expect(elements.vaultSection.style.display).toBe('block');
-        expect(elements.kidsGrid.style.display).toBe('none');
-        expect(elements.vaultTitle.textContent).toBe("Test Kid's Vault");
     });
 
     it('should add a new kid card on form submit', () => {
@@ -61,5 +51,19 @@ describe('Manage Kids Functionality', () => {
         const cards = elements.kidsGrid.querySelectorAll('.kid-card');
         expect(cards.length).toBe(1);
         expect(cards[0].querySelector('h3').textContent).toBe('New Kid');
+    });
+
+    it('should show vault when vault button is clicked', () => {
+        // Add a kid first
+        elements.kidForm.querySelector('[name="fullName"]').value = 'Test Kid';
+        elements.kidForm.querySelector('[name="age"]').value = '8';
+        elements.kidForm.dispatchEvent(new Event('submit'));
+        
+        const vaultBtn = elements.kidsGrid.querySelector('.vault-btn');
+        vaultBtn.click();
+        
+        expect(elements.vaultSection.style.display).toBe('block');
+        expect(elements.kidsGrid.style.display).toBe('none');
+        expect(elements.vaultTitle.textContent).toBe("Test Kid's Vault");
     });
 });

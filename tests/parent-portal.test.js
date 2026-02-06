@@ -5,6 +5,9 @@ describe('Parent Portal Navigation', () => {
     let elements;
 
     beforeEach(() => {
+        // Clear session storage to avoid bleed-through between tests
+        sessionStorage.clear();
+
         document.body.innerHTML = `
             <div id="authSection"></div>
             <div id="profileSection" style="display:none"></div>
@@ -96,14 +99,15 @@ describe('Parent Portal Navigation', () => {
     });
 
     it('should fail login with incorrect password', () => {
-        const alertMock = vi.spyOn(window, 'alert').mockImplementation(() => {});
+        // Mock alert to prevent test runner warning
+        window.alert = vi.fn();
+        
         elements.loginEmail.value = 'justin@village.com';
         elements.loginPassword.value = 'wrong-password';
         elements.loginBtn.click();
 
         expect(elements.authSection.style.display).not.toBe('none');
-        expect(alertMock).toHaveBeenCalledWith("Invalid email or password.");
-        alertMock.mockRestore();
+        expect(window.alert).toHaveBeenCalledWith("Invalid email or password.");
     });
 
     it('should allow new user registration and subsequent login', () => {
@@ -151,7 +155,6 @@ describe('Parent Portal Navigation', () => {
     });
 
     it('should navigate to edit profile when authenticated', () => {
-        // Authenticate first
         elements.loginEmail.value = 'justin@village.com';
         elements.loginPassword.value = 'password123';
         elements.loginBtn.click();
@@ -162,7 +165,6 @@ describe('Parent Portal Navigation', () => {
     });
 
     it('should navigate to dashboard when authenticated', () => {
-        // Authenticate first
         elements.loginEmail.value = 'justin@village.com';
         elements.loginPassword.value = 'password123';
         elements.loginBtn.click();
