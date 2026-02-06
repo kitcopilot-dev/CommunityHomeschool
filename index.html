@@ -86,7 +86,10 @@
         <div id="eventsSection" style="display: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;">
                 <h2 style="margin-bottom: 0;">Community Gatherings</h2>
-                <button id="createEventBtn">+ New Gathering</button>
+                <div style="display: flex; gap: 1rem;">
+                    <button id="backFromEventsBtn" style="background: var(--bg-alt); color: var(--text-main); border: 2px solid var(--border);">← Back</button>
+                    <button id="createEventBtn">+ New Gathering</button>
+                </div>
             </div>
             <div id="eventFilters">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; align-items: end;">
@@ -386,7 +389,10 @@
             viewDashboardBtn: document.getElementById('viewDashboardBtn'),
             viewLegalGuidesBtn: document.getElementById('viewLegalGuidesBtn'),
             backFromDashboardBtn: document.getElementById('backFromDashboardBtn'),
+            backFromEventsBtn: document.getElementById('backFromEventsBtn'),
             backFromLegalBtn: document.getElementById('backFromLegalBtn'),
+            useMyLocationBtn: document.getElementById('useMyLocationBtn'),
+            myLocationDisplay: document.getElementById('myLocationDisplay'),
             cancelEditBtn: document.getElementById('cancelEditBtn'),
             registerBtn: document.getElementById('registerBtn'),
             profileEmail: document.getElementById('profileEmail'),

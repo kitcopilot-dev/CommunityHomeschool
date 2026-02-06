@@ -12,8 +12,8 @@ function initParentPortal(elements) {
     
     // HARDCODED SECURE CREDENTIALS (MOCKING)
     const USERS = [
-        { email: "justin@village.com", password: "password123", name: "The Lynch Family" },
-        { email: "kitt@village.com", password: "test-password-99", name: "The Test Family" }
+        { email: "justin@village.com", password: "password123", name: "The Lynch Family", coords: null },
+        { email: "kitt@village.com", password: "test-password-99", name: "The Test Family", coords: null }
     ];
 
     let isAuthenticated = false;
@@ -114,7 +114,7 @@ function initParentPortal(elements) {
         }
 
         console.log("Registering user:", email);
-        const newUser = { email, password, name: familyName + " Family" };
+        const newUser = { email, password, name: familyName + " Family", coords: null };
         USERS.push(newUser);
         
         isAuthenticated = true;
@@ -133,23 +133,20 @@ function initParentPortal(elements) {
     document.getElementById('useCurrentProfileLocationBtn')?.addEventListener('click', () => {
         console.log("Use Location clicked. Protocol:", window.location.protocol, "Hostname:", window.location.hostname);
         
-        // Browsers allow Geolocation on HTTPS OR Localhost
         const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         const isSecure = window.location.protocol === 'https:';
 
         if (!isSecure && !isLocalhost) {
-            console.warn("Location blocked: Insecure Origin");
             alert("Location requires a secure connection (HTTPS) or Localhost. Since we are on a dev IP, please enter your location manually below.");
             return;
         }
 
         if (navigator.geolocation) {
-            console.log("Requesting position...");
             navigator.geolocation.getCurrentPosition(async (position) => {
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
-                console.log("Position acquired:", lat, lon);
-                
+                if (currentUser) currentUser.coords = { lat, lon };
+
                 if (elements.editLocation) {
                     elements.editLocation.value = "Fetching address...";
                     try {
@@ -159,17 +156,12 @@ function initParentPortal(elements) {
                         const state = data.address.state || "Unknown State";
                         elements.editLocation.value = `${city}, ${state}`;
                     } catch (e) {
-                        console.error("Reverse Geocoding Error:", e);
                         elements.editLocation.value = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
                     }
                 }
             }, (err) => {
-                console.error("Geolocation Error:", err);
                 alert("Unable to retrieve location: " + err.message);
             });
-        } else {
-            console.warn("Geolocation not supported");
-            alert("Geolocation is not supported by this browser.");
         }
     });
 
@@ -185,14 +177,45 @@ function initParentPortal(elements) {
         elements.profileSection.style.display = 'block';
     });
 
+    // Events Search Location Logic
+    elements.useMyLocationBtn?.addEventListener('click', () => {
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const isSecure = window.location.protocol === 'https:';
+
+        if (!isSecure && !isLocalhost) {
+            alert("Location requires a secure connection (HTTPS) or Localhost. Since we are on a dev IP, please enter your radius center manually.");
+            return;
+        }
+
+        if (navigator.geolocation) {
+            if (elements.myLocationDisplay) elements.myLocationDisplay.innerText = "Locating...";
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                
+                if (elements.myLocationDisplay) {
+                    try {
+                        const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&addressdetails=1`);
+                        const data = await response.json();
+                        const city = data.address.city || data.address.town || data.address.village || data.address.suburb || "Unknown City";
+                        elements.myLocationDisplay.innerText = `📍 ${city}`;
+                    } catch (e) {
+                        elements.myLocationDisplay.innerText = `📍 ${lat.toFixed(2)}, ${lon.toFixed(2)}`;
+                    }
+                }
+            }, (err) => {
+                alert("Unable to retrieve location: " + err.message);
+                if (elements.myLocationDisplay) elements.myLocationDisplay.innerText = "";
+            });
+        }
+    });
+
     elements.logoutBtn?.addEventListener('click', () => {
         isAuthenticated = false;
         viewOnlyMode = false;
         hideAllSections();
         if (elements.authSection) elements.authSection.style.display = 'block';
         if (elements.logoutBtn) elements.logoutBtn.style.display = 'none';
-        if (elements.loginEmail) elements.loginEmail.value = '';
-        if (elements.loginPassword) elements.loginPassword.value = '';
     });
 
     // Protected Navigation
@@ -222,6 +245,11 @@ function initParentPortal(elements) {
     });
 
     elements.backFromDashboardBtn?.addEventListener('click', () => {
+        hideAllSections();
+        elements.profileSection.style.display = 'block';
+    });
+
+    elements.backFromEventsBtn?.addEventListener('click', () => {
         hideAllSections();
         elements.profileSection.style.display = 'block';
     });
