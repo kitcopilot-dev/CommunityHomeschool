@@ -377,7 +377,7 @@
                 <button class="btn" style="background: var(--bg-alt); color: var(--text-muted);" onclick="window.location.href='index.html'">
                     🏠 Parent Home
                 </button>
-                <button class="btn btn-primary" onclick="openModal()">
+                <button class="btn btn-primary" id="addChildBtn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     Add Child
                 </button>
@@ -420,7 +420,7 @@
                     <button class="btn-icon" title="View Schedule">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                     </button>
-                    <button class="btn-icon" title="Learning Vault" onclick="showVault('Justin Jr.')">
+                    <button class="btn-icon vault-btn" title="Learning Vault">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
                     </button>
                 </div>
@@ -457,7 +457,7 @@
                 <div class="actions">
                     <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
                     <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></button>
-                    <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></button>
+                    <button class="btn-icon vault-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></button>
                 </div>
             </div>
 
@@ -492,7 +492,7 @@
                 <div class="actions">
                     <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
                     <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></button>
-                    <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></button>
+                    <button class="btn-icon vault-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></button>
                 </div>
             </div>
 
@@ -527,48 +527,99 @@
                 <div class="actions">
                     <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
                     <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></button>
-                    <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></button>
+                    <button class="btn-icon vault-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></button>
                 </div>
             </div>
         </div>
 
-        <!-- Learning Vault Section -->
         <div id="vaultSection" class="manage-section">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
                 <div>
                     <h1 id="vaultTitle">Learning Vault</h1>
-                    <p id="vaultSubtitle">Stored resources and progress for Justin Jr.</p>
+                    <p id="vaultSubtitle">Stored resources and progress.</p>
                 </div>
-                <button class="btn" style="background: var(--primary-light); color: var(--primary);" onclick="showDashboard()">← Back to Village</button>
+                <button class="btn" id="backToDashboardBtn" style="background: var(--primary-light); color: var(--primary);">← Back to Village</button>
+            </div>
+
+            <!-- Vault Tabs -->
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+                <button class="vault-tab-btn active" data-tab="overview" style="background:none; color:var(--primary); padding:0.5rem 1rem; border-radius:0; border-bottom:3px solid var(--primary);">Overview</button>
+                <button class="vault-tab-btn" data-tab="schedule" style="background:none; color:var(--text-muted); padding:0.5rem 1rem; border-radius:0;">📅 Weekly Schedule</button>
+                <button class="vault-tab-btn" data-tab="portfolio" style="background:none; color:var(--text-muted); padding:0.5rem 1rem; border-radius:0;">🎨 Portfolio</button>
             </div>
             
-            <div class="learning-vault">
-                <div class="vault-item">
-                    <div class="vault-icon">📖</div>
-                    <div>
-                        <h4 style="font-weight: 600;">Reading Logs</h4>
-                        <p style="font-size: 0.8rem;">12 entries this month</p>
+            <div id="vaultContent">
+                <!-- Overview Tab -->
+                <div class="vault-pane active" id="pane-overview">
+                    <div class="learning-vault">
+                        <div class="vault-item">
+                            <div class="vault-icon">📖</div>
+                            <div>
+                                <h4 style="font-weight: 600;">Reading Logs</h4>
+                                <p style="font-size: 0.8rem;">12 entries this month</p>
+                            </div>
+                        </div>
+                        <div class="vault-item">
+                            <div class="vault-icon">🎨</div>
+                            <div>
+                                <h4 style="font-weight: 600;">Portfolio</h4>
+                                <p style="font-size: 0.8rem;">8 saved projects</p>
+                            </div>
+                        </div>
+                        <div class="vault-item">
+                            <div class="vault-icon">🧪</div>
+                            <div>
+                                <h4 style="font-weight: 600;">Science Lab</h4>
+                                <p style="font-size: 0.8rem;">3 pending reports</p>
+                            </div>
+                        </div>
+                        <div class="vault-item">
+                            <div class="vault-icon">🏆</div>
+                            <div>
+                                <h4 style="font-weight: 600;">Badges</h4>
+                                <p style="font-size: 0.8rem;">5 achievements</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="vault-item">
-                    <div class="vault-icon">🎨</div>
-                    <div>
-                        <h4 style="font-weight: 600;">Portfolio</h4>
-                        <p style="font-size: 0.8rem;">8 saved projects</p>
+
+                <!-- Schedule Tab -->
+                <div class="vault-pane" id="pane-schedule" style="display:none;">
+                    <div style="background:white; border-radius:var(--radius); border:1px solid var(--border); padding:2rem;">
+                        <h3 style="margin-bottom:1.5rem; font-style:normal;">Weekly Plan</h3>
+                        <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:1rem;">
+                            <!-- Mon-Fri Columns -->
+                            <div class="day-col">
+                                <h5 style="color:var(--primary); margin-bottom:1rem;">Mon</h5>
+                                <div style="background:var(--bg); padding:0.8rem; border-radius:8px; margin-bottom:0.5rem; font-size:0.85rem; border-left:4px solid var(--primary);">Math: Fractions</div>
+                                <div style="background:var(--bg); padding:0.8rem; border-radius:8px; font-size:0.85rem; border-left:4px solid var(--accent);">History: Maya</div>
+                            </div>
+                            <div class="day-col">
+                                <h5 style="color:var(--primary); margin-bottom:1rem;">Tue</h5>
+                                <div style="background:var(--bg); padding:0.8rem; border-radius:8px; margin-bottom:0.5rem; font-size:0.85rem; border-left:4px solid var(--sage);">Science: Plants</div>
+                            </div>
+                            <div class="day-col"><h5 style="color:var(--primary); margin-bottom:1rem;">Wed</h5></div>
+                            <div class="day-col"><h5 style="color:var(--primary); margin-bottom:1rem;">Thu</h5></div>
+                            <div class="day-col"><h5 style="color:var(--primary); margin-bottom:1rem;">Fri</h5><div style="background:var(--secondary); color:white; padding:0.8rem; border-radius:8px; font-size:0.85rem;">🧪 Lab Day</div></div>
+                        </div>
                     </div>
                 </div>
-                <div class="vault-item">
-                    <div class="vault-icon">🧪</div>
-                    <div>
-                        <h4 style="font-weight: 600;">Science Lab</h4>
-                        <p style="font-size: 0.8rem;">3 pending reports</p>
-                    </div>
-                </div>
-                <div class="vault-item">
-                    <div class="vault-icon">🏆</div>
-                    <div>
-                        <h4 style="font-weight: 600;">Badges</h4>
-                        <p style="font-size: 0.8rem;">5 achievements</p>
+
+                <!-- Portfolio Tab -->
+                <div class="vault-pane" id="pane-portfolio" style="display:none;">
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:1.5rem;">
+                        <div style="aspect-ratio:1; background:var(--secondary); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; border:2px dashed var(--primary-light);">
+                            <span style="font-size:2rem;">➕</span>
+                            <span style="font-size:0.8rem; font-weight:600;">Add to Portfolio</span>
+                        </div>
+                        <!-- Mock Item -->
+                        <div style="background:white; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border);">
+                            <div style="height:120px; background:#f0f0f0; display:flex; align-items:center; justify-content:center; font-size:2rem;">🌋</div>
+                            <div style="padding:1rem;">
+                                <h5 style="margin:0;">Volcano Model</h5>
+                                <p style="font-size:0.75rem; margin-top:0.5rem;">Science • Feb 6</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -584,16 +635,16 @@
             <form id="kidForm">
                 <div class="form-group">
                     <label>Full Name</label>
-                    <input type="text" placeholder="e.g. Emma Lynch" required>
+                    <input type="text" name="fullName" placeholder="e.g. Emma Lynch" required>
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                     <div class="form-group">
                         <label>Age</label>
-                        <input type="number" placeholder="e.g. 9" required>
+                        <input type="number" name="age" placeholder="e.g. 9" required>
                     </div>
                     <div class="form-group">
                         <label>Grade Level</label>
-                        <select>
+                        <select name="grade">
                             <option>Preschool</option>
                             <option>Kindergarten</option>
                             <option>1st Grade</option>
@@ -610,48 +661,34 @@
                 </div>
                 <div class="form-group">
                     <label>Current Focus / Interests</label>
-                    <input type="text" placeholder="e.g. Astronomy, Early Reading">
+                    <input type="text" name="focus" placeholder="e.g. Astronomy, Early Reading">
                 </div>
                 
                 <div class="modal-footer">
-                    <button type="button" class="btn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border);" onclick="closeModal()">Cancel</button>
+                    <button type="button" class="btn" id="closeModalBtn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border);">Cancel</button>
                     <button type="submit" class="btn btn-primary">Save Profile</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <script>
-        function openModal() {
-            document.getElementById('modalOverlay').style.display = 'flex';
-        }
-        function closeModal() {
-            document.getElementById('modalOverlay').style.display = 'none';
-        }
+    <script type="module">
+        import { initManageKids } from './src/manage-kids.js';
 
-        function showVault(name) {
-            document.getElementById('kidsGrid').style.display = 'none';
-            document.getElementById('vaultSection').style.display = 'block';
-            document.getElementById('vaultTitle').innerText = name + "'s Vault";
-            document.getElementById('vaultSubtitle').innerText = "Stored resources and progress for " + name + ".";
-        }
+        const elements = {
+            addBtn: document.getElementById('addChildBtn'),
+            modalOverlay: document.getElementById('modalOverlay'),
+            closeModalBtn: document.getElementById('closeModalBtn'),
+            kidForm: document.getElementById('kidForm'),
+            kidsGrid: document.getElementById('kidsGrid'),
+            vaultSection: document.getElementById('vaultSection'),
+            vaultTitle: document.getElementById('vaultTitle'),
+            vaultSubtitle: document.getElementById('vaultSubtitle'),
+            backToDashboardBtn: document.getElementById('backToDashboardBtn'),
+            vaultBtns: document.querySelectorAll('.vault-btn')
+        };
 
-        function showDashboard() {
-            document.getElementById('kidsGrid').style.display = 'grid';
-            document.getElementById('vaultSection').style.display = 'none';
-        }
-        
-        // Close modal on background click
-        document.getElementById('modalOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-
-        // Form submission prevent default for demo
-        document.getElementById('kidForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Child profile saved! (Demo Only)');
-            closeModal();
-        });
+        initManageKids(elements);
     </script>
 
 </body>
