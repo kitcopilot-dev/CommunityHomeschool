@@ -131,6 +131,11 @@ function initParentPortal(elements) {
 
     // Edit Profile Logic
     document.getElementById('useCurrentProfileLocationBtn')?.addEventListener('click', () => {
+        if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            alert("Location requires a secure connection (HTTPS) or Localhost. Since we are on a dev IP, please enter your location manually below.");
+            return;
+        }
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 const lat = position.coords.latitude.toFixed(4);
