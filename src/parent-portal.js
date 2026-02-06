@@ -10,29 +10,40 @@ function initParentPortal(elements) {
                   window.location.hostname === '44.240.253.236' ||
                   window.location.port === '8000';
     
-    // HARDCODED SECURE CREDENTIALS (MOCKING)
-    const USERS = [
+    // PERSISTENCE FOR PROTOTYPE
+    const USERS = JSON.parse(sessionStorage.getItem('village_users')) || [
         { email: "justin@village.com", password: "password123", name: "The Lynch Family", coords: null },
         { email: "kitt@village.com", password: "test-password-99", name: "The Test Family", coords: null }
     ];
 
-    let isAuthenticated = false;
-    let currentUser = null;
-    let viewOnlyMode = false;
+    let isAuthenticated = sessionStorage.getItem('village_auth') === 'true';
+    let currentUser = JSON.parse(sessionStorage.getItem('village_current_user'));
+    let viewOnlyMode = sessionStorage.getItem('village_view_only') === 'true';
 
-    console.log("Village Portal Initialized. Dev Mode:", isDev);
+    console.log("Village Portal Initialized. Dev Mode:", isDev, "Auth State:", isAuthenticated);
+
+    function saveSession() {
+        sessionStorage.setItem('village_auth', isAuthenticated);
+        sessionStorage.setItem('village_view_only', viewOnlyMode);
+        sessionStorage.setItem('village_current_user', JSON.stringify(currentUser));
+        sessionStorage.setItem('village_users', JSON.stringify(USERS));
+    }
 
     function hideAllSections() {
-        const sections = [
-            elements.authSection, 
-            elements.profileSection, 
-            elements.editProfileSection, 
-            elements.eventsSection, 
-            elements.dashboardSection, 
-            elements.legalGuidesSection, 
-            elements.legalDetailSection
-        ];
-        sections.forEach(s => { if(s) s.style.display = 'none'; });
+        [elements.authSection, elements.profileSection, elements.editProfileSection, 
+         elements.eventsSection, elements.dashboardSection, elements.legalGuidesSection, elements.legalDetailSection]
+        .forEach(s => { if(s) s.style.display = 'none'; });
+    }
+
+    // Restore session on page load
+    if (isAuthenticated || viewOnlyMode) {
+        hideAllSections();
+        if (elements.profileSection) elements.profileSection.style.display = 'block';
+        if (elements.logoutBtn) elements.logoutBtn.style.display = 'block';
+        if (currentUser) {
+            if (elements.profileEmail) elements.profileEmail.innerText = currentUser.email;
+            if (elements.profileFamilyName) elements.profileFamilyName.innerText = currentUser.name;
+        }
     }
 
     function checkAuth(callback) {
@@ -71,27 +82,25 @@ function initParentPortal(elements) {
         const email = elements.loginEmail?.value;
         const password = elements.loginPassword?.value;
 
-        console.log("Attempting login for:", email);
-
         const foundUser = USERS.find(u => u.email === email && u.password === password);
 
         if (foundUser) {
-            console.log("Login: Success (Auth)");
             isAuthenticated = true;
             currentUser = foundUser;
             viewOnlyMode = false;
-            elements.profileFamilyName.innerText = foundUser.name;
-            elements.profileEmail.innerText = email;
+            if (elements.profileFamilyName) elements.profileFamilyName.innerText = foundUser.name;
+            if (elements.profileEmail) elements.profileEmail.innerText = email;
+            saveSession();
         } 
         else if (isDev && !email && !password) {
-            console.log("Login: Success (Guest Bypass)");
             isAuthenticated = false;
             viewOnlyMode = true;
-            elements.profileFamilyName.innerText = 'Guest (View Only Mode)';
-            elements.profileEmail.innerText = 'guest@village.com';
+            currentUser = { email: 'guest@village.com', name: 'Guest' };
+            if (elements.profileFamilyName) elements.profileFamilyName.innerText = 'Guest (View Only Mode)';
+            if (elements.profileEmail) elements.profileEmail.innerText = 'guest@village.com';
+            saveSession();
         } 
         else {
-            console.warn("Login: Failed (Invalid Credentials)");
             alert("Invalid email or password.");
             return;
         }
@@ -113,7 +122,6 @@ function initParentPortal(elements) {
             return;
         }
 
-        console.log("Registering user:", email);
         const newUser = { email, password, name: familyName + " Family", coords: null };
         USERS.push(newUser);
         
@@ -121,8 +129,9 @@ function initParentPortal(elements) {
         currentUser = newUser;
         viewOnlyMode = false;
         
-        elements.profileFamilyName.innerText = newUser.name;
-        elements.profileEmail.innerText = email;
+        if (elements.profileFamilyName) elements.profileFamilyName.innerText = newUser.name;
+        if (elements.profileEmail) elements.profileEmail.innerText = email;
+        saveSession();
 
         hideAllSections();
         if (elements.profileSection) elements.profileSection.style.display = 'block';
@@ -131,8 +140,6 @@ function initParentPortal(elements) {
 
     // Edit Profile Logic
     document.getElementById('useCurrentProfileLocationBtn')?.addEventListener('click', () => {
-        console.log("Use Location clicked. Protocol:", window.location.protocol, "Hostname:", window.location.hostname);
-        
         const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         const isSecure = window.location.protocol === 'https:';
 
@@ -168,10 +175,11 @@ function initParentPortal(elements) {
     elements.saveProfileBtn?.addEventListener('click', () => {
         if (currentUser) {
             currentUser.name = document.getElementById('editFamilyName').value;
-            elements.profileFamilyName.innerText = currentUser.name;
-            elements.profileDescription.innerText = document.getElementById('editDescription').value;
-            elements.profileLocation.innerText = document.getElementById('editLocation').value;
-            elements.profileChildrenAges.innerText = document.getElementById('editChildrenAges').value;
+            if (elements.profileFamilyName) elements.profileFamilyName.innerText = currentUser.name;
+            if (elements.profileDescription) elements.profileDescription.innerText = document.getElementById('editDescription').value;
+            if (elements.profileLocation) elements.profileLocation.innerText = document.getElementById('editLocation').value;
+            if (elements.profileChildrenAges) elements.profileChildrenAges.innerText = document.getElementById('editChildrenAges').value;
+            saveSession();
         }
         hideAllSections();
         elements.profileSection.style.display = 'block';
@@ -213,9 +221,13 @@ function initParentPortal(elements) {
     elements.logoutBtn?.addEventListener('click', () => {
         isAuthenticated = false;
         viewOnlyMode = false;
+        currentUser = null;
+        saveSession();
         hideAllSections();
         if (elements.authSection) elements.authSection.style.display = 'block';
         if (elements.logoutBtn) elements.logoutBtn.style.display = 'none';
+        if (elements.loginEmail) elements.loginEmail.value = '';
+        if (elements.loginPassword) elements.loginPassword.value = '';
     });
 
     // Protected Navigation
