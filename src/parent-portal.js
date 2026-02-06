@@ -145,11 +145,24 @@ function initParentPortal(elements) {
 
         if (navigator.geolocation) {
             console.log("Requesting position...");
-            navigator.geolocation.getCurrentPosition((position) => {
-                const lat = position.coords.latitude.toFixed(4);
-                const lon = position.coords.longitude.toFixed(4);
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
                 console.log("Position acquired:", lat, lon);
-                if (elements.editLocation) elements.editLocation.value = `${lat}, ${lon}`;
+                
+                if (elements.editLocation) {
+                    elements.editLocation.value = "Fetching address...";
+                    try {
+                        const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&addressdetails=1`);
+                        const data = await response.json();
+                        const city = data.address.city || data.address.town || data.address.village || data.address.suburb || "Unknown City";
+                        const state = data.address.state || "Unknown State";
+                        elements.editLocation.value = `${city}, ${state}`;
+                    } catch (e) {
+                        console.error("Reverse Geocoding Error:", e);
+                        elements.editLocation.value = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+                    }
+                }
             }, (err) => {
                 console.error("Geolocation Error:", err);
                 alert("Unable to retrieve location: " + err.message);
