@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 Daily Assignments — Age 6</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #fdf2f8;
+    color: #2d3748;
+    padding: 28px 18px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .header {
+    background: linear-gradient(135deg, #ed64a6, #9f7aea);
+    color: white;
+    border-radius: 18px;
+    padding: 26px 24px;
+    text-align: center;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 14px rgba(237,100,166,0.35);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 4px; }
+  .header .meta { font-size: 14px; opacity: 0.92; margin-top: 6px; }
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 6px solid #e2e8f0;
+  }
+  .card.wotd   { border-left-color: #38b2ac; }
+  .card.tdih   { border-left-color: #e53e3e; }
+  .card.math   { border-left-color: #4299e1; }
+  .card.history{ border-left-color: #e6a817; }
+  .card.science{ border-left-color: #48bb78; }
+  .card.reading{ border-left-color: #9f7aea; }
+  .card.writing{ border-left-color: #ed64a6; }
+  .card h2     { font-size: 20px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  p            { font-size: 16px; line-height: 1.65; margin-bottom: 7px; }
+  .fun-box     { background: #fff5f5; border-radius: 10px; padding: 14px 18px; margin: 10px 0; }
+  .activity    { font-size: 14px; color: #2b6cb0; font-weight: 600; margin: 12px 0 4px; }
+  .blank-line  { border-bottom: 2px solid #cbd5e0; min-height: 32px; margin: 10px 0; width: 100%; }
+  .blank-short { border-bottom: 2px solid #cbd5e0; display: inline-block; width: 140px; min-height: 28px; vertical-align: bottom; margin: 0 6px; }
+  .q-row       { margin: 10px 0; }
+  .q-row .q    { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+
+  /* math grid */
+  .math-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+  .math-item   { font-size: 20px; padding: 8px 12px; background: #ebf8ff; border-radius: 8px; }
+  .math-item .eq { display: inline-block; width: 50px; border-bottom: 2px solid #4299e1; margin-left: 4px; }
+
+  /* plant diagram */
+  .plant-wrap  { text-align: center; margin: 14px 0; padding: 16px; background: #f0fff4; border-radius: 12px; }
+  .plant-label { font-size: 15px; color: #276749; font-weight: 600; }
+  .plant-line  { margin: 2px 0; font-size: 30px; line-height: 1.3; }
+  .label-blank { display: inline-block; border-bottom: 2px solid #48bb78; width: 100px; min-height: 20px; margin-left: 6px; vertical-align: bottom; }
+
+  /* passage */
+  .passage    { background: #edf2f7; border-left: 4px solid #9f7aea; padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 12px 0; line-height: 1.7; font-size: 15.5px; }
+
+  /* writing box */
+  .write-box  { border: 2px dashed #ed64a6; border-radius: 12px; padding: 16px 18px; margin: 12px 0; min-height: 100px; background: #fdf2f8; }
+  .write-line { border-bottom: 1px solid #f6b7c8; height: 28px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>📚 Today's Assignments</h1>
+  <div class="meta">Wednesday, February 4, 2026 &nbsp;·&nbsp; Age 6</div>
+</div>
+
+<!-- WORD OF THE DAY -->
+<div class="card wotd">
+  <h2>🌈 Word of the Day</h2>
+  <p style="font-size:24px; font-weight:700; color:#38b2ac;">Curious 🔍</p>
+  <p><strong>What it means:</strong> When you really, really want to know how something works or why something happens!</p>
+  <p><em>"The curious little girl asked <strong>why</strong> the sky turns orange at sunset."</em></p>
+  <p class="activity">🎯 Can you think of something you are curious about? Write or tell someone!</p>
+  <div class="blank-line"></div>
+</div>
+
+<!-- THIS DAY IN HISTORY -->
+<div class="card tdih">
+  <h2>📅 This Day in History</h2>
+  <div class="fun-box">
+    <p style="font-size:17px;">🇺🇸 On <strong>February 4, 1789</strong>, <strong>George Washington</strong> became the <strong>first President</strong> of the United States!</p>
+    <p>He was a brave leader who helped America become its own country. Presidents help take care of the whole nation!</p>
+  </div>
+  <p class="activity">🎯 Can you name another President of the United States?</p>
+  <div class="blank-line"></div>
+</div>
+
+<!-- MATH -->
+<div class="card math">
+  <h2>🔢 Math: Adding & Subtracting</h2>
+  <p><strong>Part A — Addition:</strong> Solve these!</p>
+  <div class="math-grid">
+    <div class="math-item">3 + 4 = <span class="eq"></span></div>
+    <div class="math-item">5 + 6 = <span class="eq"></span></div>
+    <div class="math-item">2 + 8 = <span class="eq"></span></div>
+    <div class="math-item">9 + 3 = <span class="eq"></span></div>
+  </div>
+  <p style="margin-top:14px;"><strong>Part B — Subtraction:</strong> Solve these!</p>
+  <div class="math-grid">
+    <div class="math-item">10 − 3 = <span class="eq"></span></div>
+    <div class="math-item">8 − 5 = <span class="eq"></span></div>
+    <div class="math-item">7 − 2 = <span class="eq"></span></div>
+    <div class="math-item">11 − 4 = <span class="eq"></span></div>
+  </div>
+  <p style="margin-top:14px;"><strong>Part C — Word Problems:</strong></p>
+  <div class="q-row">
+    <div class="q">1. You have 7 apples. You eat 2 apples. How many apples do you have left?</div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">2. Mom bought 6 flowers. Dad bought 4 flowers. How many flowers are there in all?</div>
+    <div class="blank-line"></div>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div class="card history">
+  <h2>📜 History: What Is a President?</h2>
+  <div class="fun-box">
+    <p>The <strong>President</strong> is the leader of the United States. The President helps make important decisions to keep the country safe and happy. Americans vote (choose) who they want to be President every four years!</p>
+    <p>The very first President was <strong>George Washington</strong>. He became President on February 4, 1789 — that's today's date, but way back then!</p>
+  </div>
+  <div class="q-row">
+    <div class="q">1. What is the President's job? (Pick the best answer)</div>
+    <p>&nbsp;&nbsp;&nbsp;☐ A) Cook breakfast for everyone<br>
+    &nbsp;&nbsp;&nbsp;☐ B) Be the leader of the country<br>
+    &nbsp;&nbsp;&nbsp;☐ C) Drive the school bus</p>
+  </div>
+  <div class="q-row">
+    <div class="q">2. Who was the <em>first</em> President of the United States?</div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">3. How often do Americans choose a new President?</div>
+    <div class="blank-line"></div>
+  </div>
+</div>
+
+<!-- SCIENCE -->
+<div class="card science">
+  <h2>🌱 Science: How Plants Grow</h2>
+  <div class="fun-box">
+    <p>Plants need <strong>four things</strong> to grow healthy and strong:</p>
+    <p style="font-size:20px; text-align:center; margin:8px 0;">💧 Water &nbsp;&nbsp; ☀️ Sunlight &nbsp;&nbsp; 🪴 Soil &nbsp;&nbsp; 💨 Air</p>
+  </div>
+  <p><strong>Question 1:</strong> What happens if a plant does not get any water?</p>
+  <div class="blank-line"></div>
+
+  <p style="margin-top:14px;"><strong>Question 2:</strong> Label the parts of the plant! Write the word next to the arrow.</p>
+  <p style="font-size:13px; color:#718096;">(Words to choose from: <em>Roots, Stem, Leaves, Flower</em>)</p>
+  <div class="plant-wrap">
+    <div class="plant-line">🌸 ← <span class="label-blank"></span></div>
+    <div class="plant-line">🟢 ← <span class="label-blank"></span></div>
+    <div class="plant-line">🌿 ← <span class="label-blank"></span></div>
+    <div class="plant-line" style="color:#8B4513;">🪵 ← <span class="label-blank"></span></div>
+  </div>
+</div>
+
+<!-- READING -->
+<div class="card reading">
+  <h2>📖 Reading: Lily's Garden</h2>
+  <div class="passage">
+    Lily loved gardens more than anything. One sunny morning, she put a tiny seed in the soil. She watered it every single day. She also made sure it got lots of sunshine.<br><br>
+    After two whole weeks, a beautiful green plant grew right out of the ground! Lily clapped her hands. "I did it!" she said with a big smile. Her garden was finally growing!
+  </div>
+  <div class="q-row">
+    <div class="q">1. What did Lily put in the soil?</div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">2. Name <strong>two</strong> things Lily did to help the plant grow.</div>
+    <div class="blank-line"></div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">3. How long did it take for the plant to grow?</div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">4. How did Lily feel when the plant grew? How do you know?</div>
+    <div class="blank-line"></div>
+    <div class="blank-line"></div>
+  </div>
+</div>
+
+<!-- WRITING -->
+<div class="card writing">
+  <h2>✏️ Writing: My Favorite Animal</h2>
+  <p>Write <strong>2 complete sentences</strong> about your favorite animal.</p>
+  <p style="font-size:14px; color:#718096;">💡 <em>Remember: Start with a capital letter. End with a period (  .  )</em></p>
+  <p style="font-size:14px; color:#718096;">💡 <em>Think about: What does it look like? What does it eat?</em></p>
+  <div class="write-box">
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+  </div>
+</div>
+
+</body>
+</html>

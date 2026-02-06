@@ -11,7 +11,8 @@ If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out w
 Before doing anything else:
 
 1. Read `SOUL.md` — this is who you are
-2. Read `USER.md` — this is who you're helping
+2. Read `ROUTER.md` — check if you need to route this request
+3. Read `USER.md` — this is who you're helping
 3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
 4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
 
@@ -155,7 +156,7 @@ You are free to edit `HEARTBEAT.md` with a short checklist or reminders. Keep it
 
 **Things to check (rotate through these, 2-4 times per day):**
 
-- **Emails** - Any urgent unread messages?
+- **Emails** - Any urgent unread messages in `kittcopilot@agentmail.to`? (Use `agent-mail` skill)
 - **Calendar** - Upcoming events in next 24-48h?
 - **Mentions** - Twitter/social notifications?
 - **Weather** - Relevant if your human might go out?

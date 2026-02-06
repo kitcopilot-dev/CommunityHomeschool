@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌟 Learning Adventure — Age 2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #fffbf0;
+    color: #2d3748;
+    padding: 28px 18px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .header {
+    background: linear-gradient(135deg, #f6ad55, #fc8181);
+    color: white;
+    border-radius: 18px;
+    padding: 26px 24px;
+    text-align: center;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 14px rgba(252,129,129,0.35);
+  }
+  .header h1 { font-size: 30px; margin-bottom: 4px; letter-spacing: 0.5px; }
+  .header .meta { font-size: 14px; opacity: 0.92; margin-top: 6px; }
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 6px solid #e2e8f0;
+  }
+  .card.wotd   { border-left-color: #38b2ac; }
+  .card.tdih   { border-left-color: #e53e3e; }
+  .card.math   { border-left-color: #4299e1; }
+  .card.history{ border-left-color: #e6a817; }
+  .card.science{ border-left-color: #48bb78; }
+  .card.reading{ border-left-color: #9f7aea; }
+  .card.writing{ border-left-color: #ed64a6; }
+  .card h2     { font-size: 22px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  p            { font-size: 17px; line-height: 1.65; margin-bottom: 8px; }
+  .fun-box     { background: #fff5f5; border-radius: 10px; padding: 14px 18px; margin: 10px 0; }
+  .activity    { font-size: 15px; color: #2b6cb0; font-weight: 600; margin: 12px 0 4px; }
+
+  /* counting */
+  .count-row   { display: flex; align-items: center; gap: 14px; margin: 12px 0; flex-wrap: wrap; }
+  .emojis      { font-size: 34px; letter-spacing: 6px; }
+  .eq          { font-size: 22px; color: #a0aec0; }
+  .blank-box   { border: 2px dashed #cbd5e0; border-radius: 10px; width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; font-size: 26px; color: #cbd5e0; }
+
+  /* word cards */
+  .word-row    { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 14px 0; }
+  .word-card   { border: 2px dashed #cbd5e0; border-radius: 14px; padding: 12px 16px; text-align: center; min-width: 86px; }
+  .word-card .ico { font-size: 42px; display: block; }
+  .word-card .txt { font-size: 18px; font-weight: 700; color: #4a5568; margin-top: 4px; letter-spacing: 2px; }
+
+  /* trace */
+  .trace-row   { display: flex; gap: 12px; justify-content: center; margin: 14px 0; }
+  .trace-box   { border: 3px dashed #ed64a6; border-radius: 12px; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; font-size: 38px; color: #f6b7c8; font-weight: 800; }
+
+  /* draw */
+  .draw-box    { border: 2px dashed #ed64a6; border-radius: 12px; width: 100%; height: 140px; margin: 12px 0; display: flex; align-items: center; justify-content: center; color: #cbd5e0; font-size: 17px; background: #fdf2f8; }
+
+  /* checkbox list */
+  .check-item  { font-size: 21px; line-height: 2.1; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>🌟 Today's Learning Adventure! 🌟</h1>
+  <div class="meta">Wednesday, February 4, 2026 &nbsp;·&nbsp; Age 2</div>
+</div>
+
+<!-- WORD OF THE DAY -->
+<div class="card wotd">
+  <h2>🌤️ Word of the Day</h2>
+  <p style="font-size:28px; font-weight:700; color:#38b2ac;">Happy 😊</p>
+  <p><strong>What it means:</strong> Feeling really good inside — like when you smile and laugh!</p>
+  <p><em>Say it out loud: "I am <strong>happy</strong> when I play!"</em></p>
+  <p class="activity">🎯 Think of one thing that makes you happy. Tell a grown-up!</p>
+</div>
+
+<!-- THIS DAY IN HISTORY -->
+<div class="card tdih">
+  <h2>📅 This Day in History</h2>
+  <div class="fun-box">
+    <p style="font-size:18px;">🇺🇸 A <strong>long, long time ago</strong> — way before you were born — a very brave man named <strong>George Washington</strong> became the very first leader of all of America!</p>
+    <p style="font-size:17px;">That happened in the year <strong>1789</strong> — that's almost <strong>240 years ago!</strong> 🤯</p>
+  </div>
+</div>
+
+<!-- MATH -->
+<div class="card math">
+  <h2>🔢 Math: Let's Count!</h2>
+  <p class="activity">👉 How many are there? Say the number out loud!</p>
+
+  <div class="count-row">
+    <span class="emojis">🐱🐱🐱</span>
+    <span class="eq">=</span>
+    <div class="blank-box">___</div>
+  </div>
+  <div class="count-row">
+    <span class="emojis">⭐⭐</span>
+    <span class="eq">=</span>
+    <div class="blank-box">___</div>
+  </div>
+  <div class="count-row">
+    <span class="emojis">🍎🍎🍎🍎</span>
+    <span class="eq">=</span>
+    <div class="blank-box">___</div>
+  </div>
+  <div class="count-row">
+    <span class="emojis">🐶</span>
+    <span class="eq">=</span>
+    <div class="blank-box">___</div>
+  </div>
+  <div class="count-row">
+    <span class="emojis">🌸🌸🌸🌸🌸</span>
+    <span class="eq">=</span>
+    <div class="blank-box">___</div>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div class="card history">
+  <h2>📜 History: Long, Long Ago</h2>
+  <div class="fun-box">
+    <p style="font-size:18px;">A <strong>long time ago</strong>, there were <em>no</em> cars, <em>no</em> buses, and <em>no</em> airplanes! 🚗✖️</p>
+    <p style="font-size:18px;">People rode on <strong>horses</strong> 🐴 to go everywhere — to town, to visit friends, even very far away!</p>
+  </div>
+  <p class="activity">🎯 Pretend to ride a horse! Gallop around the room!</p>
+  <div class="draw-box">✏️ Draw a horse here!</div>
+</div>
+
+<!-- SCIENCE -->
+<div class="card science">
+  <h2>🔬 Science: Nature's Colors</h2>
+  <p>Look outside! Can you find these colors? Put a ✓ next to each one you see!</p>
+  <div style="margin:14px 0;">
+    <div class="check-item">☐ &nbsp; 🌤️ The sky is <strong style="color:#4299e1;">BLUE</strong></div>
+    <div class="check-item">☐ &nbsp; 🌿 The grass is <strong style="color:#48bb78;">GREEN</strong></div>
+    <div class="check-item">☐ &nbsp; ☀️ The sun is <strong style="color:#e6a817;">YELLOW</strong></div>
+    <div class="check-item">☐ &nbsp; 🌸 Find something <strong style="color:#ed64a6;">PINK</strong></div>
+  </div>
+</div>
+
+<!-- READING -->
+<div class="card reading">
+  <h2>📖 Reading: Words We Know</h2>
+  <p>Point to each picture. Say the word out loud! Can you spell it?</p>
+  <div class="word-row">
+    <div class="word-card"><span class="ico">😄</span><div class="txt">M-O-M</div></div>
+    <div class="word-card"><span class="ico">🐱</span><div class="txt">C-A-T</div></div>
+    <div class="word-card"><span class="ico">☀️</span><div class="txt">S-U-N</div></div>
+    <div class="word-card"><span class="ico">🐶</span><div class="txt">D-O-G</div></div>
+    <div class="word-card"><span class="ico">🍎</span><div class="txt">A-P-P</div></div>
+  </div>
+  <p class="activity">🎯 Pick your favorite word and say it <strong>three times fast!</strong></p>
+</div>
+
+<!-- WRITING -->
+<div class="card writing">
+  <h2>✏️ Writing: Trace & Draw</h2>
+  <p>Trace these big letters with a crayon or pencil!</p>
+  <div class="trace-row">
+    <div class="trace-box">A</div>
+    <div class="trace-box">B</div>
+    <div class="trace-box">C</div>
+    <div class="trace-box">D</div>
+  </div>
+  <p class="activity">🎯 Now draw a picture of something that makes you <strong>HAPPY!</strong></p>
+  <div class="draw-box">🖍️ Draw here!</div>
+</div>
+
+</body>
+</html>

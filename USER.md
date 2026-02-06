@@ -4,6 +4,7 @@
 - **What to call them:** Justin
 - **Pronouns:** 
 - **Timezone:** US Central (America/Chicago)
+- **Email:** jtown.80@gmail.com
 - **Notes:** Owner. Wants a casual vibe and **blunt** pushback when ideas are weak.
 
 ## Context

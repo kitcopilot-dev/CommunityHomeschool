@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌟 Learning Adventure — Age 2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #fffbf0;
+    color: #2d3748;
+    padding: 28px 18px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .header {
+    background: linear-gradient(135deg, #f6ad55, #fc8181);
+    color: white;
+    border-radius: 18px;
+    padding: 26px 24px;
+    text-align: center;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 14px rgba(252,129,129,0.35);
+  }
+  .header h1 { font-size: 30px; margin-bottom: 4px; letter-spacing: 0.5px; }
+  .header .meta { font-size: 14px; opacity: 0.92; margin-top: 6px; }
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 6px solid #e2e8f0;
+  }
+  .card.faith  { border-left-color: #f6ad55; background: #fffaf0; }
+  .card.wotd   { border-left-color: #38b2ac; }
+  .card.tdih   { border-left-color: #e53e3e; }
+  .card.math   { border-left-color: #4299e1; }
+  .card.history{ border-left-color: #e6a817; }
+  .card.science{ border-left-color: #48bb78; }
+  .card.reading{ border-left-color: #9f7aea; }
+  .card.writing{ border-left-color: #ed64a6; }
+  .card h2     { font-size: 22px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  p            { font-size: 17px; line-height: 1.65; margin-bottom: 8px; }
+  .fun-box     { background: #fff5f5; border-radius: 10px; padding: 14px 18px; margin: 10px 0; }
+  .activity    { font-size: 15px; color: #2b6cb0; font-weight: 600; margin: 12px 0 4px; }
+  .scripture   { font-style: italic; color: #718096; border-left: 3px solid #cbd5e0; padding-left: 10px; margin: 10px 0; }
+
+  /* counting */
+  .count-row   { display: flex; align-items: center; gap: 14px; margin: 12px 0; flex-wrap: wrap; }
+  .emojis      { font-size: 34px; letter-spacing: 6px; }
+  .eq          { font-size: 22px; color: #a0aec0; }
+  .blank-box   { border: 2px dashed #cbd5e0; border-radius: 10px; width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; font-size: 26px; color: #cbd5e0; }
+
+  /* word cards */
+  .word-row    { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 14px 0; }
+  .word-card   { border: 2px dashed #cbd5e0; border-radius: 14px; padding: 12px 16px; text-align: center; min-width: 86px; }
+  .word-card .ico { font-size: 42px; display: block; }
+  .word-card .txt { font-size: 18px; font-weight: 700; color: #4a5568; margin-top: 4px; letter-spacing: 2px; }
+
+  /* trace */
+  .trace-row   { display: flex; gap: 12px; justify-content: center; margin: 14px 0; }
+  .trace-box   { border: 3px dashed #ed64a6; border-radius: 12px; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; font-size: 38px; color: #f6b7c8; font-weight: 800; }
+
+  /* draw */
+  .draw-box    { border: 2px dashed #ed64a6; border-radius: 12px; width: 100%; height: 140px; margin: 12px 0; display: flex; align-items: center; justify-content: center; color: #cbd5e0; font-size: 17px; background: #fdf2f8; }
+
+  /* checkbox list */
+  .check-item  { font-size: 21px; line-height: 2.1; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>🌟 Today's Learning Adventure! 🌟</h1>
+  <div class="meta">Thursday, February 5, 2026 &nbsp;·&nbsp; Age 2</div>
+</div>
+
+<!-- FAITH CONNECTION -->
+<div class="card faith">
+  <h2>🙏 Scripture of the Day</h2>
+  <div class="scripture">
+    "Seek learning, even by study and also by faith." <br>— Doctrine and Covenants 88:118
+  </div>
+  <p><strong>Faith Thought:</strong> Jesus wants us to learn and grow!</p>
+  <p class="activity">🎯 Activity: Look at the pictures in your Scripture Stories book today.</p>
+</div>
+
+<!-- WORD OF THE DAY -->
+<div class="card wotd">
+  <h2>🌤️ Word of the Day</h2>
+  <p style="font-size:28px; font-weight:700; color:#38b2ac;">Diligent ✨</p>
+  <p><strong>What it means:</strong> Working hard and being careful. Like a busy bee! 🐝</p>
+  <p><em>Say it out loud: "I am a <strong>diligent</strong> helper!"</em></p>
+</div>
+
+<!-- THIS DAY IN HISTORY -->
+<div class="card tdih">
+  <h2>📅 This Day in History</h2>
+  <div class="fun-box">
+    <p style="font-size:18px;">🎥 In 1919, <strong>Charlie Chaplin</strong> and his friends started a movie company! They made funny movies for everyone to see.</p>
+  </div>
+</div>
+
+<!-- MATH -->
+<div class="card math">
+  <h2>🔢 Math: Let's Count!</h2>
+  <p class="activity">👉 How many blocks? Count them 1, 2, 3...</p>
+
+  <div class="count-row">
+    <span class="emojis">📦📦📦</span>
+    <span class="eq">=</span>
+    <div class="blank-box">3</div>
+  </div>
+  <div class="count-row">
+    <span class="emojis">📦📦</span>
+    <span class="eq">=</span>
+    <div class="blank-box">2</div>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div class="card history">
+  <h2>📜 History: My Family</h2>
+  <div class="fun-box">
+    <p style="font-size:18px;">Everyone has a family history! Let's look at photos of your <strong>Grandparents</strong> today. 👵👴</p>
+  </div>
+  <p class="activity">🎯 Can you find Grandma or Grandpa in a picture?</p>
+  <div class="draw-box">✏️ Draw your family here!</div>
+</div>
+
+<!-- SCIENCE -->
+<div class="card science">
+  <h2>🔬 Science: Weather Watch</h2>
+  <p>Look outside! What is the weather doing? Put a ✓ next to what you see!</p>
+  <div style="margin:14px 0;">
+    <div class="check-item">☐ &nbsp; ☀️ Sunny</div>
+    <div class="check-item">☐ &nbsp; ☁️ Cloudy</div>
+    <div class="check-item">☐ &nbsp; 🌧️ Rainy</div>
+    <div class="check-item">☐ &nbsp; ❄️ Snowy</div>
+  </div>
+</div>
+
+<!-- READING -->
+<div class="card reading">
+  <h2>📖 Reading: ABCs</h2>
+  <p>Let's sing the Alphabet Song together! Point to these letters:</p>
+  <div class="word-row">
+    <div class="word-card"><span class="ico">🍎</span><div class="txt">A</div></div>
+    <div class="word-card"><span class="ico">🐝</span><div class="txt">B</div></div>
+    <div class="word-card"><span class="ico">🐱</span><div class="txt">C</div></div>
+  </div>
+</div>
+
+<!-- WRITING -->
+<div class="card writing">
+  <h2>✏️ Writing: Trace Lines</h2>
+  <p>Trace these lines with your finger or a crayon!</p>
+  <div class="trace-row">
+    <div class="trace-box">|</div>
+    <div class="trace-box">—</div>
+    <div class="trace-box">O</div>
+  </div>
+  <div class="draw-box">🖍️ Practice drawing circles here!</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,374 @@
+/* --- Village UI: Organic & Handcrafted --- */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&display=swap');
+
+:root {
+    --primary: #4B6344; /* Sage Green */
+    --primary-light: #6B8E5E;
+    --primary-dark: #2D3B29;
+    --secondary: #D97757; /* Terracotta */
+    --secondary-hover: #BF5A3B;
+    --accent: #E6AF2E; /* Mustard Yellow */
+    --accent-soft: #F4E4BA;
+    --bg: #FDFCF8; /* Creamy White */
+    --bg-alt: #F4F1EA;
+    --card-bg: #ffffff;
+    --text-main: #1A1C19;
+    --text-muted: #5C615A;
+    --border: #E0E4DC;
+    --radius-lg: 2rem;
+    --radius-md: 1.25rem;
+    --radius-sm: 0.75rem;
+    --shadow: 0 10px 30px -10px rgba(75, 99, 68, 0.12);
+    --shadow-hover: 0 20px 40px -15px rgba(75, 99, 68, 0.2);
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-serif: 'Fraunces', serif;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+body {
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(75, 99, 68, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(217, 119, 87, 0.05) 0px, transparent 50%);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- Organic Background Shapes --- */
+body::before {
+    content: '';
+    position: fixed;
+    top: -10%;
+    right: -10%;
+    width: 40vw;
+    height: 40vw;
+    background: var(--accent-soft);
+    filter: blur(80px);
+    z-index: -1;
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: float 20s infinite ease-in-out;
+}
+
+/* --- Header --- */
+header {
+    background-color: rgba(253, 252, 248, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+header h1 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+}
+
+header h1::after {
+    content: '.';
+    color: var(--secondary);
+}
+
+/* --- Layout --- */
+main {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* --- Sections & Cards --- */
+#authSection, #profileSection, #editProfileSection, #eventsSection,
+#createEventSection, #editEventSection, #dashboardSection,
+#createAssignmentSection, #transcriptSection, #legalGuidesSection, #legalDetailSection {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#authSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: var(--accent-soft);
+    clip-path: circle(50% at 100% 0);
+    opacity: 0.5;
+}
+
+h2 {
+    font-family: var(--font-display);
+    margin-top: 0;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--text-main);
+    margin-bottom: 2rem;
+    line-height: 1.1;
+}
+
+h3 {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+/* --- Controls --- */
+input, textarea, select {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--bg);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(75, 99, 68, 0.1);
+}
+
+button {
+    font-family: var(--font-body);
+    background-color: var(--primary);
+    color: white;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.02em;
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+}
+
+button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+button#logoutBtn {
+    background-color: transparent;
+    color: var(--text-muted);
+    border: 2px solid var(--border);
+    padding: 0.6rem 1.2rem;
+}
+
+button#logoutBtn:hover {
+    background-color: #fee2e2;
+    color: #ef4444;
+    border-color: #fecaca;
+    transform: none;
+}
+
+/* --- Auth Forms --- */
+#registerForm, #loginForm {
+    max-width: 450px;
+    margin: 2rem 0;
+}
+
+/* --- Event List --- */
+#eventsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.event-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.event-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-light);
+}
+
+.event-item h3 {
+    margin-top: 0;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--text-main);
+    line-height: 1.2;
+}
+
+.event-item p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin: 0.75rem 0;
+}
+
+.event-item .event-date {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+/* --- Filters --- */
+#eventFilters {
+    background: var(--bg-alt);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    margin-bottom: 3rem;
+    border: 1px dashed var(--primary-light);
+}
+
+/* --- Dashboard --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    border-color: var(--primary);
+    background: white;
+}
+
+.stat-value {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+/* --- Subject Progress --- */
+.subject-bar-track {
+    background: var(--bg-alt);
+    height: 14px;
+    border-radius: 7px;
+}
+
+.subject-bar-fill {
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+}
+
+/* --- Transcript --- */
+.transcript-page {
+    border: 4px solid var(--primary);
+    padding: 4rem;
+    border-radius: var(--radius-md);
+    background-image: radial-gradient(var(--border) 1px, transparent 0);
+    background-size: 24px 24px;
+}
+
+.transcript-header h1 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: 3rem;
+}
+
+/* --- Legal Guides --- */
+.my-state-banner {
+    background: var(--accent-soft);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 2rem;
+}
+
+.legal-state-card {
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border);
+    padding: 1.75rem;
+}
+
+.legal-state-card:hover {
+    border-color: var(--secondary);
+}
+
+.legal-reg-badge {
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+}
+
+/* --- Animations for list items --- */
+#eventsList > *, #legalStatesList > *, .assignment-card {
+    animation: fadeIn 0.5s ease-out both;
+}
+
+#eventsList > *:nth-child(1) { animation-delay: 0.1s; }
+#eventsList > *:nth-child(2) { animation-delay: 0.2s; }
+#eventsList > *:nth-child(3) { animation-delay: 0.3s; }
+#eventsList > *:nth-child(4) { animation-delay: 0.4s; }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    header { padding: 1.5rem 2rem; }
+    h2 { font-size: 2rem; }
+    main { padding: 0 1.5rem; }
+    #authSection, #profileSection, #eventsSection, #dashboardSection {
+        padding: 2rem;
+    }
+}

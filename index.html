@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village | Your Homeschool Community</title>
+    <meta name="description" content="A handcrafted space for homeschool families to coordinate, share resources, and grow together.">
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Village</h1>
+        </div>
+        <nav>
+            <button id="logoutBtn" style="display: none;">Logout</button>
+        </nav>
+    </header>
+    <main>
+        <!-- ===== AUTH ===== -->
+        <div id="authSection">
+            <h2>Welcome to the Village</h2>
+            <p class="subtitle">A handcrafted space for families to coordinate, share resources, and grow together.</p>
+            <div id="authGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; margin-top: 3rem;">
+                <div id="registerForm">
+                    <h3>Join the community</h3>
+                    <input type="email" id="registerEmail" placeholder="Email" required>
+                    <input type="password" id="registerPassword" placeholder="Password" required>
+                    <input type="password" id="registerConfirmPassword" placeholder="Confirm Password" required>
+                    <input type="text" id="registerFamilyName" placeholder="Family Name" required>
+                    <p id="registerMessage" class="message-area"></p>
+                    <button id="registerBtn">Create Account</button>
+                </div>
+                <div id="loginForm">
+                    <h3>Already a member?</h3>
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                    <p id="loginMessage" class="message-area"></p>
+                    <button id="loginBtn">Login</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PROFILE ===== -->
+        <div id="profileSection" style="display: none;">
+            <h2>Your Profile</h2>
+            <div class="profile-card" style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px;">
+                    <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+                    <p><strong>Family:</strong> <span id="profileFamilyName" style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--primary);"></span></p>
+                    <p><strong>About:</strong> <span id="profileDescription"></span></p>
+                    <p><strong>Location:</strong> <span id="profileLocation"></span></p>
+                    <p><strong>Kids' Ages:</strong> <span id="profileChildrenAges"></span></p>
+                </div>
+                <div class="event-actions" style="flex: 1; min-width: 300px; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <button id="editProfileBtn">Edit Profile</button>
+                    <button id="viewEventsBtn">View Events</button>
+                    <button id="manageKidsBtn" style="background: var(--primary); color: #fff;">🧒 Manage Kids</button>
+                    <button id="viewDashboardBtn" style="background: var(--accent); color: var(--text-main);">📚 Dashboard</button>
+                    <button id="viewLegalGuidesBtn" style="background: var(--secondary); color: #fff;">⚖️ Legal Guides</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== EDIT PROFILE ===== -->
+        <div id="editProfileSection" style="display: none;">
+            <h2>Edit Profile</h2>
+            <input type="text" id="editFamilyName" placeholder="Family Name" required>
+            <textarea id="editDescription" placeholder="Description"></textarea>
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                <input type="text" id="editLocation" placeholder="Location" style="margin-bottom: 0;">
+                <button id="useCurrentProfileLocationBtn" style="background: var(--bg-alt); color: var(--text-main); border: 2px solid var(--border);">📍 Use Current</button>
+            </div>
+            <input type="text" id="editChildrenAges" placeholder="Children Ages (e.g., 5, 9, 13)">
+            <p id="editProfileMessage" class="message-area"></p>
+            <div class="event-actions">
+                <button id="saveProfileBtn">Save Changes</button>
+                <button id="cancelEditBtn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border);">Cancel</button>
+            </div>
+        </div>
+
+        <!-- ===== EVENTS ===== -->
+        <div id="eventsSection" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;">
+                <h2 style="margin-bottom: 0;">Community Gatherings</h2>
+                <button id="createEventBtn">+ New Gathering</button>
+            </div>
+            <div id="eventFilters">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; align-items: end;">
+                    <div>
+                        <label style="display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; color: var(--primary);">Search</label>
+                        <input type="text" id="searchQuery" placeholder="What are you looking for?" style="margin-bottom: 0;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; color: var(--primary);">Age Group</label>
+                        <select id="filterAgeSuitability" style="margin-bottom: 0;">
+                            <option value="">All Ages</option>
+                            <option value="0-5">0-5 (Preschool)</option>
+                            <option value="6-10">6-10 (Elementary)</option>
+                            <option value="11-14">11-14 (Middle School)</option>
+                            <option value="15-18">15-18 (High School)</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <div style="flex: 2;">
+                            <label style="display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; color: var(--primary);">Radius</label>
+                            <input type="number" id="filterDistance" placeholder="Range" style="margin-bottom: 0;">
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; color: var(--primary);">Unit</label>
+                            <select id="distanceUnitSelector" style="margin-bottom: 0;">
+                                <option value="miles">Miles</option>
+                                <option value="km">Km</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                    <button id="useMyLocationBtn" style="background: var(--bg); color: var(--text-main); border: 2px solid var(--border);">📍 Find My Location</button>
+                    <span id="myLocationDisplay" style="font-size: 0.85rem; font-weight: 600; color: var(--primary);"></span>
+                    <div style="margin-left: auto; display: flex; gap: 1rem;">
+                        <button id="applyFiltersBtn">Apply Filters</button>
+                        <button id="clearFiltersBtn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border);">Clear</button>
+                    </div>
+                </div>
+            </div>
+            <div id="eventsList"></div>
+        </div>
+
+        <!-- ===== CREATE EVENT ===== -->
+        <div id="createEventSection" style="display: none;">
+            <h2>Plan a Gathering</h2>
+            <input type="text" id="eventTitle" placeholder="Event Title" required>
+            <textarea id="eventDescription" placeholder="What's the plan?" required></textarea>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <input type="date" id="eventDate" required>
+                <input type="text" id="eventTime" placeholder="Time (e.g., 10:00 AM)" required>
+            </div>
+            <input type="text" id="eventLocation" placeholder="Location (Address or Link)" required>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <select id="eventAgeSuitability">
+                    <option value="All Ages">All Ages</option>
+                    <option value="0-5">0-5 (Preschool)</option>
+                    <option value="6-10">6-10 (Elementary)</option>
+                    <option value="11-14">11-14 (Middle School)</option>
+                    <option value="15-18">15-18 (High School)</option>
+                </select>
+                <input type="number" id="eventMaxCapacity" placeholder="Max Capacity (optional)">
+            </div>
+            <div id="suppliesSection" style="margin-top: 2rem; border-top: 2px dashed var(--border); padding-top: 2rem;">
+                <h3>What should people bring?</h3>
+                <div id="supplyListInputs">
+                    <div class="supply-input" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        <input type="text" placeholder="Item (e.g. Picnic Blanket)" class="supply-name" style="margin-bottom: 0;">
+                        <input type="number" placeholder="Qty" class="supply-qty" style="width: 100px; margin-bottom: 0;">
+                    </div>
+                </div>
+                <button type="button" id="addSupplyBtn" style="background: var(--bg-alt); color: var(--text-main); border: 2px solid var(--border);">+ Add Item</button>
+            </div>
+            <p id="createEventMessage" class="message-area"></p>
+            <div class="event-actions" style="margin-top: 2rem;">
+                <button id="saveEventBtn">Share with Village</button>
+                <button id="cancelCreateEventBtn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border);">Cancel</button>
+            </div>
+        </div>
+
+        <!-- ===== EDIT EVENT ===== -->
+        <div id="editEventSection" style="display: none;">
+            <h2>Edit Gathering</h2>
+            <input type="hidden" id="editEventId">
+            <input type="text" id="editEventTitle" required>
+            <textarea id="editEventDescription" required></textarea>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <input type="date" id="editEventDate" required>
+                <input type="text" id="editEventTime" required>
+            </div>
+            <input type="text" id="editEventLocation" required>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <select id="editEventAgeSuitability">
+                    <option value="All Ages">All Ages</option>
+                    <option value="0-5">0-5 (Preschool)</option>
+                    <option value="6-10">6-10 (Elementary)</option>
+                    <option value="11-14">11-14 (Middle School)</option>
+                    <option value="15-18">15-18 (High School)</option>
+                </select>
+                <input type="number" id="editEventMaxCapacity">
+            </div>
+            <p id="editEventMessage" class="message-area"></p>
+            <div class="event-actions" style="margin-top: 2rem;">
+                <button id="saveEditedEventBtn">Save Changes</button>
+                <button id="cancelEditEventBtn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border);">Cancel</button>
+            </div>
+        </div>
+
+        <!-- ===== ACADEMIC DASHBOARD ===== -->
+        <div id="dashboardSection" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                <h2 style="margin-bottom: 0;">Academic Dashboard</h2>
+                <div class="event-actions" style="margin: 0;">
+                    <button id="backFromDashboardBtn" style="background: var(--bg-alt); color: var(--text-main); border: 2px solid var(--border);">← Back</button>
+                    <button id="createAssignmentBtn">+ New Assignment</button>
+                    <button id="viewTranscriptBtn" style="background: var(--primary-light);">📄 View Transcript</button>
+                </div>
+            </div>
+
+            <!-- Progress Summary Cards -->
+            <div id="progressSummary" class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="statTotal">0</div>
+                    <div class="stat-label">Assignments</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statGraded">0</div>
+                    <div class="stat-label">Graded</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statPending">0</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statAvgScore">—</div>
+                    <div class="stat-label">Avg Score</div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <!-- Subject Breakdown -->
+                <div class="dashboard-card">
+                    <h3>Progress by Subject</h3>
+                    <div id="subjectBars" style="margin-top: 1.5rem;"></div>
+                </div>
+
+                <!-- Recent Assignments List -->
+                <div class="dashboard-card">
+                    <h3>Recent Work</h3>
+                    <div id="assignmentsList" style="margin-top: 1.5rem;">
+                        <p style="color: var(--text-muted);">Loading assignments…</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== CREATE ASSIGNMENT ===== -->
+        <div id="createAssignmentSection" style="display: none;">
+            <h2>Record Work</h2>
+            <input type="text" id="newAssignTitle" placeholder="Assignment Title (e.g. Nature Journaling)" required>
+            <textarea id="newAssignDesc" placeholder="Description or notes..."></textarea>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div>
+                    <label style="display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; color: var(--primary);">Date</label>
+                    <input type="date" id="newAssignDueDate" required>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; color: var(--primary);">Subject</label>
+                    <select id="newAssignSubject">
+                        <option value="">-- Select Subject --</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="English Language Arts">English Language Arts</option>
+                        <option value="Science">Science</option>
+                        <option value="History">History</option>
+                        <option value="Geography">Geography</option>
+                        <option value="Art">Art</option>
+                        <option value="Music">Music</option>
+                        <option value="Physical Education">Physical Education</option>
+                        <option value="Foreign Language">Foreign Language</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <label style="display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; color: var(--primary);">Link to Event (optional)</label>
+                <select id="newAssignEventLink">
+                    <option value="">— None —</option>
+                </select>
+            </div>
+            <p id="createAssignMessage" class="message-area"></p>
+            <div class="event-actions" style="margin-top: 2rem;">
+                <button id="saveAssignmentBtn">Save Record</button>
+                <button id="cancelCreateAssignBtn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border);">Cancel</button>
+            </div>
+        </div>
+
+        <!-- ===== TRANSCRIPT ===== -->
+        <div id="transcriptSection" style="display: none;">
+            <div class="no-print" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 style="margin-bottom: 0;">Academic Transcript</h2>
+                <div class="event-actions" style="margin: 0;">
+                    <button id="backFromTranscriptBtn" style="background: var(--bg-alt); color: var(--text-main); border: 2px solid var(--border);">← Back</button>
+                    <button id="printTranscriptBtn" style="background: var(--primary-light);">🖨️ Print / Save PDF</button>
+                </div>
+            </div>
+            <div id="transcriptBody" class="transcript-page">
+                <!-- Filled dynamically -->
+            </div>
+        </div>
+
+        <!-- ===== LEGAL GUIDES ===== -->
+        <div id="legalGuidesSection" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                <h2 style="margin-bottom: 0;">Legal Guides</h2>
+                <button id="backFromLegalBtn" style="background: var(--bg-alt); color: var(--text-main); border: 2px solid var(--border);">← Back</button>
+            </div>
+            <!-- My State Highlight -->
+            <div id="myStateHighlight" style="display: none;" class="my-state-banner">
+                <div class="my-state-banner-inner">
+                    <span class="my-state-banner-icon" style="font-size: 3rem;">🏡</span>
+                    <div>
+                        <div class="my-state-banner-label">Your Home State</div>
+                        <div class="my-state-banner-name" id="myStateName">—</div>
+                    </div>
+                    <button class="my-state-jump-btn" id="myStateJumpBtn" style="background: var(--primary);">View Local Rules →</button>
+                </div>
+            </div>
+            <!-- Filters -->
+            <div class="legal-filters" style="margin-bottom: 2rem;">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; align-items: end;">
+                    <div>
+                        <label style="display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; color: var(--primary);">Search States</label>
+                        <input type="text" id="legalSearchInput" placeholder="e.g. Texas, California…" style="margin-bottom: 0;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; color: var(--primary);">Regulation Level</label>
+                        <select id="legalFilterLevel" style="margin-bottom: 0;">
+                            <option value="">All Levels</option>
+                            <option value="Low">🟢 Low</option>
+                            <option value="Moderate">🟡 Moderate</option>
+                            <option value="High">🔴 High</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Stats Row -->
+            <div class="legal-stats-row">
+                <div class="legal-stat-pill legal-stat-low"><span>🟢</span> <strong id="legalCountLow">0</strong> Low Regulation</div>
+                <div class="legal-stat-pill legal-stat-mod"><span>🟡</span> <strong id="legalCountMod">0</strong> Moderate</div>
+                <div class="legal-stat-pill legal-stat-high"><span>🔴</span> <strong id="legalCountHigh">0</strong> High Regulation</div>
+            </div>
+            <!-- State Cards Grid -->
+            <div id="legalStatesList" class="legal-states-grid">
+                <p style="color: var(--text-muted);">Loading state guides…</p>
+            </div>
+        </div>
+
+        <!-- ===== LEGAL STATE DETAIL ===== -->
+        <div id="legalDetailSection" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 id="legalDetailStateName" style="margin-bottom:0;">—</h2>
+                <button id="backFromLegalDetailBtn" style="background: var(--bg-alt); color: var(--text-main); border: 2px solid var(--border);">← All States</button>
+            </div>
+            <div id="legalDetailContent"></div>
+        </div>
+        <div id="app"></div>
+    </main>
+    <footer>
+        <p>Built with ❤️ by the Village Community & Kitt</p>
+        <p style="opacity: 0.5; font-size: 0.75rem; margin-top: 1rem;">© 2026 Village Homeschool</p>
+    </footer>
+    <script>
+        // Mock Application Logic for Prototype
+        const elements = {
+            authSection: document.getElementById('authSection'),
+            profileSection: document.getElementById('profileSection'),
+            loginBtn: document.getElementById('loginBtn'),
+            logoutBtn: document.getElementById('logoutBtn'),
+            manageKidsBtn: document.getElementById('manageKidsBtn'),
+            profileEmail: document.getElementById('profileEmail'),
+            profileFamilyName: document.getElementById('profileFamilyName')
+        };
+
+        // Simple Login simulation
+        elements.loginBtn.addEventListener('click', () => {
+            const email = document.getElementById('loginEmail').value || 'justin@village.com';
+            elements.authSection.style.display = 'none';
+            elements.profileSection.style.display = 'block';
+            elements.logoutBtn.style.display = 'block';
+            elements.profileEmail.innerText = email;
+            elements.profileFamilyName.innerText = 'The Lynch Family';
+        });
+
+        // Logout simulation
+        elements.logoutBtn.addEventListener('click', () => {
+            elements.authSection.style.display = 'block';
+            elements.profileSection.style.display = 'none';
+            elements.logoutBtn.style.display = 'none';
+        });
+
+        // Link to Manage Kids UI
+        elements.manageKidsBtn.addEventListener('click', () => {
+            window.location.href = 'manage_kids.html';
+        });
+
+        // Register button simulation
+        document.getElementById('registerBtn').addEventListener('click', () => {
+            elements.loginBtn.click(); // Just log them in for the demo
+        });
+    </script>
+</body>
+</html>

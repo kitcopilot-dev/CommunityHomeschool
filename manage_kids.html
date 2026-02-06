@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Kids | Village Homeschool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F6D7A;
+            --primary-light: #C0D6DF;
+            --secondary: #EAE0D5;
+            --accent: #C2847A;
+            --sage: #84A59D;
+            --text-main: #2D3142;
+            --text-muted: #4F5D75;
+            --bg: #F8F9F8;
+            --card-bg: #FFFFFF;
+            --border: #E0E0E0;
+            --radius: 16px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            padding: 2rem;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        p {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-text p {
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #3d5560;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 109, 122, 0.2);
+        }
+
+        .kids-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .manage-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .learning-vault {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .vault-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+
+        .vault-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .vault-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .kid-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kid-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+
+        .kid-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--sage);
+        }
+
+        .kid-card.age-13::before { background: var(--primary); }
+        .kid-card.age-9::before { background: var(--accent); }
+        .kid-card.age-6::before { background: var(--sage); }
+        .kid-card.age-2::before { background: var(--secondary); }
+
+        .kid-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .kid-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            background: #F1F3F5;
+            padding: 0.8rem;
+            border-radius: 12px;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .progress-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #EDF2F7;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            background: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-icon:hover {
+            background: var(--bg);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Modal / Form Styles */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(45, 49, 66, 0.4);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            animation: modalSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalSlide {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(79, 109, 122, 0.1);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem; }
+            header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+            .kids-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainDashboard">
+        <header>
+            <div class="header-text">
+                <h1>The Village</h1>
+                <p>Manage your family's learning journey.</p>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn" style="background: var(--bg-alt); color: var(--text-muted);" onclick="window.location.href='index.html'">
+                    🏠 Parent Home
+                </button>
+                <button class="btn btn-primary" onclick="openModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    Add Child
+                </button>
+            </div>
+        </header>
+
+        <div class="kids-grid" id="kidsGrid">
+            <!-- Kid Card 1 (Age 13) -->
+            <div class="kid-card age-13">
+                <div class="kid-header">
+                    <div class="avatar" style="background: #D8E2DC;">JL</div>
+                    <div class="kid-info">
+                        <h3>Justin Jr.</h3>
+                        <span class="tag">Age 13 • 8th Grade</span>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Subject focus</div>
+                        <div class="stat-value">Advanced Math</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Daily Goal</div>
+                        <div class="stat-value">4 / 6 Tasks</div>
+                    </div>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Weekly Progress</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%;"></div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="btn-icon" title="Edit Profile">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    </button>
+                    <button class="btn-icon" title="View Schedule">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </button>
+                    <button class="btn-icon" title="Learning Vault" onclick="showVault('Justin Jr.')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kid Card 2 (Age 9) -->
+            <div class="kid-card age-9">
+                <div class="kid-header">
+                    <div class="avatar" style="background: #FFE5D9;">EL</div>
+                    <div class="kid-info">
+                        <h3>Emma</h3>
+                        <span class="tag">Age 9 • 4th Grade</span>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Subject focus</div>
+                        <div class="stat-value">Natural Science</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Daily Goal</div>
+                        <div class="stat-value">2 / 4 Tasks</div>
+                    </div>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Weekly Progress</span>
+                        <span>50%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 50%; background: var(--accent);"></div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+                    <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></button>
+                    <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></button>
+                </div>
+            </div>
+
+            <!-- Kid Card 3 (Age 6) -->
+            <div class="kid-card age-6">
+                <div class="kid-header">
+                    <div class="avatar" style="background: #EAF4F4;">ML</div>
+                    <div class="kid-info">
+                        <h3>Milo</h3>
+                        <span class="tag">Age 6 • 1st Grade</span>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Subject focus</div>
+                        <div class="stat-value">Early Reading</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Daily Goal</div>
+                        <div class="stat-value">3 / 3 Tasks</div>
+                    </div>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Weekly Progress</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%; background: var(--sage);"></div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+                    <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></button>
+                    <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></button>
+                </div>
+            </div>
+
+            <!-- Kid Card 4 (Age 2) -->
+            <div class="kid-card age-2">
+                <div class="kid-header">
+                    <div class="avatar" style="background: #F4F1DE;">LL</div>
+                    <div class="kid-info">
+                        <h3>Lily</h3>
+                        <span class="tag">Age 2 • Toddler</span>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Subject focus</div>
+                        <div class="stat-value">Sensory Play</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Daily Goal</div>
+                        <div class="stat-value">1 / 2 Tasks</div>
+                    </div>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Weekly Progress</span>
+                        <span>30%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 30%; background: var(--secondary); border: 1px solid var(--primary-light);"></div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+                    <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></button>
+                    <button class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Vault Section -->
+        <div id="vaultSection" class="manage-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div>
+                    <h1 id="vaultTitle">Learning Vault</h1>
+                    <p id="vaultSubtitle">Stored resources and progress for Justin Jr.</p>
+                </div>
+                <button class="btn" style="background: var(--primary-light); color: var(--primary);" onclick="showDashboard()">← Back to Village</button>
+            </div>
+            
+            <div class="learning-vault">
+                <div class="vault-item">
+                    <div class="vault-icon">📖</div>
+                    <div>
+                        <h4 style="font-weight: 600;">Reading Logs</h4>
+                        <p style="font-size: 0.8rem;">12 entries this month</p>
+                    </div>
+                </div>
+                <div class="vault-item">
+                    <div class="vault-icon">🎨</div>
+                    <div>
+                        <h4 style="font-weight: 600;">Portfolio</h4>
+                        <p style="font-size: 0.8rem;">8 saved projects</p>
+                    </div>
+                </div>
+                <div class="vault-item">
+                    <div class="vault-icon">🧪</div>
+                    <div>
+                        <h4 style="font-weight: 600;">Science Lab</h4>
+                        <p style="font-size: 0.8rem;">3 pending reports</p>
+                    </div>
+                </div>
+                <div class="vault-item">
+                    <div class="vault-icon">🏆</div>
+                    <div>
+                        <h4 style="font-weight: 600;">Badges</h4>
+                        <p style="font-size: 0.8rem;">5 achievements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for adding/editing -->
+    <div class="overlay" id="modalOverlay">
+        <div class="modal">
+            <h2 id="modalTitle">Add a Child</h2>
+            <p style="margin-bottom: 2rem;">Enter details to personalize their learning experience.</p>
+            
+            <form id="kidForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="e.g. Emma Lynch" required>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" placeholder="e.g. 9" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Grade Level</label>
+                        <select>
+                            <option>Preschool</option>
+                            <option>Kindergarten</option>
+                            <option>1st Grade</option>
+                            <option>2nd Grade</option>
+                            <option>3rd Grade</option>
+                            <option>4th Grade</option>
+                            <option>5th Grade</option>
+                            <option>6th Grade</option>
+                            <option>7th Grade</option>
+                            <option>8th Grade</option>
+                            <option>High School</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Current Focus / Interests</label>
+                    <input type="text" placeholder="e.g. Astronomy, Early Reading">
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border);" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modalOverlay').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+        function showVault(name) {
+            document.getElementById('kidsGrid').style.display = 'none';
+            document.getElementById('vaultSection').style.display = 'block';
+            document.getElementById('vaultTitle').innerText = name + "'s Vault";
+            document.getElementById('vaultSubtitle').innerText = "Stored resources and progress for " + name + ".";
+        }
+
+        function showDashboard() {
+            document.getElementById('kidsGrid').style.display = 'grid';
+            document.getElementById('vaultSection').style.display = 'none';
+        }
+        
+        // Close modal on background click
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Form submission prevent default for demo
+        document.getElementById('kidForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Child profile saved! (Demo Only)');
+            closeModal();
+        });
+    </script>
+
+</body>
+</html>

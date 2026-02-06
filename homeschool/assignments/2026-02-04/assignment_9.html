@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 Daily Assignments — Age 9</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #ebf8ff;
+    color: #2d3748;
+    padding: 28px 18px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .header {
+    background: linear-gradient(135deg, #4299e1, #38b2ac);
+    color: white;
+    border-radius: 18px;
+    padding: 26px 24px;
+    text-align: center;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 14px rgba(66,153,225,0.4);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 4px; }
+  .header .meta { font-size: 14px; opacity: 0.92; margin-top: 6px; }
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 6px solid #e2e8f0;
+  }
+  .card.wotd   { border-left-color: #38b2ac; }
+  .card.tdih   { border-left-color: #e53e3e; }
+  .card.math   { border-left-color: #4299e1; }
+  .card.history{ border-left-color: #e6a817; }
+  .card.science{ border-left-color: #48bb78; }
+  .card.reading{ border-left-color: #9f7aea; }
+  .card.writing{ border-left-color: #ed64a6; }
+  .card h2     { font-size: 20px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  p            { font-size: 15.5px; line-height: 1.65; margin-bottom: 7px; }
+  .fun-box     { background: #fff5f5; border-radius: 10px; padding: 14px 18px; margin: 10px 0; }
+  .activity    { font-size: 14px; color: #2b6cb0; font-weight: 600; margin: 12px 0 4px; }
+  .blank-line  { border-bottom: 2px solid #cbd5e0; min-height: 30px; margin: 8px 0; width: 100%; }
+  .q-row       { margin: 12px 0; }
+  .q-row .q    { font-weight: 600; font-size: 15px; margin-bottom: 5px; }
+
+  /* math */
+  .math-grid   { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 10px 0; }
+  .math-item   { font-size: 18px; padding: 8px 10px; background: #ebf8ff; border-radius: 8px; text-align: center; }
+  .math-item .eq { display: inline-block; width: 44px; border-bottom: 2px solid #4299e1; margin-left: 2px; }
+  .math-grid-2 { grid-template-columns: 1fr 1fr; }
+
+  /* water cycle */
+  .wc-box      { background: #f0fff4; border-radius: 12px; padding: 18px; margin: 12px 0; text-align: center; }
+  .wc-row      { display: flex; justify-content: center; align-items: flex-end; gap: 10px; margin: 10px 0; flex-wrap: wrap; }
+  .wc-step     { background: white; border: 2px solid #48bb78; border-radius: 10px; padding: 10px 14px; min-width: 120px; text-align: center; }
+  .wc-step .num  { font-size: 11px; color: #48bb78; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .wc-step .ico  { font-size: 28px; display: block; margin: 4px 0; }
+  .wc-step .lbl  { font-size: 14px; font-weight: 700; color: #276749; }
+  .wc-arrow    { font-size: 22px; color: #48bb78; align-self: center; }
+  .label-blank { display: inline-block; border-bottom: 2px solid #48bb78; width: 130px; min-height: 20px; margin-left: 6px; vertical-align: bottom; }
+
+  /* passage */
+  .passage    { background: #edf2f7; border-left: 4px solid #9f7aea; padding: 16px 18px; border-radius: 0 10px 10px 0; margin: 12px 0; line-height: 1.75; font-size: 15px; }
+
+  /* writing */
+  .write-box  { border: 2px dashed #ed64a6; border-radius: 12px; padding: 16px 18px; margin: 12px 0; min-height: 140px; background: #fdf2f8; }
+  .write-line { border-bottom: 1px solid #f6b7c8; height: 26px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>📚 Today's Assignments</h1>
+  <div class="meta">Wednesday, February 4, 2026 &nbsp;·&nbsp; Age 9</div>
+</div>
+
+<!-- WORD OF THE DAY -->
+<div class="card wotd">
+  <h2>⭐ Word of the Day</h2>
+  <p style="font-size:23px; font-weight:700; color:#38b2ac;">Ambitious 🎯</p>
+  <p><strong>What it means:</strong> Wanting to achieve great, big things — and working hard to get there!</p>
+  <p><em>"The ambitious boy practiced piano every single day until he could play his favorite song perfectly."</em></p>
+  <p class="activity">🎯 Write a sentence using the word <strong>"ambitious"</strong> about yourself or someone you know.</p>
+  <div class="blank-line"></div>
+</div>
+
+<!-- THIS DAY IN HISTORY -->
+<div class="card tdih">
+  <h2>📅 This Day in History</h2>
+  <div class="fun-box">
+    <p style="font-size:16px;">🚶 On <strong>February 4, 1846</strong>, a group called the <strong>Mormon pioneers</strong> began one of the bravest journeys in American history!</p>
+    <p>After being forced to leave their home in Nauvoo, Illinois, they set out on foot and by wagon to travel over <strong>1,000 miles</strong> to Utah — in the middle of winter! The trip took them more than a year.</p>
+    <p>It was hard, dangerous, and cold — but they never gave up. 🏔️</p>
+  </div>
+</div>
+
+<!-- MATH -->
+<div class="card math">
+  <h2>🔢 Math: Multiply & Divide</h2>
+  <p><strong>Part A — Multiplication:</strong></p>
+  <div class="math-grid">
+    <div class="math-item">7 × 8 =<span class="eq"></span></div>
+    <div class="math-item">6 × 9 =<span class="eq"></span></div>
+    <div class="math-item">12 × 5 =<span class="eq"></span></div>
+    <div class="math-item">9 × 9 =<span class="eq"></span></div>
+    <div class="math-item">11 × 7 =<span class="eq"></span></div>
+    <div class="math-item">8 × 8 =<span class="eq"></span></div>
+  </div>
+
+  <p style="margin-top:14px;"><strong>Part B — Division:</strong></p>
+  <div class="math-grid">
+    <div class="math-item">56 ÷ 7 =<span class="eq"></span></div>
+    <div class="math-item">45 ÷ 9 =<span class="eq"></span></div>
+    <div class="math-item">60 ÷ 12 =<span class="eq"></span></div>
+    <div class="math-item">72 ÷ 8 =<span class="eq"></span></div>
+    <div class="math-item">99 ÷ 11 =<span class="eq"></span></div>
+    <div class="math-item">36 ÷ 6 =<span class="eq"></span></div>
+  </div>
+
+  <p style="margin-top:14px;"><strong>Part C — Word Problems:</strong></p>
+  <div class="q-row">
+    <div class="q">1. You have 3 bags of apples. Each bag has 12 apples. How many apples do you have in total?</div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">2. A movie is 2 hours and 15 minutes long. How many minutes is that altogether?</div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">3. There are 84 students going on a field trip. Each bus holds 12 students. How many buses are needed?</div>
+    <div class="blank-line"></div>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div class="card history">
+  <h2>📜 History: The Mormon Migration</h2>
+  <div class="fun-box" style="background:#fffbeb;">
+    <p>In the early 1800s, a group of people called <strong>Mormons</strong> (members of the Church of Jesus Christ of Latter-day Saints) faced serious trouble. Their leader, <strong>Joseph Smith</strong>, was killed in 1844. Angry mobs attacked their town and forced them to leave their home in <strong>Nauvoo, Illinois</strong>.</p>
+    <p style="margin-top:8px;">So they made a brave decision: they would travel all the way to <strong>Utah</strong> to find a peaceful new home. On <strong>February 4, 1846</strong>, they began their long westward journey. They walked, rode horses, and traveled by covered wagon across plains, mountains, and rivers. It was over <strong>1,000 miles</strong> and took more than a year!</p>
+  </div>
+  <div class="q-row">
+    <div class="q">1. Why did the Mormons have to leave Nauvoo?</div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">2. On what date did they begin their westward journey?</div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">3. How far did they travel, and how long did the trip take?</div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">4. Name <strong>two</strong> ways they traveled on the journey.</div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">5. Why do you think this journey was so difficult? Give <strong>two</strong> reasons.</div>
+    <div class="blank-line"></div>
+    <div class="blank-line"></div>
+  </div>
+</div>
+
+<!-- SCIENCE -->
+<div class="card science">
+  <h2>🌊 Science: The Water Cycle</h2>
+  <p>The <strong>water cycle</strong> is how water moves around the Earth — over and over again! Here are the four stages:</p>
+  <div class="wc-box">
+    <div class="wc-row">
+      <div class="wc-step">
+        <div class="num">Stage 1</div>
+        <span class="ico">☀️🌊</span>
+        <div class="lbl">Evaporation</div>
+      </div>
+      <span class="wc-arrow">→</span>
+      <div class="wc-step">
+        <div class="num">Stage 2</div>
+        <span class="ico">☁️</span>
+        <div class="lbl">Condensation</div>
+      </div>
+      <span class="wc-arrow">→</span>
+      <div class="wc-step">
+        <div class="num">Stage 3</div>
+        <span class="ico">🌧️</span>
+        <div class="lbl">Precipitation</div>
+      </div>
+      <span class="wc-arrow">→</span>
+      <div class="wc-step">
+        <div class="num">Stage 4</div>
+        <span class="ico">🏞️</span>
+        <div class="lbl">Collection</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="activity">📝 Answer the following questions in your own words:</p>
+  <div class="q-row">
+    <div class="q">1. What is <strong>evaporation</strong>? What causes it to happen?</div>
+    <div class="blank-line"></div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">2. What happens during <strong>condensation</strong>? What do clouds form from?</div>
+    <div class="blank-line"></div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">3. What is <strong>precipitation</strong>? Give <strong>two</strong> examples of precipitation.</div>
+    <div class="blank-line"></div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">4. Why is the water cycle important for life on Earth? Give one reason.</div>
+    <div class="blank-line"></div>
+    <div class="blank-line"></div>
+  </div>
+</div>
+
+<!-- READING -->
+<div class="card reading">
+  <h2>📖 Reading: The Hidden Cave</h2>
+  <div class="passage">
+    Young Marco had always dreamed of exploring the caves near his village in the mountains. One crisp autumn morning, he packed a small backpack with a flashlight, a notebook, and a water bottle. He hiked along a rocky trail for nearly an hour until he reached the hillside where legends said a cave was hidden.<br><br>
+    Sure enough, behind a curtain of thick ivy, he found a dark opening in the rock. Marco clicked on his flashlight and stepped inside. The beam of light swept across the cave walls and revealed something breathtaking — thousands of tiny crystals sparkling like diamonds, glowing in every shade of blue and silver.<br><br>
+    Marco carefully pulled out his notebook and began to sketch what he saw, his hand trembling with excitement. "Nobody knows about this," he whispered. "I have to tell everyone."
+  </div>
+  <div class="q-row">
+    <div class="q">1. What <strong>three</strong> items did Marco pack in his backpack?</div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">2. What was hiding the entrance to the cave?</div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">3. Describe what Marco saw inside the cave. Use <strong>details from the passage</strong>.</div>
+    <div class="blank-line"></div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">4. The passage says Marco's hand was "trembling with excitement." What does this tell you about how he felt? Why do you think he felt that way?</div>
+    <div class="blank-line"></div>
+    <div class="blank-line"></div>
+  </div>
+  <div class="q-row">
+    <div class="q">5. Do you think Marco will tell others about the cave? Use <strong>evidence from the text</strong> to support your answer.</div>
+    <div class="blank-line"></div>
+    <div class="blank-line"></div>
+  </div>
+</div>
+
+<!-- WRITING -->
+<div class="card writing">
+  <h2>✏️ Writing: The Mormon Migration</h2>
+  <p>Write a <strong>paragraph (5–6 sentences)</strong> about what you learned in today's history lesson about the Mormon migration.</p>
+  <p style="font-size:14px; color:#718096;">💡 <em>Think about: Why did they move? When did they leave? How far did they travel? Was it hard? Why were they brave?</em></p>
+  <div class="write-box">
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+  </div>
+</div>
+
+</body>
+</html>
