@@ -67,6 +67,16 @@ describe('Parent Portal Navigation', () => {
         expect(elements.profileFamilyName.innerText).toBe('The Lynch Family');
     });
 
+    it('should show profile for the Kitt test user', () => {
+        elements.loginEmail.value = 'kitt@village.com';
+        elements.loginPassword.value = 'test-password-99';
+        elements.loginBtn.click();
+
+        expect(elements.profileSection.style.display).toBe('block');
+        expect(elements.profileEmail.innerText).toBe('kitt@village.com');
+        expect(elements.profileFamilyName.innerText).toBe('The Test Family');
+    });
+
     it('should fail login with incorrect password', () => {
         const alertMock = vi.spyOn(window, 'alert').mockImplementation(() => {});
         elements.loginEmail.value = 'justin@village.com';

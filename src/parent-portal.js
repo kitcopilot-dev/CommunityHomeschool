@@ -11,12 +11,13 @@ function initParentPortal(elements) {
                   window.location.port === '8000';
     
     // HARDCODED SECURE CREDENTIALS (MOCKING)
-    const VALID_USER = {
-        email: "justin@village.com",
-        password: "password123"
-    };
+    const USERS = [
+        { email: "justin@village.com", password: "password123", name: "The Lynch Family" },
+        { email: "kitt@village.com", password: "test-password-99", name: "The Test Family" }
+    ];
 
     let isAuthenticated = false;
+    let currentUser = null;
     let viewOnlyMode = false;
 
     console.log("Village Portal Initialized. Dev Mode:", isDev);
@@ -72,11 +73,14 @@ function initParentPortal(elements) {
 
         console.log("Attempting login for:", email);
 
-        if (email === VALID_USER.email && password === VALID_USER.password) {
+        const foundUser = USERS.find(u => u.email === email && u.password === password);
+
+        if (foundUser) {
             console.log("Login: Success (Auth)");
             isAuthenticated = true;
+            currentUser = foundUser;
             viewOnlyMode = false;
-            elements.profileFamilyName.innerText = 'The Lynch Family';
+            elements.profileFamilyName.innerText = foundUser.name;
             elements.profileEmail.innerText = email;
         } 
         else if (isDev && !email && !password) {
