@@ -1,4 +1,4 @@
-// Standard JS (non-module) for better compatibility
+// src/parent-portal.js
 function initParentPortal(elements) {
     if (!elements) return;
 
@@ -10,9 +10,16 @@ function initParentPortal(elements) {
                   window.location.hostname === '44.240.253.236' ||
                   window.location.port === '8000';
     
-    console.log("Village Portal Initialized. Hostname:", window.location.hostname, "Dev Mode:", isDev);
-    
+    // HARDCODED SECURE CREDENTIALS (MOCKING)
+    const VALID_USER = {
+        email: "justin@village.com",
+        password: "password123" // In a real app, this would be a hash/JWT from a server
+    };
+
     let isAuthenticated = false;
+    let viewOnlyMode = false;
+
+    console.log("Village Portal Initialized. Dev Mode:", isDev);
 
     function hideAllSections() {
         [elements.authSection, elements.profileSection, elements.editProfileSection, 
@@ -21,16 +28,20 @@ function initParentPortal(elements) {
     }
 
     function checkAuth(callback) {
-        if (isDev || isAuthenticated) {
+        if (isAuthenticated) {
             callback();
+        } else if (viewOnlyMode) {
+            alert("This is a functional part of the app. Please login with a valid account to use it.");
+            hideAllSections();
+            elements.authSection.style.display = 'block';
         } else {
-            alert("Please login to access this functional part of the app.");
+            alert("Please login to access this section.");
             hideAllSections();
             elements.authSection.style.display = 'block';
         }
     }
 
-    // Public Sections (Accessible without Auth)
+    // Public Section Navigation
     elements.viewLegalGuidesBtn?.addEventListener('click', () => {
         hideAllSections();
         if (elements.legalGuidesSection) elements.legalGuidesSection.style.display = 'block';
@@ -39,45 +50,59 @@ function initParentPortal(elements) {
 
     elements.backFromLegalBtn?.addEventListener('click', () => {
         hideAllSections();
-        if (isAuthenticated) {
+        if (isAuthenticated || viewOnlyMode) {
             elements.profileSection.style.display = 'block';
         } else {
             elements.authSection.style.display = 'block';
         }
     });
 
-    // Authenticated Sections
+    // Login Logic (CRITICAL SECURITY FIX)
     elements.loginBtn?.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log("Login button clicked");
         const email = elements.loginEmail?.value;
         const password = elements.loginPassword?.value;
 
-        if (isDev && !email && !password) {
-            isAuthenticated = false; 
-            elements.profileFamilyName.innerText = 'Guest (View Only Mode)';
-        } else {
+        // 1. Check for valid credentials first
+        if (email === VALID_USER.email && password === VALID_USER.password) {
+            console.log("Authenticated Login Successful");
             isAuthenticated = true;
+            viewOnlyMode = false;
             elements.profileFamilyName.innerText = 'The Lynch Family';
+            elements.profileEmail.innerText = email;
+        } 
+        // 2. Allow "Guest/View Only" bypass ONLY in Dev mode and ONLY with empty fields
+        else if (isDev && !email && !password) {
+            console.log("Dev Mode Bypass: Entering View-Only");
+            isAuthenticated = false;
+            viewOnlyMode = true;
+            elements.profileFamilyName.innerText = 'Guest (View Only Mode)';
+            elements.profileEmail.innerText = 'guest@village.com';
+        } 
+        // 3. Fail on incorrect credentials
+        else {
+            alert("Invalid email or password.");
+            return;
         }
 
         hideAllSections();
         if (elements.profileSection) elements.profileSection.style.display = 'block';
         if (elements.logoutBtn) elements.logoutBtn.style.display = 'block';
-        if (elements.profileEmail) elements.profileEmail.innerText = email || 'guest@village.com';
     });
 
     elements.logoutBtn?.addEventListener('click', () => {
         isAuthenticated = false;
+        viewOnlyMode = false;
         hideAllSections();
         if (elements.authSection) elements.authSection.style.display = 'block';
         if (elements.logoutBtn) elements.logoutBtn.style.display = 'none';
+        if (elements.loginEmail) elements.loginEmail.value = '';
+        if (elements.loginPassword) elements.loginPassword.value = '';
     });
 
+    // Protected Navigation
     elements.manageKidsBtn?.addEventListener('click', () => {
-        checkAuth(() => {
-            window.location.href = 'manage_kids.html';
-        });
+        checkAuth(() => { window.location.href = 'manage_kids.html'; });
     });
 
     elements.editProfileBtn?.addEventListener('click', () => {
@@ -101,6 +126,7 @@ function initParentPortal(elements) {
         });
     });
 
+    // Sub-navigation and common actions
     elements.backFromDashboardBtn?.addEventListener('click', () => {
         hideAllSections();
         elements.profileSection.style.display = 'block';
