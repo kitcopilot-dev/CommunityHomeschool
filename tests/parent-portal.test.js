@@ -16,22 +16,34 @@ describe('Parent Portal Navigation', () => {
             <div id="dashboardSection" style="display:none"></div>
             <div id="legalGuidesSection" style="display:none"></div>
             <div id="legalDetailSection" style="display:none"></div>
+            <div id="eventsSection" style="display:none"></div>
+            <div id="createEventSection" style="display:none"></div>
+            <div id="eventsList"></div>
             <div id="legalStatesList"></div>
             <input id="loginEmail" />
             <input id="loginPassword" />
             <input id="registerEmail" />
             <input id="registerPassword" />
             <input id="registerFamilyName" />
+            <input id="eventTitle" />
+            <input id="eventDate" />
+            <input id="eventTime" />
+            <input id="eventLocation" />
+            <textarea id="eventDescription"></textarea>
             <button id="loginBtn"></button>
             <button id="registerBtn"></button>
             <button id="logoutBtn" style="display:none"></button>
             <button id="manageKidsBtn"></button>
             <button id="editProfileBtn"></button>
             <button id="viewEventsBtn"></button>
+            <button id="createEventBtn"></button>
+            <button id="saveEventBtn"></button>
+            <button id="cancelCreateEventBtn"></button>
             <button id="viewDashboardBtn"></button>
             <button id="viewLegalGuidesBtn"></button>
             <button id="saveProfileBtn"></button>
             <button id="useCurrentProfileLocationBtn"></button>
+            <button id="backFromEventsBtn"></button>
             <div id="profileEmail"></div>
             <div id="profileFamilyName"></div>
             <div id="profileDescription"></div>
@@ -62,6 +74,13 @@ describe('Parent Portal Navigation', () => {
             viewEventsBtn: document.getElementById('viewEventsBtn'),
             viewDashboardBtn: document.getElementById('viewDashboardBtn'),
             viewLegalGuidesBtn: document.getElementById('viewLegalGuidesBtn'),
+            backFromDashboardBtn: document.getElementById('backFromDashboardBtn'),
+            backFromEventsBtn: document.getElementById('backFromEventsBtn'),
+            createEventBtn: document.getElementById('createEventBtn'),
+            createEventSection: document.getElementById('createEventSection'),
+            saveEventBtn: document.getElementById('saveEventBtn'),
+            cancelCreateEventBtn: document.getElementById('cancelCreateEventBtn'),
+            eventsList: document.getElementById('eventsList'),
             profileEmail: document.getElementById('profileEmail'),
             profileFamilyName: document.getElementById('profileFamilyName'),
             profileDescription: document.getElementById('profileDescription'),
@@ -172,5 +191,31 @@ describe('Parent Portal Navigation', () => {
         elements.viewDashboardBtn.click();
         expect(elements.dashboardSection.style.display).toBe('block');
         expect(elements.profileSection.style.display).toBe('none');
+    });
+
+    it('should show create event section and save a new event', () => {
+        // Authenticate
+        elements.loginEmail.value = 'justin@village.com';
+        elements.loginPassword.value = 'password123';
+        elements.loginBtn.click();
+
+        // Navigate to Events
+        elements.viewEventsBtn.click();
+        expect(elements.eventsSection.style.display).toBe('block');
+
+        // Click New Gathering
+        elements.createEventBtn.click();
+        expect(elements.createEventSection.style.display).toBe('block');
+        expect(elements.eventsSection.style.display).toBe('none');
+
+        // Fill form
+        document.getElementById('eventTitle').value = 'Park Meetup';
+        document.getElementById('eventDate').value = '2026-03-01';
+        
+        // Save
+        elements.saveEventBtn.click();
+
+        expect(elements.eventsSection.style.display).toBe('block');
+        expect(elements.eventsList.innerHTML).toContain('Park Meetup');
     });
 });

@@ -35,6 +35,7 @@ function initParentPortal(elements) {
             elements.profileSection, 
             elements.editProfileSection, 
             elements.eventsSection, 
+            elements.createEventSection,
             elements.dashboardSection, 
             elements.legalGuidesSection, 
             elements.legalDetailSection
@@ -271,8 +272,63 @@ function initParentPortal(elements) {
         checkAuth(() => {
             hideAllSections();
             if (elements.eventsSection) elements.eventsSection.style.display = 'block';
+            renderEvents();
         });
     });
+
+    elements.createEventBtn?.addEventListener('click', () => {
+        hideAllSections();
+        if (elements.createEventSection) elements.createEventSection.style.display = 'block';
+    });
+
+    elements.saveEventBtn?.addEventListener('click', () => {
+        const title = document.getElementById('eventTitle')?.value;
+        const date = document.getElementById('eventDate')?.value;
+        const time = document.getElementById('eventTime')?.value;
+        const loc = document.getElementById('eventLocation')?.value;
+        const desc = document.getElementById('eventDescription')?.value;
+
+        if (!title || !date) {
+            alert("Title and Date are required.");
+            return;
+        }
+
+        const events = JSON.parse(sessionStorage.getItem('village_events')) || [];
+        events.push({ title, date, time, loc, desc });
+        sessionStorage.setItem('village_events', JSON.stringify(events));
+
+        hideAllSections();
+        if (elements.eventsSection) elements.eventsSection.style.display = 'block';
+        renderEvents();
+    });
+
+    elements.cancelCreateEventBtn?.addEventListener('click', () => {
+        hideAllSections();
+        if (elements.eventsSection) elements.eventsSection.style.display = 'block';
+    });
+
+    function renderEvents() {
+        if (!elements.eventsList) return;
+        const events = JSON.parse(sessionStorage.getItem('village_events')) || [];
+        elements.eventsList.innerHTML = '';
+        
+        if (events.length === 0) {
+            elements.eventsList.innerHTML = '<p style="color:var(--text-muted);">No community gatherings planned yet. Be the first to start one!</p>';
+            return;
+        }
+
+        events.forEach(event => {
+            const item = document.createElement('div');
+            item.className = 'event-item';
+            item.innerHTML = `
+                <h3>${event.title}</h3>
+                <p class="event-date">🗓️ ${event.date} • ${event.time || 'All Day'}</p>
+                <p>📍 ${event.loc || 'TBD'}</p>
+                <p>${event.desc || ''}</p>
+            `;
+            elements.eventsList.appendChild(item);
+        });
+    }
 
     elements.viewDashboardBtn?.addEventListener('click', () => {
         checkAuth(() => {
