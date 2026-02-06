@@ -16,7 +16,10 @@ describe('Parent Portal Navigation', () => {
             <div id="legalStatesList"></div>
             <input id="loginEmail" />
             <input id="loginPassword" />
+            <input id="registerEmail" />
+            <input id="registerFamilyName" />
             <button id="loginBtn"></button>
+            <button id="registerBtn"></button>
             <button id="logoutBtn" style="display:none"></button>
             <button id="manageKidsBtn"></button>
             <button id="editProfileBtn"></button>
@@ -39,6 +42,7 @@ describe('Parent Portal Navigation', () => {
             loginEmail: document.getElementById('loginEmail'),
             loginPassword: document.getElementById('loginPassword'),
             loginBtn: document.getElementById('loginBtn'),
+            registerBtn: document.getElementById('registerBtn'),
             logoutBtn: document.getElementById('logoutBtn'),
             manageKidsBtn: document.getElementById('manageKidsBtn'),
             editProfileBtn: document.getElementById('editProfileBtn'),
