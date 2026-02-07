@@ -4,102 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Kids | Village Homeschool</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+    <meta name="description" content="Manage your family's learning journey.">
+    <link rel="stylesheet" href="src/style.css">
     <style>
-        :root {
-            --primary: #4F6D7A;
-            --primary-light: #C0D6DF;
-            --secondary: #EAE0D5;
-            --accent: #C2847A;
-            --sage: #84A59D;
-            --text-main: #2D3142;
-            --text-muted: #4F5D75;
-            --bg: #F8F9F8;
-            --card-bg: #FFFFFF;
-            --border: #E0E0E0;
-            --radius: 16px;
-            --shadow: 0 10px 30px rgba(0,0,0,0.05);
-            --shadow-hover: 0 20px 40px rgba(0,0,0,0.08);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Special layout overrides for Manage Kids page */
+        main {
+            display: grid;
+            gap: 2rem;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-            padding: 2rem;
-        }
-
-        h1, h2, h3 {
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        p {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 400;
-            color: var(--text-muted);
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
-        }
-
-        .header-text h1 {
-            font-size: 2.5rem;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-
-        .header-text p {
-            font-size: 1.1rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.8rem 1.5rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #3d5560;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(79, 109, 122, 0.2);
-        }
-
+        
         .kids-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
@@ -109,59 +25,58 @@
             animation: fadeIn 0.4s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .learning-vault {
+        .learning-vault-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
         }
 
         .vault-item {
-            background: white;
+            background: var(--card-bg);
             padding: 1.5rem;
-            border-radius: var(--radius);
+            border-radius: var(--radius-md);
             border: 1px solid var(--border);
             display: flex;
             align-items: center;
-            gap: 1rem;
-            transition: var(--transition);
+            gap: 1.25rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
         }
 
         .vault-item:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             border-color: var(--primary);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-hover);
         }
 
         .vault-icon {
             width: 48px;
             height: 48px;
             border-radius: 12px;
-            background: var(--secondary);
+            background: var(--bg-alt);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary);
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            border: 1px solid var(--border);
         }
 
         .kid-card {
             background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 2rem;
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .kid-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-hover);
             border-color: var(--primary-light);
         }
@@ -173,267 +88,246 @@
             left: 0;
             width: 100%;
             height: 6px;
-            background: var(--sage);
+            background: var(--primary-light);
         }
 
-        .kid-card.age-13::before { background: var(--primary); }
+        .kid-card.age-13::before { background: var(--secondary); }
         .kid-card.age-9::before { background: var(--accent); }
-        .kid-card.age-6::before { background: var(--sage); }
-        .kid-card.age-2::before { background: var(--secondary); }
+        .kid-card.age-6::before { background: var(--primary); }
 
         .kid-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
         }
 
         .avatar {
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
-            background: var(--secondary);
+            background: var(--bg-alt);
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: var(--font-display);
             font-size: 1.5rem;
             color: var(--primary);
-            font-weight: 700;
+            font-weight: 800;
+            border: 2px solid var(--border);
         }
 
         .kid-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.2rem;
+            margin: 0;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
         }
 
         .tag {
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            background: var(--secondary);
-            color: var(--primary);
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .stat-item {
-            background: #F1F3F5;
-            padding: 0.8rem;
-            border-radius: 12px;
-        }
-
-        .stat-label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-bottom: 0.2rem;
-        }
-
-        .stat-value {
-            font-weight: 600;
-            font-size: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            background: var(--bg-alt);
+            color: var(--primary-dark);
+            margin-top: 0.25rem;
+            display: inline-block;
         }
 
         .progress-section {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .progress-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
         }
 
         .progress-bar {
-            height: 8px;
-            background: #EDF2F7;
-            border-radius: 4px;
+            height: 10px;
+            background: var(--bg-alt);
+            border-radius: 5px;
             overflow: hidden;
+            border: 1px solid var(--border);
         }
 
         .progress-fill {
             height: 100%;
-            background: var(--primary);
-            border-radius: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 5px;
         }
 
         .actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.75rem;
             margin-top: auto;
         }
 
         .btn-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 1px solid var(--border);
-            background: white;
+            background: var(--bg);
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s ease;
+            color: var(--text-muted);
         }
 
         .btn-icon:hover {
-            background: var(--bg);
+            background: white;
             border-color: var(--primary);
             color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
         }
 
-        /* Modal / Form Styles */
+        /* Vault Tabs Custom Styling */
+        .vault-tab-btn {
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Schedule Day Column Styling */
+        .day-col {
+            background: var(--bg-alt);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        .day-col h5 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0;
+        }
+
+        /* Modal Custom Overlay */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(45, 49, 66, 0.4);
-            backdrop-filter: blur(4px);
+            background: rgba(26, 28, 25, 0.6);
+            backdrop-filter: blur(10px);
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .modal {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 24px;
+            background: var(--bg);
+            padding: 3.5rem;
+            border-radius: var(--radius-lg);
             width: 90%;
-            max-width: 500px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-            animation: modalSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            max-width: 550px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.25);
+            animation: modalSlide 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border);
         }
 
         @keyframes modalSlide {
-            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            from { opacity: 0; transform: translateY(40px) scale(0.9); }
             to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-            text-transform: uppercase;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border-radius: 12px;
-            border: 2px solid var(--border);
-            font-family: inherit;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(79, 109, 122, 0.1);
-        }
-
-        .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 600px) {
-            body { padding: 1rem; }
-            header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-            .kids-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container" id="mainDashboard">
-        <header>
-            <div class="header-text">
-                <h1>The Village</h1>
-                <p>Manage your family's learning journey.</p>
-            </div>
-            <div style="display: flex; gap: 1rem;">
-                <button class="btn" style="background: var(--bg-alt); color: var(--text-muted);" onclick="window.location.href='index.html'">
-                    🏠 Parent Home
-                </button>
-                <button class="btn btn-primary" id="addChildBtn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+    <header>
+        <div class="logo">
+            <h1>Village</h1>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+            <button id="parentHomeBtn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border); padding: 0.6rem 1.2rem;">
+                🏠 Parent Home
+            </button>
+            <button id="logoutBtn" style="display: none;">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="kidsDashboard" class="dashboard-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;">
+                <div class="header-text">
+                    <h2 style="margin-bottom: 0.5rem;">Family Profiles</h2>
+                    <p style="color: var(--text-muted);">Manage your children's personalized learning journeys.</p>
+                </div>
+                <button id="addChildBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.5rem;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     Add Child
                 </button>
             </div>
-        </header>
 
-        <div class="kids-grid" id="kidsGrid">
-            <!-- Dynamically populated -->
+            <div class="kids-grid" id="kidsGrid">
+                <!-- Dynamically populated -->
+            </div>
         </div>
 
+        <!-- Learning Vault Section -->
         <div id="vaultSection" class="manage-section">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
                 <div>
-                    <h1 id="vaultTitle">Learning Vault</h1>
-                    <p id="vaultSubtitle">Stored resources and progress.</p>
+                    <h2 id="vaultTitle" style="margin-bottom: 0.5rem;">Learning Vault</h2>
+                    <p id="vaultSubtitle" style="color: var(--text-muted);">Stored resources and progress.</p>
                 </div>
-                <button class="btn" id="backToDashboardBtn" style="background: var(--primary-light); color: var(--primary);">← Back to Village</button>
+                <button id="backToDashboardBtn" style="background: var(--bg-alt); color: var(--primary-dark); border: 2px solid var(--border);">← Back</button>
             </div>
 
             <!-- Vault Tabs -->
-            <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
-                <button class="vault-tab-btn active" data-tab="overview" style="background:none; color:var(--primary); padding:0.5rem 1rem; border-radius:0; border-bottom:3px solid var(--primary);">Overview</button>
-                <button class="vault-tab-btn" data-tab="schedule" style="background:none; color:var(--text-muted); padding:0.5rem 1rem; border-radius:0;">📅 Weekly Schedule</button>
-                <button class="vault-tab-btn" data-tab="portfolio" style="background:none; color:var(--text-muted); padding:0.5rem 1rem; border-radius:0;">🎨 Portfolio</button>
+            <div style="display: flex; gap: 1.5rem; margin-bottom: 3rem; border-bottom: 2px solid var(--border);">
+                <button class="vault-tab-btn active" data-tab="overview" style="background:none; color:var(--primary); padding:1rem 0; border-radius:0; border-bottom:4px solid var(--primary);">Overview</button>
+                <button class="vault-tab-btn" data-tab="schedule" style="background:none; color:var(--text-muted); padding:1rem 0; border-radius:0;">📅 Weekly Schedule</button>
+                <button class="vault-tab-btn" data-tab="portfolio" style="background:none; color:var(--text-muted); padding:1rem 0; border-radius:0;">🎨 Portfolio</button>
             </div>
             
             <div id="vaultContent">
                 <!-- Overview Tab -->
                 <div class="vault-pane active" id="pane-overview">
-                    <div class="learning-vault">
+                    <div class="learning-vault-grid">
                         <div class="vault-item">
                             <div class="vault-icon">📖</div>
                             <div>
-                                <h4 style="font-weight: 600;">Reading Logs</h4>
-                                <p style="font-size: 0.8rem;">12 entries this month</p>
+                                <h4 style="margin:0; font-family:var(--font-display);">Reading Logs</h4>
+                                <p style="font-size: 0.8rem; margin:0.25rem 0 0;">12 entries this month</p>
                             </div>
                         </div>
                         <div class="vault-item">
                             <div class="vault-icon">🎨</div>
                             <div>
-                                <h4 style="font-weight: 600;">Portfolio</h4>
-                                <p style="font-size: 0.8rem;">8 saved projects</p>
+                                <h4 style="margin:0; font-family:var(--font-display);">Portfolio</h4>
+                                <p style="font-size: 0.8rem; margin:0.25rem 0 0;">8 saved projects</p>
                             </div>
                         </div>
                         <div class="vault-item">
                             <div class="vault-icon">🧪</div>
                             <div>
-                                <h4 style="font-weight: 600;">Science Lab</h4>
-                                <p style="font-size: 0.8rem;">3 pending reports</p>
+                                <h4 style="margin:0; font-family:var(--font-display);">Science Lab</h4>
+                                <p style="font-size: 0.8rem; margin:0.25rem 0 0;">3 pending reports</p>
                             </div>
                         </div>
                         <div class="vault-item">
                             <div class="vault-icon">🏆</div>
                             <div>
-                                <h4 style="font-weight: 600;">Badges</h4>
-                                <p style="font-size: 0.8rem;">5 achievements</p>
+                                <h4 style="margin:0; font-family:var(--font-display);">Badges</h4>
+                                <p style="font-size: 0.8rem; margin:0.25rem 0 0;">5 achievements</p>
                             </div>
                         </div>
                     </div>
@@ -441,65 +335,62 @@
 
                 <!-- Schedule Tab -->
                 <div class="vault-pane" id="pane-schedule" style="display:none;">
-                    <div style="background:white; border-radius:var(--radius); border:1px solid var(--border); padding:2rem;">
-                        <h3 style="margin-bottom:1.5rem; font-style:normal;">Weekly Plan</h3>
-                        <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:1rem;">
-                            <!-- Mon-Fri Columns -->
-                            <div class="day-col">
-                                <h5 style="color:var(--primary); margin-bottom:1rem;">Mon</h5>
-                                <div style="background:var(--bg); padding:0.8rem; border-radius:8px; margin-bottom:0.5rem; font-size:0.85rem; border-left:4px solid var(--primary);">Math: Fractions</div>
-                                <div style="background:var(--bg); padding:0.8rem; border-radius:8px; font-size:0.85rem; border-left:4px solid var(--accent);">History: Maya</div>
-                            </div>
-                            <div class="day-col">
-                                <h5 style="color:var(--primary); margin-bottom:1rem;">Tue</h5>
-                                <div style="background:var(--bg); padding:0.8rem; border-radius:8px; margin-bottom:0.5rem; font-size:0.85rem; border-left:4px solid var(--sage);">Science: Plants</div>
-                            </div>
-                            <div class="day-col"><h5 style="color:var(--primary); margin-bottom:1rem;">Wed</h5></div>
-                            <div class="day-col"><h5 style="color:var(--primary); margin-bottom:1rem;">Thu</h5></div>
-                            <div class="day-col"><h5 style="color:var(--primary); margin-bottom:1rem;">Fri</h5><div style="background:var(--secondary); color:white; padding:0.8rem; border-radius:8px; font-size:0.85rem;">🧪 Lab Day</div></div>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:1.5rem;">
+                        <div class="day-col">
+                            <h5>Mon</h5>
+                            <div style="background:white; padding:0.8rem; border-radius:8px; margin-top:1rem; font-size:0.85rem; border-left:4px solid var(--primary);">Math: Fractions</div>
+                        </div>
+                        <div class="day-col">
+                            <h5>Tue</h5>
+                            <div style="background:white; padding:0.8rem; border-radius:8px; margin-top:1rem; font-size:0.85rem; border-left:4px solid var(--secondary);">Science: Plants</div>
+                        </div>
+                        <div class="day-col"><h5>Wed</h5></div>
+                        <div class="day-col"><h5>Thu</h5></div>
+                        <div class="day-col">
+                            <h5>Fri</h5>
+                            <div style="background:var(--secondary); color:white; padding:0.8rem; border-radius:8px; margin-top:1rem; font-size:0.85rem;">🧪 Lab Day</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Portfolio Tab -->
                 <div class="vault-pane" id="pane-portfolio" style="display:none;">
-                    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:1.5rem;">
-                        <div style="aspect-ratio:1; background:var(--secondary); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; border:2px dashed var(--primary-light);">
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:2rem;">
+                        <div style="aspect-ratio:1; background:var(--bg-alt); border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; border:2px dashed var(--primary);">
                             <span style="font-size:2rem;">➕</span>
-                            <span style="font-size:0.8rem; font-weight:600;">Add to Portfolio</span>
+                            <span style="font-size:0.85rem; font-weight:700; color:var(--primary);">Add Project</span>
                         </div>
-                        <!-- Mock Item -->
-                        <div style="background:white; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border);">
-                            <div style="height:120px; background:#f0f0f0; display:flex; align-items:center; justify-content:center; font-size:2rem;">🌋</div>
-                            <div style="padding:1rem;">
-                                <h5 style="margin:0;">Volcano Model</h5>
-                                <p style="font-size:0.75rem; margin-top:0.5rem;">Science • Feb 6</p>
+                        <div style="background:white; border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow);">
+                            <div style="height:140px; background:var(--accent-soft); display:flex; align-items:center; justify-content:center; font-size:2.5rem;">🌋</div>
+                            <div style="padding:1.5rem;">
+                                <h5 style="margin:0; font-family:var(--font-display);">Volcano Model</h5>
+                                <p style="font-size:0.75rem; margin-top:0.5rem; color:var(--text-muted);">Science • Feb 6</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- Modal for adding/editing -->
     <div class="overlay" id="modalOverlay">
         <div class="modal">
-            <h2 id="modalTitle">Add a Child</h2>
-            <p style="margin-bottom: 2rem;">Enter details to personalize their learning experience.</p>
+            <h2 id="modalTitle" style="margin-bottom: 1rem;">Add a Child</h2>
+            <p style="margin-bottom: 2.5rem; color: var(--text-muted);">Enter details to personalize their learning experience.</p>
             
             <form id="kidForm">
                 <div class="form-group">
-                    <label>Full Name</label>
+                    <h3>Full Name</h3>
                     <input type="text" name="fullName" placeholder="e.g. Emma Lynch" required>
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
                     <div class="form-group">
-                        <label>Age</label>
+                        <h3>Age</h3>
                         <input type="number" name="age" placeholder="e.g. 9" required>
                     </div>
                     <div class="form-group">
-                        <label>Grade Level</label>
+                        <h3>Grade Level</h3>
                         <select name="grade">
                             <option>Preschool</option>
                             <option>Kindergarten</option>
@@ -515,14 +406,14 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Current Focus / Interests</label>
+                <div class="form-group" style="margin-top: 1.5rem;">
+                    <h3>Current Focus</h3>
                     <input type="text" name="focus" placeholder="e.g. Astronomy, Early Reading">
                 </div>
                 
-                <div class="modal-footer">
-                    <button type="button" class="btn" id="closeModalBtn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border);">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Profile</button>
+                <div style="display: flex; justify-content: flex-end; gap: 1.5rem; margin-top: 3rem;">
+                    <button type="button" id="closeModalBtn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border);">Cancel</button>
+                    <button type="submit" id="saveKidBtn">Save Profile</button>
                 </div>
             </form>
         </div>
@@ -540,14 +431,20 @@
             vaultTitle: document.getElementById('vaultTitle'),
             vaultSubtitle: document.getElementById('vaultSubtitle'),
             backToDashboardBtn: document.getElementById('backToDashboardBtn'),
+            parentHomeBtn: document.getElementById('parentHomeBtn'),
             vaultBtns: document.querySelectorAll('.vault-btn')
         };
 
+        if (elements.parentHomeBtn) {
+            elements.parentHomeBtn.addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+        }
+
         if (typeof initManageKids === 'function') {
             initManageKids(elements);
-        } else {
-            console.error("initManageKids function not found. Check src/manage-kids.js");
         }
     </script>
+
 </body>
 </html>
