@@ -15,7 +15,9 @@ describe('Manage Kids Functionality', () => {
                 <input name="fullName" />
                 <input name="age" />
             </form>
-            <div id="kidsGrid"></div>
+            <div id="kidsDashboard">
+                <div id="kidsGrid"></div>
+            </div>
             <div id="vaultSection" style="display:none"></div>
             <h1 id="vaultTitle"></h1>
             <p id="vaultSubtitle"></p>
@@ -63,7 +65,7 @@ describe('Manage Kids Functionality', () => {
         vaultBtn.click();
         
         expect(elements.vaultSection.style.display).toBe('block');
-        expect(elements.kidsGrid.style.display).toBe('none');
+        expect(document.getElementById('kidsDashboard').style.display).toBe('none');
         expect(elements.vaultTitle.textContent).toBe("Test Kid's Vault");
     });
 });
