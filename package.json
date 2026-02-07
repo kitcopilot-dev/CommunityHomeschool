@@ -1,0 +1,15 @@
+{
+  "name": "village-homeschool",
+  "version": "1.0.0",
+  "description": "Organic & Handcrafted Homeschool Community",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "latest",
+    "jsdom": "latest",
+    "@testing-library/dom": "latest",
+    "@testing-library/jest-dom": "latest"
+  }
+}
