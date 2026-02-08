@@ -22,6 +22,7 @@ export default function ManageKidsPage() {
   const [isKidModalOpen, setIsKidModalOpen] = useState(false);
   const [isCourseModalOpen, setIsCourseModalOpen] = useState(false);
   const [editingKid, setEditingKid] = useState<Child | null>(null);
+  const [editingCourse, setEditingCourse] = useState<Course | null>(null);
   const [activeTab, setActiveTab] = useState<'overview' | 'schedule' | 'portfolio'>('overview');
   const [scheduleDay, setScheduleDay] = useState('Mon');
   const [loading, setLoading] = useState(true);
@@ -251,6 +252,36 @@ export default function ManageKidsPage() {
     setIsKidModalOpen(true);
   };
 
+  const openCourseModal = (course?: Course) => {
+    if (course) {
+      setEditingCourse(course);
+      setCourseName(course.name);
+      setTotalLessons(course.total_lessons.toString());
+      setCurrentLesson(course.current_lesson.toString());
+      setActiveDays(course.active_days ? course.active_days.split(',') : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']);
+    } else {
+      setEditingCourse(null);
+      setCourseName('');
+      setTotalLessons('180');
+      setCurrentLesson('1');
+      setActiveDays(['Mon', 'Tue', 'Wed', 'Thu', 'Fri']);
+    }
+    setIsCourseModalOpen(true);
+  };
+
+  const handleDeleteCourse = async (courseId: string) => {
+    if (!confirm('Are you sure you want to delete this course? All progress will be lost.')) return;
+    
+    try {
+      await pb.collection('courses').delete(courseId);
+      setToast({ message: 'Course deleted', type: 'success' });
+      loadKids(); // Refresh the list
+    } catch (error) {
+      console.error('Delete course error:', error);
+      setToast({ message: 'Failed to delete course', type: 'error' });
+    }
+  };
+
   const handleSaveKid = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -293,53 +324,49 @@ export default function ManageKidsPage() {
     try {
       if (!selectedKid) return;
 
-      await pb.collection('courses').create({
+      const data = {
         child: selectedKid.id,
         name: courseName,
         total_lessons: parseInt(totalLessons),
         current_lesson: parseInt(currentLesson),
         active_days: activeDays.join(',')
-      });
+      };
+
+      if (editingCourse) {
+        await pb.collection('courses').update(editingCourse.id, data);
+        setToast({ message: `${courseName} updated!`, type: 'success' });
+      } else {
+        await pb.collection('courses').create(data);
+        setToast({ message: `${courseName} added!`, type: 'success' });
+      }
 
       setIsCourseModalOpen(false);
       setCourseName('');
       setTotalLessons('180');
       setCurrentLesson('1');
+      setEditingCourse(null);
       
-      // Reload kids and update selectedKid with fresh data
-      const userId = pb.authStore.model?.id;
-      if (userId) {
-        const records = await pb.collection('children').getFullList({
-          filter: `user = "${userId}"`,
-          sort: 'name'
-        });
-        
-        const kidsWithCourses = await Promise.all(
-          records.map(async (kid) => {
-            try {
-              const courses = await pb.collection('courses').getFullList({
-                filter: `child = "${kid.id}"`,
-                sort: 'name'
-              });
-              return { ...kid, courses } as unknown as Child;
-            } catch {
-              return { ...kid, courses: [] } as unknown as Child;
-            }
-          })
-        );
-        
-        setKids(kidsWithCourses);
-        
-        // Update selectedKid with the refreshed data
-        const updatedKid = kidsWithCourses.find(k => k.id === selectedKid.id);
-        if (updatedKid) {
-          setSelectedKid(updatedKid);
+      // Reload kids
+      loadKids();
+      
+      // Update selectedKid locally for immediate UI update
+      if (selectedKid && selectedKid.courses) {
+        let updatedCourses;
+        if (editingCourse) {
+          updatedCourses = selectedKid.courses.map(c => 
+            c.id === editingCourse.id ? { ...c, ...data } : c
+          );
+        } else {
+          // For create, we don't have the ID yet, but loadKids will fix it soon
+          // We can just trigger a reload of the whole page or just close/reopen
+        }
+        if (updatedCourses) {
+          setSelectedKid({ ...selectedKid, courses: updatedCourses });
         }
       }
-      setToast({ message: `${courseName} added!`, type: 'success' });
     } catch (error) {
       console.error('Save course error:', error);
-      setToast({ message: 'Failed to add course. Please try again.', type: 'error' });
+      setToast({ message: 'Failed to save course. Please try again.', type: 'error' });
     }
   };
 
@@ -585,7 +612,7 @@ export default function ManageKidsPage() {
                 <div className="mb-12">
                   <div className="flex justify-between items-center mb-6">
                     <h3 className="font-display text-2xl font-extrabold m-0">Course Progress</h3>
-                    <Button size="sm" variant="ghost" onClick={() => setIsCourseModalOpen(true)}>
+                    <Button size="sm" variant="ghost" onClick={() => openCourseModal()}>
                       + Add Course
                     </Button>
                   </div>
@@ -596,7 +623,7 @@ export default function ManageKidsPage() {
                         const mapping = schoolYear ? getExpectedLesson(course, schoolYear, breaks) : null;
                         
                         return (
-                          <div key={course.id} className="bg-card p-6 rounded-[1.25rem] border border-border">
+                          <div key={course.id} className="bg-card p-6 rounded-[1.25rem] border border-border group">
                             <div className="flex justify-between items-start mb-4">
                               <div className="flex-1 mr-4">
                                 <div className="flex items-center gap-3 mb-1">
@@ -610,6 +637,22 @@ export default function ManageKidsPage() {
                                       {mapping.status === 'on-track' ? 'On Track' : `${mapping.diff} Lessons ${mapping.status}`}
                                     </span>
                                   )}
+                                  <div className="flex gap-2 ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button 
+                                      onClick={() => openCourseModal(course)}
+                                      className="text-text-muted hover:text-primary transition-colors"
+                                      title="Edit Course"
+                                    >
+                                      ✏️
+                                    </button>
+                                    <button 
+                                      onClick={() => handleDeleteCourse(course.id)}
+                                      className="text-text-muted hover:text-red-500 transition-colors"
+                                      title="Delete Course"
+                                    >
+                                      🗑️
+                                    </button>
+                                  </div>
                                 </div>
                                 <ProgressBar
                                   label={`Lesson ${course.current_lesson} of ${course.total_lessons}`}
@@ -694,7 +737,7 @@ export default function ManageKidsPage() {
                     {(() => {
                       const dayCourses = selectedKid?.courses?.filter(c => 
                         c.current_lesson <= c.total_lessons && 
-                        (!c.active_days || c.active_days.split(',').includes(scheduleDay))
+                        (!c.active_days || c.active_days === "" || c.active_days.split(',').includes(scheduleDay))
                       ) || [];
 
                       return dayCourses.length > 0 ? (
@@ -726,7 +769,7 @@ export default function ManageKidsPage() {
                       {(() => {
                         const dayCourses = selectedKid?.courses?.filter(c => 
                           c.current_lesson <= c.total_lessons && 
-                          (!c.active_days || c.active_days.split(',').includes(day.short))
+                          (!c.active_days || c.active_days === "" || c.active_days.split(',').includes(day.short))
                         ) || [];
                         
                         return dayCourses.length > 0 ? (
@@ -843,12 +886,11 @@ export default function ManageKidsPage() {
         </form>
       </Modal>
 
-      {/* Course Modal */}
       <Modal
         isOpen={isCourseModalOpen}
         onClose={() => setIsCourseModalOpen(false)}
-        title="Track a New Course"
-        subtitle="Set up a course to track daily lesson progress."
+        title={editingCourse ? 'Edit Course' : 'Track a New Course'}
+        subtitle={editingCourse ? 'Update course details and schedule.' : 'Set up a course to track daily lesson progress.'}
       >
         <form onSubmit={handleSaveCourse}>
           <Input
@@ -898,7 +940,7 @@ export default function ManageKidsPage() {
             <Button type="button" variant="outline" onClick={() => setIsCourseModalOpen(false)}>
               Cancel
             </Button>
-            <Button type="submit">Add Course</Button>
+            <Button type="submit">{editingCourse ? 'Update Course' : 'Add Course'}</Button>
           </div>
         </form>
       </Modal>
