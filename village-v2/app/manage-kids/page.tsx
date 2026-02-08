@@ -351,7 +351,19 @@ export default function ManageKidsPage() {
       }
 
       setToast({ message: 'Lesson recorded!', type: 'success' });
-      loadKids(); // Refresh the list
+      
+      // Update the local state for immediate feedback
+      if (selectedKid && selectedKid.courses) {
+        const updatedCourses = selectedKid.courses.map(c => 
+          c.id === courseId ? { ...c, current_lesson: current + 1 } : c
+        );
+        setSelectedKid({ ...selectedKid, courses: updatedCourses });
+        
+        // Also update the main kids list
+        setKids(prevKids => prevKids.map(k => 
+          k.id === selectedKid.id ? { ...k, courses: updatedCourses } : k
+        ));
+      }
     } catch (error) {
       console.error('Mark complete error:', error);
       setToast({ message: 'Failed to update. Please try again.', type: 'error' });
