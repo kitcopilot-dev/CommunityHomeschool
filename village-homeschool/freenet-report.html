@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freenet Use Case Research</title>
+    <style>
+        :root {
+            --primary: #4b6344;
+            --primary-light: #7da074;
+            --secondary: #c66b44;
+            --bg: #fdfaf7;
+            --card: #ffffff;
+            --text: #2c2c2c;
+            --text-muted: #666666;
+            --border: #e8e2d9;
+            --accent: #d4a373;
+        }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card);
+            padding: 4rem;
+            border-radius: 2.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 40px -15px rgba(75,99,68,0.15);
+        }
+        h1 { font-family: 'Syne', sans-serif; font-size: 3rem; color: var(--primary); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+        .subtitle { color: var(--secondary); font-family: 'Fraunces', serif; font-style: italic; font-size: 1.2rem; margin-bottom: 3rem; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .card {
+            background: var(--bg);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -10px rgba(75,99,68,0.1);
+        }
+        
+        h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; color: var(--primary); margin-top: 0; }
+        h3 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+        
+        .tech-pill {
+            display: inline-block;
+            background: var(--primary-light);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .summary-box {
+            background: #f1f5f0;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border-left: 6px solid var(--primary);
+            margin-bottom: 3rem;
+        }
+        
+        ul { padding-left: 1.2rem; }
+        li { margin-bottom: 0.5rem; }
+        
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .container { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Freenet Research</h1>
+        <p class="subtitle">Exploring Decentralized Use Cases for 2026</p>
+
+        <div class="summary-box">
+            <h2>Executive Summary</h2>
+            <p>The modern <strong>Freenet</strong> (formerly Locutus) is a peer-to-peer platform for cryptographically secure, scalable, and verifiable applications. Unlike blockchain, it handles high-frequency state updates efficiently using WebAssembly (WASM) contracts. It is "Infrastructure-less," meaning the network <em>is</em> the database.</p>
+            <div>
+                <span class="tech-pill">WASM Contracts</span>
+                <span class="tech-pill">Zero Infrastructure</span>
+                <span class="tech-pill">Cryptographic Purity</span>
+                <span class="tech-pill">Small World Routing</span>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; margin-bottom: 2rem;">Proposed Application Concepts</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>1. The Village Registry</h3>
+                <p><strong>Decentralized Registrar</strong>: A way for parents to sign academic credentials that are stored permanently and verifiably on Freenet.</p>
+                <p><em>Value:</em> Records stay valid even if the Village servers disappear. They are cryptographically immune to tampering.</p>
+            </div>
+
+            <div class="card">
+                <h3>2. Open Marketplace</h3>
+                <p><strong>P2P Lesson Trading</strong>: A global marketplace for lesson plans without a central platform taking a percentage of the sale.</p>
+                <p><em>Value:</em> Absolute censorship resistance. No central authority can remove content or block transactions.</p>
+            </div>
+
+            <div class="card">
+                <h3>3. Ghost Supply Chain</h3>
+                <p><strong>Local Food Clusters</strong>: Coordinating inventory (produce, milk, supplies) within a neighborhood without relying on the public internet.</p>
+                <p><em>Value:</em> Resilience during infrastructure failures. Data remains available as long as local peers are connected.</p>
+            </div>
+
+            <div class="card">
+                <h3>4. Living Encyclopedia</h3>
+                <p><strong>High-Scale Collaborative Wiki</strong>: A real-time editing platform that can merge millions of edits simultaneously without a central host.</p>
+                <p><em>Value:</em> Combines the scale of Wikipedia with the security of a private, decentralized network.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--border); text-align: center;">
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+                Research conducted on Feb 8, 2026. 🐾
+            </p>
+        </div>
+    </div>
+</body>
+</html>

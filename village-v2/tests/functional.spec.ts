@@ -88,12 +88,21 @@ test.describe('Village Homeschool - Functional Flows (Mocked Backend)', () => {
     });
 
     await page.route('**/api/collections/school_years/records*', async route => {
+      const today = new Date();
+      const nextYear = new Date();
+      nextYear.setFullYear(today.getFullYear() + 1);
+      
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
         body: JSON.stringify({
           items: [
-            { id: 'sy-1', name: '2024-2025', start_date: '2024-09-01', end_date: '2025-06-01' }
+            { 
+              id: 'sy-1', 
+              name: '2024-2025', 
+              start_date: today.toISOString().split('T')[0], 
+              end_date: nextYear.toISOString().split('T')[0] 
+            }
           ]
         })
       });
@@ -137,7 +146,11 @@ test.describe('Village Homeschool - Functional Flows (Mocked Backend)', () => {
     await page.click('button[title="Open Learning Vault"]');
 
     // Verify course appears in Overview
-    await expect(page.locator('text=Space Science — Lesson 1 of 100')).toBeVisible();
+    await expect(page.locator('h4:has-text("Space Science")')).toBeVisible();
+    await expect(page.locator('text=Lesson 1 of 100')).toBeVisible();
+    
+    // Verify status badge (could be On Track or Ahead depending on current day)
+    await expect(page.locator('span:has-text("Lessons ahead")').or(page.locator('text=On Track'))).toBeVisible();
 
     // 4. Verify scheduling logic
     await page.click('text=Weekly Schedule');

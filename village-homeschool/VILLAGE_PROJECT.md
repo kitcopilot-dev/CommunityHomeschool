@@ -35,8 +35,8 @@ Unlike traditional tools, Village aims to fill several gaps identified in curren
 - [x] Daily filtering in Weekly Schedule
 - [x] School year calendar setup (start/end dates, holiday breaks)
 - [x] School days calculation (weekdays minus breaks)
-- [ ] Automatic lesson-to-date mapping
-- [ ] "Behind/Ahead" visual indicators
+- [x] Automatic lesson-to-date mapping
+- [x] "Behind/Ahead" visual indicators
 - [ ] Drag-and-drop rescheduling assistant
 
 ### Phase 3: Assessment & Analytics

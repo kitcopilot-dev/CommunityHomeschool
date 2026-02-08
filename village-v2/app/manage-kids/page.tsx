@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getPocketBase } from '@/lib/pocketbase';
-import { Child, Course, PortfolioItem } from '@/lib/types';
+import { Child, Course, PortfolioItem, SchoolYear, SchoolBreak } from '@/lib/types';
+import { getExpectedLesson } from '@/lib/calendar-utils';
 import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/Button';
 import { Input, Select } from '@/components/ui/Input';
@@ -24,6 +25,8 @@ export default function ManageKidsPage() {
   const [activeTab, setActiveTab] = useState<'overview' | 'schedule' | 'portfolio'>('overview');
   const [scheduleDay, setScheduleDay] = useState('Mon');
   const [loading, setLoading] = useState(true);
+  const [schoolYear, setSchoolYear] = useState<SchoolYear | null>(null);
+  const [breaks, setBreaks] = useState<SchoolBreak[]>([]);
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
   const [isPortfolioModalOpen, setIsPortfolioModalOpen] = useState(false);
   const [toast, setToast] = useState<{message: string, type: 'success' | 'error'} | null>(null);
@@ -91,6 +94,25 @@ export default function ManageKidsPage() {
           
           if (isMounted) {
             setKids(kidsWithCourses);
+            
+            // Load school year and breaks
+            try {
+              const years = await pb.collection('school_years').getFullList({
+                filter: `user = "${userId}"`,
+                sort: '-start_date',
+                limit: 1
+              });
+              if (years.length > 0) {
+                setSchoolYear(years[0] as unknown as SchoolYear);
+                const breakRecords = await pb.collection('school_breaks').getFullList({
+                  filter: `school_year = "${years[0].id}"`
+                });
+                setBreaks(breakRecords as unknown as SchoolBreak[]);
+              }
+            } catch (e) {
+              console.warn('Calendar data failed to load');
+            }
+
             setLoading(false);
           }
         } catch (error: any) {
@@ -570,25 +592,47 @@ export default function ManageKidsPage() {
 
                   {selectedKid.courses && selectedKid.courses.length > 0 ? (
                     <div className="space-y-6">
-                      {selectedKid.courses.map((course) => (
-                        <div key={course.id} className="bg-card p-6 rounded-[1.25rem] border border-border">
-                          <div className="flex justify-between items-center mb-4">
-                            <ProgressBar
-                              className="flex-1 mr-4"
-                              label={`${course.name} — Lesson ${course.current_lesson} of ${course.total_lessons}`}
-                              percentage={(course.current_lesson / course.total_lessons) * 100}
-                            />
-                            <Button 
-                              size="sm" 
-                              variant={course.current_lesson > course.total_lessons ? 'ghost' : 'outline'}
-                              disabled={course.current_lesson > course.total_lessons}
-                              onClick={() => handleMarkComplete(course.id, course.current_lesson, course.total_lessons)}
-                            >
-                              {course.current_lesson > course.total_lessons ? '✓ Done' : 'Next Lesson →'}
-                            </Button>
+                      {selectedKid.courses.map((course) => {
+                        const mapping = schoolYear ? getExpectedLesson(course, schoolYear, breaks) : null;
+                        
+                        return (
+                          <div key={course.id} className="bg-card p-6 rounded-[1.25rem] border border-border">
+                            <div className="flex justify-between items-start mb-4">
+                              <div className="flex-1 mr-4">
+                                <div className="flex items-center gap-3 mb-1">
+                                  <h4 className="font-display font-bold m-0">{course.name}</h4>
+                                  {mapping && (
+                                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                                      mapping.status === 'ahead' ? 'bg-green-100 text-green-700' :
+                                      mapping.status === 'behind' ? 'bg-red-100 text-red-700' :
+                                      'bg-blue-100 text-blue-700'
+                                    }`}>
+                                      {mapping.status === 'on-track' ? 'On Track' : `${mapping.diff} Lessons ${mapping.status}`}
+                                    </span>
+                                  )}
+                                </div>
+                                <ProgressBar
+                                  label={`Lesson ${course.current_lesson} of ${course.total_lessons}`}
+                                  percentage={(course.current_lesson / course.total_lessons) * 100}
+                                />
+                                {mapping && (
+                                  <p className="text-[10px] text-text-muted mt-2 m-0">
+                                    Expected: Lesson {mapping.expectedLesson}
+                                  </p>
+                                )}
+                              </div>
+                              <Button 
+                                size="sm" 
+                                variant={course.current_lesson > course.total_lessons ? 'ghost' : 'outline'}
+                                disabled={course.current_lesson > course.total_lessons}
+                                onClick={() => handleMarkComplete(course.id, course.current_lesson, course.total_lessons)}
+                              >
+                                {course.current_lesson > course.total_lessons ? '✓ Done' : 'Next Lesson →'}
+                              </Button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   ) : (
                     <div className="text-center py-12 bg-bg-alt rounded-[1.25rem] border border-border">

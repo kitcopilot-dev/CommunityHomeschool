@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getPocketBase } from '@/lib/pocketbase';
-import { Child, Course, ActivityLog, Assignment } from '@/lib/types';
+import { Child, Course, ActivityLog, Assignment, SchoolYear, SchoolBreak } from '@/lib/types';
+import { getExpectedLesson } from '@/lib/calendar-utils';
 import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -21,6 +22,8 @@ export default function DashboardPage() {
   const [kids, setKids] = useState<ChildWithCourses[]>([]);
   const [activities, setActivities] = useState<ActivityLog[]>([]);
   const [assignments, setAssignments] = useState<Assignment[]>([]);
+  const [schoolYear, setSchoolYear] = useState<SchoolYear | null>(null);
+  const [breaks, setBreaks] = useState<SchoolBreak[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -80,6 +83,24 @@ export default function DashboardPage() {
         setAssignments(assignmentRecords as unknown as Assignment[]);
       } catch (e) {
         console.warn('Assignments not found');
+      }
+
+      // Load school year and breaks
+      try {
+        const years = await pb.collection('school_years').getFullList({
+          filter: `user = "${userId}"`,
+          sort: '-start_date',
+          limit: 1
+        });
+        if (years.length > 0) {
+          setSchoolYear(years[0] as unknown as SchoolYear);
+          const breakRecords = await pb.collection('school_breaks').getFullList({
+            filter: `school_year = "${years[0].id}"`
+          });
+          setBreaks(breakRecords as unknown as SchoolBreak[]);
+        }
+      } catch (e) {
+        console.warn('Calendar data failed to load');
       }
     } catch (error) {
       console.error('Dashboard load error:', error);
@@ -246,11 +267,25 @@ export default function DashboardPage() {
                       ? Math.round((kidStats.completed / kidStats.total) * 100) 
                       : 0;
 
+                    // Calculate mapping for all courses to see if any are behind
+                    const behindCount = kid.courses.filter(c => {
+                      if (!schoolYear) return false;
+                      const mapping = getExpectedLesson(c, schoolYear, breaks);
+                      return mapping.status === 'behind';
+                    }).length;
+
                     return (
                       <div key={kid.id}>
                         <div className="flex justify-between items-center mb-2">
                           <div>
-                            <h4 className="font-display font-bold m-0">{kid.name}</h4>
+                            <div className="flex items-center gap-2">
+                              <h4 className="font-display font-bold m-0">{kid.name}</h4>
+                              {behindCount > 0 && (
+                                <span className="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-red-100 text-red-700">
+                                  ⚠️ {behindCount} {behindCount === 1 ? 'Subject' : 'Subjects'} Behind
+                                </span>
+                              )}
+                            </div>
                             <p className="text-sm text-text-muted m-0">
                               {kid.courses.length} course{kid.courses.length !== 1 ? 's' : ''} • 
                               {kidStats.completed} / {kidStats.total} lessons

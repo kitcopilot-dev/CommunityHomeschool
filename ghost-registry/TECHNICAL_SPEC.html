@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Registry Technical Spec</title>
+    <style>
+        :root {
+            --primary: #1a1c2c;
+            --accent: #ff7e5f;
+            --bg: #0f101a;
+            --card: #1f2235;
+            --text: #e0e6ed;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --code-bg: #2d314d;
+        }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card);
+            padding: 4rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        h1 { font-family: 'Syne', sans-serif; font-size: 3rem; color: #fff; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+        h2 { color: var(--accent); margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; font-family: 'Syne', sans-serif; }
+        h3 { color: #fff; margin-top: 1.5rem; }
+        p, li { font-size: 1.1rem; color: var(--text-muted); }
+        strong { color: #fff; }
+        code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.4rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+            color: #fff;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+        pre code { background: transparent; padding: 0; }
+        .status-badge {
+            display: inline-block;
+            background: #22c55e;
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="status-badge">Technical Spec v1.0.0</div>
+        <h1>Ghost Registry (Ghosty)</h1>
+        <p>Implementation Details for the Decentralized Web.</p>
+
+        <hr>
+
+        <h2>1. Introduction</h2>
+        <p>Ghosty leverages the <strong>Freenet</strong> protocol to create a global, shared state of software packages. Logic is decentralised via <strong>WebAssembly (WASM) contracts</strong>, ensuring that updates are verifiable and unstoppable.</p>
+
+        <h2>2. Data Models</h2>
+        <p>The registry state is stored in a structured <code>RegistryState</code> map:</p>
+        <pre><code>struct PackageEntry {
+    owner_pubkey: Vec&lt;u8&gt;,
+    versions: HashMap&lt;String, String&gt;, // Version -> CID
+    latest_version: String,
+    metadata: PackageMetadata,
+}</code></pre>
+
+        <h2>3. Local Proxy API</h2>
+        <p>The local daemon (<code>ghostyd</code>) intercepts requests from package managers:</p>
+        <ul>
+            <li><code>GET /:package</code>: Resolves latest version hash.</li>
+            <li><code>PUT /:package</code>: Initiates a signed update to the P2P network.</li>
+        </ul>
+
+        <h2>4. Conflict Resolution</h2>
+        <p>Using <strong>Commutative Monoids</strong>, Ghosty resolves simultaneous updates by prioritizing higher SemVer strings (e.g., <code>1.2.0</code> wins over <code>1.1.9</code>), ensuring a consistent global "latest" pointer.</p>
+
+        <div style="margin-top: 4rem; text-align: center; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+            Architecture finalized Feb 8, 2026. 🐾
+        </div>
+    </div>
+</body>
+</html>
