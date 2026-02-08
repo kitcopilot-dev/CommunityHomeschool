@@ -346,22 +346,19 @@ export default function ManageKidsPage() {
       setCurrentLesson('1');
       setEditingCourse(null);
       
-      // Reload kids
-      loadKids();
+      // Reload kids data from backend
+      await loadKids();
       
-      // Update selectedKid locally for immediate UI update
-      if (selectedKid && selectedKid.courses) {
-        let updatedCourses;
-        if (editingCourse) {
-          updatedCourses = selectedKid.courses.map(c => 
-            c.id === editingCourse.id ? { ...c, ...data } : c
-          );
-        } else {
-          // For create, we don't have the ID yet, but loadKids will fix it soon
-          // We can just trigger a reload of the whole page or just close/reopen
-        }
-        if (updatedCourses) {
-          setSelectedKid({ ...selectedKid, courses: updatedCourses });
+      // Also update selectedKid locally for immediate UI update in vault
+      if (selectedKid) {
+        try {
+          const freshCourses = await pb.collection('courses').getFullList({
+            filter: `child = "${selectedKid.id}"`,
+            sort: 'name'
+          });
+          setSelectedKid({ ...selectedKid, courses: freshCourses as unknown as Course[] });
+        } catch (e) {
+          console.warn('Failed to refresh courses locally');
         }
       }
     } catch (error) {
