@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>🏡 Village — Daily Homeschool Plan — February 5, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #faf8f5;
+    color: #2d2d2d;
+    padding: 32px 24px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    border-radius: 18px;
+    padding: 28px 20px 22px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 18px rgba(102,126,234,.35);
+  }
+  .header h1 { font-size: 1.75rem; font-weight: 800; letter-spacing: -.5px; }
+  .header .sub { font-size: 0.95rem; opacity: .88; margin-top: 4px; }
+  .header .date-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.18);
+    border-radius: 20px;
+    padding: 3px 14px;
+    font-size: 0.82rem;
+    margin-top: 8px;
+    letter-spacing: .5px;
+  }
+
+  /* ── TOP ROW: Word + History ── */
+  .top-row { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .top-card {
+    flex: 1; min-width: 200px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.07);
+  }
+  .top-card .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .wotd-word { font-size: 1.55rem; font-weight: 800; color: #667eea; }
+  .wotd-def { font-size: 0.88rem; color: #666; margin-top: 3px; font-style: italic; }
+  .history-item { font-size: 0.88rem; margin-bottom: 7px; color: #444; }
+  .history-item strong { color: #764ba2; }
+
+  /* ── SCRIPTURE BOX ── */
+  .scripture-card {
+    background: linear-gradient(135deg, #e8f4fd 0%, #dbeafe 100%);
+    border-left: 5px solid #3b82f6;
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 26px;
+  }
+  .scripture-card .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #3b82f6;
+    margin-bottom: 6px;
+  }
+  .scripture-card blockquote {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: #1e3a5f;
+    line-height: 1.55;
+  }
+  .scripture-card .ref {
+    margin-top: 8px;
+    font-weight: 700;
+    color: #2563eb;
+    font-size: 0.92rem;
+  }
+
+  /* ── KID SECTIONS ── */
+  .kid-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    margin-bottom: 22px;
+  }
+  .kid-header {
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .kid-header .emoji { font-size: 1.6rem; }
+  .kid-header h2 { font-size: 1.15rem; font-weight: 800; color: #fff; }
+  .kid-header .grade { font-size: 0.78rem; opacity: .85; color: #fff; font-weight: 600; }
+
+  .age2  .kid-header { background: linear-gradient(135deg, #f093fb, #f5576c); }
+  .age6  .kid-header { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+  .age9  .kid-header { background: linear-gradient(135deg, #fa709a, #fee140); }
+  .age13 .kid-header { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+
+  .kid-body { padding: 16px 20px 18px; }
+
+  /* Faith Thought */
+  .faith-box {
+    background: #fffbeb;
+    border: 1.5px solid #fbbf24;
+    border-radius: 10px;
+    padding: 11px 14px;
+    margin-bottom: 14px;
+    font-size: 0.9rem;
+  }
+  .faith-box strong { color: #d97706; }
+
+  /* Subjects */
+  .subject-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .subject-row:last-child { border-bottom: none; }
+  .subject-badge {
+    flex-shrink: 0;
+    width: 78px;
+    text-align: center;
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    border-radius: 6px;
+    padding: 4px 4px;
+    color: #fff;
+  }
+  .badge-math    { background: #667eea; }
+  .badge-history { background: #764ba2; }
+  .badge-science { background: #10b981; }
+  .badge-reading { background: #f59e0b; }
+  .badge-writing { background: #ef4444; }
+
+  .subject-text { font-size: 0.92rem; color: #3a3a3a; line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.78rem;
+    color: #aaa;
+  }
+  .footer .village-logo {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #667eea;
+  }
+
+  /* ── PRINT SAFETY ── */
+  @media print {
+    body { background: #fff; padding: 20px; }
+    .header { box-shadow: none; }
+    .kid-card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="date-badge">📅 Thursday · February 5, 2026</div>
+  <h1>🏡 Village Daily Homeschool Plan</h1>
+  <p class="sub">Prepared with love for Justin's Family</p>
+</div>
+
+<!-- TOP ROW -->
+<div class="top-row">
+  <!-- Word of the Day -->
+  <div class="top-card">
+    <div class="label">📖 Word of the Day</div>
+    <div class="wotd-word">INTEGRITY</div>
+    <div class="wotd-def">The quality of being honest and having strong moral principles — even when no one is watching.</div>
+  </div>
+  <!-- This Day in History -->
+  <div class="top-card">
+    <div class="label">⏳ This Day in History</div>
+    <div class="history-item"><strong>2 BC —</strong> Caesar Augustus is granted the title <em>Pater Patriae</em> ("Father of the Country") by the Roman Senate.</div>
+    <div class="history-item"><strong>1919 —</strong> Charlie Chaplin, Mary Pickford, Douglas Fairbanks &amp; D.W. Griffith found <em>United Artists</em>, giving actors creative freedom.</div>
+  </div>
+</div>
+
+<!-- SCRIPTURE OF THE DAY -->
+<div class="scripture-card">
+  <div class="label">✨ Scripture of the Day</div>
+  <blockquote>"Let your light so shine before men, that they may see your good works, and glorify your Father which is in heaven."</blockquote>
+  <div class="ref">— Matthew 5:16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- AGE 13 -->
+<!-- ============================================================ -->
+<div class="kid-card age13">
+  <div class="kid-header">
+    <span class="emoji">🎓</span>
+    <div>
+      <h2>Age 13</h2>
+      <span class="grade">8th Grade · Independent Learner</span>
+    </div>
+  </div>
+  <div class="kid-body">
+
+    <div class="faith-box">
+      <strong>🕯️ Faith Thought:</strong>
+      In your journal, reflect: <em>Real influence doesn't come from being popular — it comes from being trustworthy.</em>
+      How can you be a "light" today by choosing integrity over what's easy? Write 3–4 sentences.
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-math">Math</span>
+      <span class="subject-text">
+        <strong>Linear Equations — Solve for x.</strong> Complete these 8 problems, showing every step:<br>
+        1) 3x + 7 = 22 &nbsp; 2) 5x − 10 = 30 &nbsp; 3) 2x + 15 = 41 &nbsp; 4) 4x − 3 = 29<br>
+        5) x ÷ 3 + 5 = 12 &nbsp; 6) 7x + 2 = 51 &nbsp; 7) 6x − 18 = 0 &nbsp; 8) (x + 9) × 2 = 40<br>
+        <em>Bonus: Create your own equation with the answer x = 10.</em>
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-history">History</span>
+      <span class="subject-text">
+        <strong>The Pax Romana.</strong> Research Augustus Caesar — he earned the title "Father of the Country" (see This Day in History!). In a short paragraph, explain: How did Augustus bring peace to Rome? Was his leadership style based on <em>influence</em> or <em>power</em>? How does that connect to today's Word of the Day — Integrity?
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-science">Science</span>
+      <span class="subject-text">
+        <strong>The Electromagnetic Spectrum.</strong> Visible light is only a tiny slice of the EM spectrum. Draw and label the spectrum (radio waves → gamma rays). Answer: Why can't we see infrared or ultraviolet? What determines the <em>color</em> we see?
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-reading">Reading</span>
+      <span class="subject-text">
+        <strong>Matthew 5 — The Sermon on the Mount.</strong> Read the full chapter. Identify and explain TWO metaphors Jesus uses. Focus especially on the "salt of the earth" and "light of the world" images. What was Jesus teaching His followers to <em>be</em>?
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-writing">Writing</span>
+      <span class="subject-text">
+        <strong>Persuasive Essay (300 words).</strong> Topic: <em>"Integrity is the most important quality a leader can have."</em> Support your argument with at least two real-world examples. Use a clear introduction, body, and conclusion. Proofread for grammar before finishing.
+      </span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- AGE 9 -->
+<!-- ============================================================ -->
+<div class="kid-card age9">
+  <div class="kid-header">
+    <span class="emoji">🧒</span>
+    <div>
+      <h2>Age 9</h2>
+      <span class="grade">4th Grade · Growing Reader</span>
+    </div>
+  </div>
+  <div class="kid-body">
+
+    <div class="faith-box">
+      <strong>🕯️ Faith Thought:</strong>
+      Write on a sticky note ONE thing you can do today to "let your light shine" — something kind or brave. Put it somewhere you'll see it all day!
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-math">Math</span>
+      <span class="subject-text">
+        <strong>3-Digit Subtraction with Regrouping.</strong> Solve these 10 problems neatly:<br>
+        1) 523 − 187 &nbsp; 2) 810 − 463 &nbsp; 3) 705 − 348 &nbsp; 4) 642 − 279 &nbsp; 5) 900 − 517<br>
+        6) 431 − 256 &nbsp; 7) 780 − 395 &nbsp; 8) 600 − 234 &nbsp; 9) 953 − 478 &nbsp; 10) 1000 − 637<br>
+        <em>Check: Pick 3 answers and verify by adding back.</em>
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-history">History</span>
+      <span class="subject-text">
+        <strong>United Artists (1919).</strong> In 1919, four famous movie stars got together and started their <em>own</em> film company so they could make the movies <em>they</em> wanted. Why do you think that was important? Write 2–3 sentences about why creative freedom matters.
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-science">Science</span>
+      <span class="subject-text">
+        <strong>Mirrors &amp; Reflection.</strong> Grab a mirror and a flashlight (or sunny window). Shine light onto the mirror and aim the reflected beam at a target on the wall. Observe: Does light travel in straight lines? Draw a simple diagram showing light bouncing off the mirror. <em>Rule: The angle in = the angle out!</em>
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-reading">Reading</span>
+      <span class="subject-text">
+        <strong>The Parable of the Ten Virgins (Matthew 25:1–13).</strong> Read the story aloud or silently. Then answer:<br>
+        1) Why did five of the virgins run out of oil?<br>
+        2) What do you think the "oil" represents in our lives?<br>
+        3) What lesson should we learn from this parable?
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-writing">Writing</span>
+      <span class="subject-text">
+        <strong>Narrative Writing.</strong> Write a story (at least 5 sentences) about a time you did the right thing even though it was hard. Include: what happened, how you felt, and what you learned. Use <em>describing words</em> to make it come alive!
+      </span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- AGE 6 -->
+<!-- ============================================================ -->
+<div class="kid-card age6">
+  <div class="kid-header">
+    <span class="emoji">👧</span>
+    <div>
+      <h2>Age 6</h2>
+      <span class="grade">1st Grade · Eager Explorer</span>
+    </div>
+  </div>
+  <div class="kid-body">
+
+    <div class="faith-box">
+      <strong>🕯️ Faith Thought:</strong>
+      You are like a little candle! When you share, help, or smile — your light gets brighter and makes people happy. Draw a picture of yourself shining like a bright light for someone you love.
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-math">Math</span>
+      <span class="subject-text">
+        <strong>Addition Facts to 10.</strong> Solve these (you can use fingers or draw dots!):<br>
+        3 + 4 = ? &nbsp; 5 + 5 = ? &nbsp; 2 + 7 = ? &nbsp; 6 + 3 = ? &nbsp; 4 + 4 = ? &nbsp; 1 + 8 = ? &nbsp; 5 + 3 = ?<br>
+        <em>Fun: Draw a sun for every problem you get right! 🌞</em>
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-history">History</span>
+      <span class="subject-text">
+        <strong>Meet Augustus!</strong> A long, long time ago — over 2,000 years! — there was a leader named Augustus in a place called Rome. People loved him so much they called him the "Father" of his country. Talk about: What does it mean to be a good leader? Name one leader you know!
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-science">Science</span>
+      <span class="subject-text">
+        <strong>Light Sources — Sort It!</strong> Walk around the house with a grown-up and make two lists:<br>
+        ☀️ <strong>Makes its own light:</strong> Sun, lightbulb, flashlight, …<br>
+        🌙 <strong>Reflects light (borrows it):</strong> Moon, mirror, shiny spoon, …<br>
+        Can you find 3 things for each list?
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-reading">Reading</span>
+      <span class="subject-text">
+        <strong>The "-ight" Word Family!</strong> Practice reading these words out loud — then circle your favorites:<br>
+        <strong>light · night · sight · might · right · bright · fight · tight</strong><br>
+        <em>Bonus: Use the word "bright" in a sentence.</em>
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-writing">Writing</span>
+      <span class="subject-text">
+        <strong>Copy &amp; Color.</strong> Carefully copy this sentence in your neatest handwriting:<br>
+        <em style="font-size:1.05rem; font-weight:600; color:#764ba2;">"I will shine my light today."</em><br>
+        Then draw a colorful border around it with crayons!
+      </span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- AGE 2 -->
+<!-- ============================================================ -->
+<div class="kid-card age2">
+  <div class="kid-header">
+    <span class="emoji">👶</span>
+    <div>
+      <h2>Age 2</h2>
+      <span class="grade">Toddler · Play &amp; Explore</span>
+    </div>
+  </div>
+  <div class="kid-body">
+
+    <div class="faith-box">
+      <strong>🕯️ Faith Thought:</strong>
+      Hold a flashlight together and sing <em>"Jesus Wants Me for a Sunbeam"</em>! Wiggle the light around and say: "I can be a light!" 🌟
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-math">Math</span>
+      <span class="subject-text">
+        <strong>Counting 1–5.</strong> Grab 5 cheerios, blocks, or small toys. Count them together slowly: "One… two… three… four… five!" Try it again with a different color object. <em>Great job if you can count to 5 all by yourself!</em>
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-history">History</span>
+      <span class="subject-text">
+        <strong>"Long Ago" vs "Now."</strong> Show your little one a candle and a light switch (or pictures of each). Talk about it: "A long, long time ago people used candles for light. <em>Now</em> we flip a switch!" Let them flip the switch on and off. 💡
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-science">Science</span>
+      <span class="subject-text">
+        <strong>Shadow Puppet Play! 🎭</strong> In a dim room, use a flashlight and your hands to make shadows on the wall. Make a bunny, a dog, a bird! Watch how the shadows change when you move your hands closer or farther from the light. <em>So fun!</em>
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-reading">Reading</span>
+      <span class="subject-text">
+        <strong>The Letter "L" 🌟</strong> Go on a "L hunt" around the house! Find things that start with the <strong>L</strong> sound:<br>
+        Lamp? Leg? Lunchbox? Leaf?<br>
+        Say each one together: <em>"L… lamp! L… leg!"</em>
+      </span>
+    </div>
+
+    <div class="subject-row">
+      <span class="subject-badge badge-writing">Writing</span>
+      <span class="subject-text">
+        <strong>Sensory Tray Drawing.</strong> Put a thin layer of sand or cornmeal in a tray. Let your toddler use a finger to draw lines, circles, and squiggles — or try tracing the letter <strong>L</strong> together! <em>Wipe and repeat for extra fun!</em>
+      </span>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="village-logo">🏡 Village</div>
+  <p>Daily Homeschool Plan — Generated February 5, 2026<br/>Prepared with faith &amp; love for Justin's Family</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Village Homeschool — February 5, 2026</title>
+<style>
+  /* ─── Reset ─── */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ─── Page ─── */
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #faf8f3;
+    color: #444;
+    line-height: 1.6;
+  }
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  /* ─── App Header ─── */
+  .app-header {
+    background: linear-gradient(135deg, #2e4057 0%, #3d5a80 100%);
+    border-radius: 14px;
+    padding: 26px 22px 20px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .app-header .app-badge {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    opacity: 0.7;
+    margin-bottom: 6px;
+  }
+  .app-header h1 {
+    font-size: 25px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .app-header .date-line {
+    font-size: 13px;
+    opacity: 0.75;
+    font-style: italic;
+  }
+
+  /* ─── Scripture Card ─── */
+  .scripture-card {
+    background: linear-gradient(135deg, #fef9ee, #f7ead5);
+    border: 1px solid #e2cfa3;
+    border-radius: 12px;
+    padding: 20px 24px 18px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .scripture-card .card-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #b8860b;
+    margin-bottom: 10px;
+  }
+  .scripture-card blockquote {
+    font-style: italic;
+    font-size: 15px;
+    color: #5a4a2e;
+    line-height: 1.75;
+    margin-bottom: 8px;
+  }
+  .scripture-card .reference {
+    font-size: 13px;
+    font-weight: bold;
+    color: #8b7355;
+  }
+
+  /* ─── Highlights Row ─── */
+  .highlights-row {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .hl-card {
+    flex: 1;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px 17px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  }
+  .hl-card .hl-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+    margin-bottom: 5px;
+  }
+  .hl-card .hl-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2e4057;
+    margin-bottom: 3px;
+  }
+  .hl-card .hl-body {
+    font-size: 12.5px;
+    color: #666;
+  }
+  .hl-card .hl-body em { font-style: italic; }
+
+  /* ─── Kid Card ─── */
+  .kid-card {
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  .kid-card .kid-hd {
+    padding: 13px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #fff;
+  }
+  .kid-card .kid-emoji { font-size: 24px; line-height: 1; }
+  .kid-card .kid-hd h2 { font-size: 17px; margin: 0; }
+  .kid-card .kid-hd p  { font-size: 11px; margin: 2px 0 0; opacity: 0.85; }
+
+  /* Per-kid colours */
+  .k13 .kid-hd { background: linear-gradient(135deg, #4a6fa5, #6b8fbd); }
+  .k9  .kid-hd { background: linear-gradient(135deg, #4e7a4e, #6fa06f); }
+  .k6  .kid-hd { background: linear-gradient(135deg, #c67e2e, #e09a45); }
+  .k2  .kid-hd { background: linear-gradient(135deg, #a8476a, #cc6b8a); }
+
+  .k13 { border-left: 5px solid #4a6fa5; }
+  .k9  { border-left: 5px solid #4e7a4e; }
+  .k6  { border-left: 5px solid #c67e2e; }
+  .k2  { border-left: 5px solid #a8476a; }
+
+  /* ─── Kid Body ─── */
+  .kid-body { padding: 18px 18px 16px; }
+
+  .subj { margin-bottom: 14px; }
+  .subj:last-of-type { margin-bottom: 0; }
+
+  .subj-tag {
+    display: inline-block;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    font-weight: bold;
+    color: #fff;
+    padding: 2px 9px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+  }
+  .k13 .subj-tag { background: #4a6fa5; }
+  .k9  .subj-tag { background: #4e7a4e; }
+  .k6  .subj-tag { background: #c67e2e; }
+  .k2  .subj-tag { background: #a8476a; }
+
+  .subj-body { font-size: 13px; color: #555; }
+  .subj-body strong { color: #333; }
+  .subj-body ul { margin: 5px 0 0 20px; }
+  .subj-body li { margin-bottom: 3px; }
+  .subj-body .eq { font-style: italic; color: #2e4057; }
+
+  /* ─── Faith Box ─── */
+  .faith-box {
+    background: #fffde7;
+    border: 1px solid #f0c840;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .faith-box .fi { font-size: 18px; flex-shrink: 0; line-height: 1.2; }
+  .faith-box .ft { font-size: 12.8px; color: #6b5600; }
+  .faith-box .ft strong { color: #d97706; }
+
+  /* ─── Footer ─── */
+  .footer {
+    text-align: center;
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid #e2ddd5;
+    font-size: 11px;
+    color: #aaa;
+  }
+  .footer em { font-style: italic; }
+
+  /* ─── Print / PDF tweaks ─── */
+  @media print {
+    body { background: #fff; }
+    .page { padding: 20px; }
+    .kid-card, .hl-card, .scripture-card {
+      box-shadow: none;
+      border: 1px solid #ddd;
+      page-break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════ HEADER ══════════ -->
+  <div class="app-header">
+    <div class="app-badge">🏘️ &nbsp;Village Homeschool</div>
+    <h1>Daily Learning Plan</h1>
+    <div class="date-line">Thursday &middot; February 5, 2026</div>
+  </div>
+
+  <!-- ══════════ SCRIPTURE OF THE DAY ══════════ -->
+  <div class="scripture-card">
+    <div class="card-label">✝ &nbsp;Scripture of the Day</div>
+    <blockquote>
+      "I, Nephi, having been born of goodly parents, therefore I was taught somewhat
+      in the rudiments of my father; and also having seen much affliction in the days
+      of my youth, <strong>I have learned many things</strong>."
+    </blockquote>
+    <div class="reference">— 1 Nephi 1 : 1</div>
+  </div>
+
+  <!-- ══════════ WORD OF THE DAY  &  THIS DAY IN HISTORY ══════════ -->
+  <div class="highlights-row">
+    <div class="hl-card">
+      <div class="hl-label">📖 Word of the Day</div>
+      <div class="hl-title">Tenacity</div>
+      <div class="hl-body">
+        <em>(noun)</em> Persistent, determined effort — holding firmly to a goal
+        even when things get hard.
+      </div>
+    </div>
+    <div class="hl-card">
+      <div class="hl-label">📅 This Day in History</div>
+      <div class="hl-title">February 5, 1971</div>
+      <div class="hl-body">
+        Apollo 14's lunar module <em>Antares</em> touched down on the Moon.
+        Astronaut Alan Shepard Jr. became the <strong>5th person to walk on the Moon</strong>
+        — and during the mission he famously hit two golf balls on the lunar surface! 🏌️
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 13 YEAR OLD ══════════ -->
+  <div class="kid-card k13">
+    <div class="kid-hd">
+      <span class="kid-emoji">🚀</span>
+      <div><h2>8th Grade</h2><p>Age 13 · Advanced Learner</p></div>
+    </div>
+    <div class="kid-body">
+
+      <div class="subj">
+        <span class="subj-tag">🔢 Math</span>
+        <div class="subj-body">
+          <strong>Multi-Step Linear Equations</strong>
+          <ul>
+            <li>Solve: <span class="eq">3(x + 4) = 2x + 19</span></li>
+            <li>Solve: <span class="eq">5x − 3(x − 2) = 14</span></li>
+            <li>Word Problem: <em>A number tripled, minus 7, equals twice the number plus 5. Find the number.</em></li>
+            <li>✓ Check every answer by substituting back into the original equation.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">🌍 History</span>
+        <div class="subj-body">
+          <strong>The Space Race</strong>
+          <ul>
+            <li>Research: Why did the US and the USSR race to reach space first?</li>
+            <li>Build a <strong>timeline</strong> of key events from Sputnik (1957) through Apollo 11 (1969).</li>
+            <li>Write a short paragraph: Why was today's anniversary — Apollo 14 — historically important?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">🔬 Science</span>
+        <div class="subj-body">
+          <strong>Newton's Third Law of Motion</strong>
+          <ul>
+            <li>Study the law: <em>"For every action there is an equal and opposite reaction."</em></li>
+            <li>Explain in your own words how a rocket engine uses this principle to launch.</li>
+            <li>Draw a <strong>labeled diagram</strong> showing forces on a rocket at liftoff (thrust, weight/gravity, drag).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">📚 Reading</span>
+        <div class="subj-body">
+          Read for <strong>30 minutes</strong> from your current book. Afterward write a
+          <strong>3–4 sentence summary</strong> of what happened, then <strong>predict</strong>
+          what will happen next — and explain your reasoning.
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">✏️ Writing</span>
+        <div class="subj-body">
+          <strong>Persuasive Essay (300–400 words):</strong>
+          <em>"Should we send humans back to the Moon?"</em><br>
+          Include at least <strong>3 supporting reasons</strong>, one <strong>counterargument</strong>
+          with a rebuttal, and a strong introduction &amp; conclusion.
+        </div>
+      </div>
+
+      <div class="faith-box">
+        <span class="fi">🕋</span>
+        <div class="ft">
+          <strong>Faith Thought:</strong>
+          Nephi says he "learned many things" through both his father's teachings <em>and</em>
+          the hard times of his youth. Think of a challenge you've faced recently.
+          What did you learn from it — and how can difficult experiences actually
+          strengthen your faith? Write 2–3 thoughtful sentences.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 9 YEAR OLD ══════════ -->
+  <div class="kid-card k9">
+    <div class="kid-hd">
+      <span class="kid-emoji">🌙</span>
+      <div><h2>4th Grade</h2><p>Age 9 · Growing Explorer</p></div>
+    </div>
+    <div class="kid-body">
+
+      <div class="subj">
+        <span class="subj-tag">🔢 Math</span>
+        <div class="subj-body">
+          <strong>Equivalent Fractions</strong>
+          <ul>
+            <li>Find <strong>3 different fractions</strong> equal to ½.<br>
+                <em>Hint: multiply the numerator and denominator by the same number!</em></li>
+            <li>Circle the fractions that equal ¼ &nbsp;→&nbsp; ¼ &nbsp; ²⁄₈ &nbsp; ³⁄₁₂ &nbsp; ³⁄₈</li>
+            <li>Shade a fraction bar to show ¾. How many different ways can you show ¾?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">🌍 History</span>
+        <div class="subj-body">
+          <strong>Moon Explorers</strong>
+          <ul>
+            <li>Learn about Alan Shepard — what made him extra special among all the astronauts?</li>
+            <li>Write down <strong>3 cool facts</strong> about what astronauts do on the Moon.</li>
+            <li>Draw an astronaut planting a flag on the lunar surface.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">🔬 Science</span>
+        <div class="subj-body">
+          <strong>Phases of the Moon</strong>
+          <ul>
+            <li>Draw and label all <strong>8 Moon phases</strong> in the correct order.</li>
+            <li>🍪 <strong>Oreo Activity:</strong> Use the frosting inside an Oreo to model each phase
+                by scraping it into shape. (Yes — you may eat them after!)</li>
+            <li>Answer in a sentence: Why does the Moon look different each night?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">📚 Reading</span>
+        <div class="subj-body">
+          Read for <strong>20 minutes</strong> from a non-fiction book (space, animals, or nature).
+          When finished, list <strong>5 new words</strong> you discovered and write what each one means.
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">✏️ Writing</span>
+        <div class="subj-body">
+          <strong>🌕 Moon Reporter!</strong>
+          Pretend you are a news reporter standing on the Moon right now.
+          Write a <strong>4–5 sentence news report</strong> describing what you see, feel, and hear!
+        </div>
+      </div>
+
+      <div class="faith-box">
+        <span class="fi">🕋</span>
+        <div class="ft">
+          <strong>Faith Thought:</strong>
+          Nephi's parents taught him and he listened. Think of something
+          a grown-up has taught you. How does following good advice help you
+          become a better person? Share your thoughts with someone at home!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 6 YEAR OLD ══════════ -->
+  <div class="kid-card k6">
+    <div class="kid-hd">
+      <span class="kid-emoji">⭐</span>
+      <div><h2>1st Grade</h2><p>Age 6 · Little Learner</p></div>
+    </div>
+    <div class="kid-body">
+
+      <div class="subj">
+        <span class="subj-tag">🔢 Math</span>
+        <div class="subj-body">
+          <strong>Addition &amp; Subtraction within 20</strong>
+          <ul>
+            <li>Use blocks or fingers: <span class="eq">13 + 5 = ?</span></li>
+            <li><span class="eq">18 − 7 = ?</span></li>
+            <li>Story: You have 12 stars and find 6 more. How many do you have?</li>
+            <li>Story: You have 15 moons and 8 disappear. How many are left?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">🌍 History</span>
+        <div class="subj-body">
+          <strong>Alan Shepard — Space Hero! 🏌️</strong><br>
+          Alan Shepard was the <strong>first American to go to space</strong> and he
+          later <strong>walked on the Moon</strong>! He even played golf up there!
+          Draw a picture of Alan in his space suit standing on the Moon.
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">🔬 Science</span>
+        <div class="subj-body">
+          <strong>Does Everything Fall Down?</strong>
+          <ul>
+            <li>Hold a big book and a feather at the same height.</li>
+            <li>Drop them at the same time. What happens?</li>
+            <li>Now try a ball and a sock — do they land together?</li>
+            <li><strong>Gravity</strong> pulls everything down the same way, no matter how big or small!</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">📚 Reading</span>
+        <div class="subj-body">
+          <strong>"Sp" Blend Practice</strong><br>
+          Read these words out loud: <em>Space · Spot · Spin · Spoon · Spark</em><br>
+          Then draw a picture for your <strong>3 favorite</strong> Sp-words!
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">✏️ Writing</span>
+        <div class="subj-body">
+          Copy these sentences in your <strong>best handwriting</strong>:<br><br>
+          <em>"The Moon is big and round.<br>I like looking at the stars."</em>
+        </div>
+      </div>
+
+      <div class="faith-box">
+        <span class="fi">🕋</span>
+        <div class="ft">
+          <strong>Faith Thought:</strong>
+          Nephi learned so much from his daddy! Think of one thing your mom or dad
+          has taught you. Tell them <strong>"Thank you"</strong> for helping you learn today! 😊
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 2 YEAR OLD ══════════ -->
+  <div class="kid-card k2">
+    <div class="kid-hd">
+      <span class="kid-emoji">🌸</span>
+      <div><h2>Toddler</h2><p>Age 2 · Little Sprout</p></div>
+    </div>
+    <div class="kid-body">
+
+      <div class="subj">
+        <span class="subj-tag">🔢 Math</span>
+        <div class="subj-body">
+          <strong>Counting Stars</strong><br>
+          Draw <strong>5 big stars</strong> on paper in different colors. Help your little one
+          point to each star and count together: <em>"1… 2… 3… 4… 5!"</em> 🌟
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">🌍 History</span>
+        <div class="subj-body">
+          <strong>The Big, Bright Moon 🌕</strong><br>
+          Look at pictures of the Moon together. Say:
+          <em>"The Moon is white! The Moon is bright! The Moon is round!"</em>
+          If you can see the Moon tonight, point it out before bed!
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">🔬 Science</span>
+        <div class="subj-body">
+          <strong>🌙 Moon-Dust Sensory Play</strong>
+          <ul>
+            <li>Pour <strong>flour</strong> into a shallow bowl — that's your "Moon Dust!"</li>
+            <li>Hide 3–4 small toys or rocks in the flour.</li>
+            <li>Let your toddler dig and discover the hidden treasures!</li>
+            <li>Talk about textures together: smooth, rough, soft, crumbly.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">📚 Reading</span>
+        <div class="subj-body">
+          <strong>📕 Read <em>Goodnight Moon</em> together!</strong><br>
+          Point to the Moon in each picture. Say <em>"Goodnight Moon!"</em>
+          together at the end. Snuggle up and enjoy! 💛
+        </div>
+      </div>
+
+      <div class="subj">
+        <span class="subj-tag">✏️ Writing</span>
+        <div class="subj-body">
+          <strong>Color the Moon ✨</strong><br>
+          Draw a <strong>big circle</strong> on paper. Have your toddler color it in
+          with a <strong>white or yellow crayon</strong>. Sprinkle glitter on top
+          for "Moon stars!"
+        </div>
+      </div>
+
+      <div class="faith-box">
+        <span class="fi">🕋</span>
+        <div class="ft">
+          <strong>Faith Thought:</strong>
+          Sing <strong>"I Am a Child of God"</strong> together!
+          Remind your little one: <em>"You are so special. Heavenly Father loves you!"</em> 💛
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <div class="footer">
+    Generated by Village Homeschool &middot; Thursday, February 5, 2026<br>
+    <em>"Blessed are they that study the scriptures, for they shall find life."</em>
+  </div>
+
+</div><!-- .page -->
+</body>
+</html>

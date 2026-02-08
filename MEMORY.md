@@ -8,7 +8,8 @@
 - Monitoring `kit.copilot@gmail.com` via heartbeat.
 - Daily Usage Report scheduled for 05:00 UTC.
 - Daily Homeschool Assignments scheduled for 09:00 AM (America/Chicago), Mon-Fri.
-- **Manage Kids UI**: Currently implementing a standalone management interface for child profiles (Ages 2, 6, 9, 13). Built `manage_kids.html` with dashboard and "Vault" views.
+- **Village Project**: Moved to `village-homeschool/` subfolder. Roadmap and feature implementation plans tracked in [village-homeschool/VILLAGE_PROJECT.md](village-homeschool/VILLAGE_PROJECT.md).
+- **Manage Kids UI**: Continuing implementation of standalone management interface. Built `manage_kids.html` with dashboard and "Vault" views.
 
 ## Decisions
 - **2026-02-06**: Tabled Lesson Plan Development part to focus on Manage Kids UI as per Justin's request.

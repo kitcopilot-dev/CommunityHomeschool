@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Village Homeschool – Young Scholar (Age 13) – Feb 5, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Nunito', sans-serif;
+    background:#fdf8f0;
+    color:#3b2f2f;
+    padding:32px 28px;
+    max-width:780px;
+    margin:0 auto;
+  }
+  .header {
+    text-align:center;
+    background:linear-gradient(135deg,#6b4c3b 0%,#8b6f47 100%);
+    color:#fff;
+    border-radius:18px 18px 0 0;
+    padding:22px 16px 18px;
+  }
+  .header .village-badge {
+    display:inline-block;
+    background:rgba(255,255,255,0.15);
+    border:2px solid rgba(255,255,255,0.35);
+    border-radius:24px;
+    padding:4px 18px;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .header h1 { font-size:28px; font-weight:800; margin-bottom:2px; }
+  .header .subtitle { font-size:14px; opacity:.85; }
+  .header .date-row { font-size:12px; opacity:.7; margin-top:6px; }
+  .age-strip {
+    background:linear-gradient(135deg,#37474f,#546e7a);
+    text-align:center;
+    padding:10px;
+    font-weight:800;
+    font-size:17px;
+    color:#fff;
+    text-shadow:0 1px 2px rgba(0,0,0,.2);
+    letter-spacing:1px;
+  }
+  .content {
+    background:#fff;
+    border-radius:0 0 18px 18px;
+    box-shadow:0 4px 18px rgba(0,0,0,.08);
+    padding:24px 26px 28px;
+  }
+  .scripture-box {
+    background:linear-gradient(135deg,#eef5ee,#dff0df);
+    border-left:5px solid #4caf50;
+    border-radius:10px;
+    padding:16px 18px;
+    margin-bottom:20px;
+  }
+  .scripture-box .label { font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:#2e7d32; font-weight:700; margin-bottom:4px; }
+  .scripture-box .ref { font-weight:800; color:#2e7d32; font-size:15px; }
+  .scripture-box .verse { font-style:italic; color:#4a4a4a; margin-top:4px; font-size:14px; line-height:1.5; }
+  .highlight-row { display:flex; gap:14px; margin-bottom:20px; flex-wrap:wrap; }
+  .highlight-card {
+    flex:1; min-width:180px;
+    background:#fef9ec; border:1.5px solid #f0dcc4; border-radius:12px; padding:14px 16px;
+  }
+  .highlight-card .hc-label { font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:#b07d2e; font-weight:700; margin-bottom:4px; }
+  .highlight-card .hc-word { font-size:18px; font-weight:800; color:#6b4c3b; }
+  .highlight-card .hc-def { font-size:12px; color:#7a6a5a; margin-top:3px; line-height:1.4; }
+  .section { margin-bottom:18px; border:1.5px solid #ede6df; border-radius:12px; overflow:hidden; }
+  .section-header { display:flex; align-items:center; gap:10px; padding:10px 16px; font-weight:700; font-size:15px; color:#fff; }
+  .section-header .icon { font-size:19px; }
+  .section-body { padding:14px 18px; font-size:14px; line-height:1.75; color:#4a4a4a; }
+  .section-body ul { padding-left:22px; }
+  .section-body li { margin-bottom:5px; }
+  .section-body ol { padding-left:22px; }
+  .section-body ol li { margin-bottom:5px; }
+  .section-body .question { background:#faf5ef; border-radius:8px; padding:10px 14px; margin-top:10px; font-weight:600; color:#6b4c3b; }
+  .section-body .info-box { background:#e3f2fd; border-radius:8px; padding:10px 14px; margin:10px 0; border-left:4px solid #1976d2; }
+  .section-body .math-box { display:flex; flex-wrap:wrap; gap:10px; margin:10px 0; }
+  .math-box .eq { background:#f3e5f5; border-radius:8px; padding:6px 14px; font-size:15px; font-weight:700; color:#6a1b9a; }
+  .section-body table {
+    width:100%; border-collapse:collapse; margin:10px 0; font-size:13px;
+  }
+  .section-body table th {
+    background:#f3e5f5; color:#6a1b9a; font-weight:700; text-align:left;
+    padding:8px 10px; border-bottom:2px solid #ce93d8;
+  }
+  .section-body table td { padding:7px 10px; border-bottom:1px solid #ede6df; }
+  .section-body table tr:last-child td { border-bottom:none; }
+  .sh-faith   .section-header { background:linear-gradient(135deg,#43a047,#66bb6a); }
+  .sh-math    .section-header { background:linear-gradient(135deg,#7b1fa2,#ab47bc); }
+  .sh-history .section-header { background:linear-gradient(135deg,#d84315,#ef5350); }
+  .sh-science .section-header { background:linear-gradient(135deg,#0288d1,#42a5f5); }
+  .sh-reading .section-header { background:linear-gradient(135deg,#00695c,#26a69a); }
+  .sh-writing .section-header { background:linear-gradient(135deg,#f57c00,#ffb74d); }
+  .footer { text-align:center; margin-top:22px; font-size:11px; color:#a89080; border-top:1px solid #ede6df; padding-top:12px; }
+  .footer .heart { color:#e57373; }
+  @media print { body { padding:12px; background:#fff; } .header { border-radius:0; } .content { border-radius:0; box-shadow:none; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="village-badge">🏡 The Village</div>
+  <h1>Daily Homeschool Assignments</h1>
+  <div class="subtitle">Justin's Family</div>
+  <div class="date-row">📅 Thursday, February 5, 2026</div>
+</div>
+<div class="age-strip">📘 Young Scholar &nbsp;•&nbsp; Age 13 &nbsp;•&nbsp; 7th / 8th Grade</div>
+
+<div class="content">
+
+  <div class="scripture-box">
+    <div class="label">📖 Scripture of the Day</div>
+    <div class="ref">Genesis 6:22</div>
+    <div class="verse">"Thus did Noah: according unto all that God commanded him, so did he."</div>
+  </div>
+
+  <div class="highlight-row">
+    <div class="highlight-card">
+      <div class="hc-label">📝 Word of the Day</div>
+      <div class="hc-word">Adulation</div>
+      <div class="hc-def"><em>aj-uh-LAY-shun</em> (noun) — Excessive or insincere praise. From Latin <em>adulari</em> — "to flatter."</div>
+    </div>
+    <div class="highlight-card">
+      <div class="hc-label">🌍 This Day in History</div>
+      <div class="hc-word" style="font-size:14px;">Fall of Carthage</div>
+      <div class="hc-def">Feb 5, 146 BCE — Rome destroyed Carthage, ending the Third Punic War and gaining dominion over the Mediterranean.</div>
+    </div>
+  </div>
+
+  <!-- FAITH -->
+  <div class="section sh-faith">
+    <div class="section-header"><span class="icon">🙏</span> Faith Thought &amp; Reflection</div>
+    <div class="section-body">
+      <p>Genesis 6:22 tells us Noah obeyed God <em>completely</em> — even when the world around him was deeply corrupt (see Genesis 6:5). Noah didn't wait for proof; he didn't demand an explanation. He <strong>trusted</strong>.</p>
+      <p><strong>Think deeply:</strong> Why do you think God chose <em>Noah</em> out of all the people on earth? What qualities made Noah worthy? How can those same qualities shape <em>your</em> life today?</p>
+      <div class="question">
+        📓 <strong>Journal Entry (5–7 sentences):</strong> Reflect on a time you had to choose between what was <em>popular or easy</em> and what was <em>right</em>. How did you choose? What would Noah have done in your situation? What did you learn about yourself?
+      </div>
+    </div>
+  </div>
+
+  <!-- MATH -->
+  <div class="section sh-math">
+    <div class="section-header"><span class="icon">🔢</span> Math – Pre-Algebra: Proportions &amp; Volume</div>
+    <div class="section-body">
+      <p><strong>🚢 The Ark Dimensions:</strong> Genesis 6:15 gives us the Ark's measurements in <em>cubits</em>. Convert and calculate!</p>
+      <div class="info-box">
+        <strong>Given:</strong> 1 cubit = 18 inches = 1.5 feet<br/>
+        • Length: 300 cubits &nbsp;|&nbsp; Width: 50 cubits &nbsp;|&nbsp; Height: 30 cubits
+      </div>
+      <p><strong>Part A – Unit Conversion:</strong></p>
+      <table>
+        <tr><th>Dimension</th><th>Cubits</th><th>Feet</th><th>Yards</th></tr>
+        <tr><td>Length</td><td>300</td><td>___</td><td>___</td></tr>
+        <tr><td>Width</td><td>50</td><td>___</td><td>___</td></tr>
+        <tr><td>Height</td><td>30</td><td>___</td><td>___</td></tr>
+      </table>
+      <p><strong>Part B – Volume:</strong></p>
+      <ul>
+        <li>Volume = Length × Width × Height. Calculate the Ark's volume in <strong>cubic feet</strong>.</li>
+        <li>A football field is 100 yards × 53⅓ yards × 1 yard deep = _______ cubic yards.</li>
+        <li>Convert the Ark's volume to cubic yards (÷ 27). How many football fields could fit inside the Ark?</li>
+      </ul>
+      <div class="question">🌟 <strong>Bonus:</strong> The Ark had 3 decks (Genesis 6:16). What is the volume of <em>one</em> deck in cubic feet?</div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="section sh-history">
+    <div class="section-header"><span class="icon">🌎</span> History – The Punic Wars</div>
+    <div class="section-body">
+      <p>Today marks the anniversary of one of ancient history's most consequential events: <strong>the destruction of Carthage</strong> on February 5, 146 BCE.</p>
+      <div class="info-box">
+        <strong>Background:</strong><br/>
+        • <strong>Rome</strong> (Italian Peninsula) vs. <strong>Carthage</strong> (North Africa, modern Tunisia)<br/>
+        • <strong>First Punic War</strong> (264–241 BCE) — fought over Sicily<br/>
+        • <strong>Second Punic War</strong> (218–201 BCE) — Hannibal's invasion of Italy (elephants over the Alps!)<br/>
+        • <strong>Third Punic War</strong> (149–146 BCE) — Rome's siege and total destruction of Carthage
+      </div>
+      <div class="question">
+        📝 <strong>Assignment:</strong> Write a <strong>one-page summary</strong> of the Three Punic Wars. Include:<br/>
+        • The <em>causes</em> of each war<br/>
+        • Key <em>leaders</em> and battles (Hannibal, Scipio Africanus, the Siege of Carthage)<br/>
+        • The <em>outcome</em> and why Carthage's destruction was significant for Rome's empire
+      </div>
+    </div>
+  </div>
+
+  <!-- SCIENCE -->
+  <div class="section sh-science">
+    <div class="section-header"><span class="icon">🔬</span> Science – Ecosystems &amp; Biodiversity</div>
+    <div class="section-body">
+      <p><strong>Thought Experiment:</strong> If Noah truly brought two of <em>every kind</em> of animal onto a single vessel, what biological and ecological challenges would arise?</p>
+      <p>Consider the following factors in your analysis:</p>
+      <ul>
+        <li>🦁🐑 <strong>Predator-Prey Relationships:</strong> How would you prevent predators from eating other animals in an enclosed space?</li>
+        <li>🌿 <strong>Food Chains:</strong> What would the predators, herbivores, and omnivores each need to eat? Where would the food come from?</li>
+        <li>🏝️ <strong>Habitat &amp; Climate Needs:</strong> Some animals need tropical heat; others need freezing cold. How could one ship provide both?</li>
+        <li>🦠 <strong>Disease:</strong> Crowding animals from different continents together — what disease risks does that create?</li>
+      </ul>
+      <div class="question">📝 <strong>Assignment:</strong> Write a <strong>well-developed paragraph</strong> (8–10 sentences) analyzing at least <em>three</em> of the challenges above. Use scientific vocabulary.</div>
+    </div>
+  </div>
+
+  <!-- READING -->
+  <div class="section sh-reading">
+    <div class="section-header"><span class="icon">📚</span> Reading – Literary Analysis</div>
+    <div class="section-body">
+      <p>Read your assigned chapter or pages. Then complete a <strong>literary analysis</strong> addressing each of the following:</p>
+      <ol>
+        <li><strong>Theme:</strong> What is the big idea or message the author is exploring in this section?</li>
+        <li><strong>Literary Devices:</strong> Identify and quote at least <em>two</em> examples of literary devices (simile, metaphor, foreshadowing, imagery, personification). Explain what each one means.</li>
+        <li><strong>Character Development:</strong> How is the main character changing? What drives that change? Use <em>evidence</em> from the text.</li>
+        <li><strong>Tone &amp; Mood:</strong> How does the author's word choice create a feeling? Describe the mood of this chapter.</li>
+      </ol>
+      <div class="question">📝 Write your analysis in <strong>paragraph form</strong> (not bullet points). Aim for at least one paragraph per question.</div>
+    </div>
+  </div>
+
+  <!-- WRITING -->
+  <div class="section sh-writing">
+    <div class="section-header"><span class="icon">✏️</span> Writing – Persuasive Essay</div>
+    <div class="section-body">
+      <p><strong>Topic:</strong> <em>"Should schools have longer lunch breaks?"</em></p>
+      <p>Write a <strong>3-paragraph persuasive essay</strong> taking a clear position. Your essay must include:</p>
+      <div class="info-box">
+        <strong>Paragraph 1 — Introduction:</strong> Hook the reader. State your <strong>thesis statement</strong> (your clear argument).<br/><br/>
+        <strong>Paragraph 2 — Body:</strong> Give <strong>2–3 reasons</strong> supporting your argument. Back each reason up with <em>evidence</em> or <em>examples</em>. Address one <strong>counterargument</strong> and explain why it's weak.<br/><br/>
+        <strong>Paragraph 3 — Conclusion:</strong> Restate your thesis in different words. End with a call to action or a thought-provoking final statement.
+      </div>
+      <div class="question">📝 <strong>Grading Criteria:</strong> Clear thesis · Logical reasoning · Counterargument addressed · Formal tone · No spelling/grammar errors</div>
+    </div>
+  </div>
+
+  <!-- WORD CHALLENGE -->
+  <div class="section" style="border-color:#f0dcc4;">
+    <div class="section-header" style="background:linear-gradient(135deg,#b07d2e,#d4a847);"><span class="icon">💬</span> Word of the Day Challenge</div>
+    <div class="section-body">
+      <p><strong>Adulation</strong> <em>(aj-uh-LAY-shun)</em> — noun — Excessive or insincere praise and flattery.</p>
+      <p>Etymology: From Latin <em>adulari</em>, meaning "to flatter" or "to praise extravagantly."</p>
+      <p><em>Antonym:</em> Criticism | <em>Synonym:</em> Flattery, Reverence</p>
+      <div class="question">✍️ <strong>Challenge:</strong> Write a <strong>paragraph</strong> (4–5 sentences) that uses the word <strong>"adulation"</strong> correctly AND its antonym <strong>"criticism"</strong> in the same piece. Show how the two ideas <em>contrast</em> with each other.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <span class="heart">♥</span> Made with love for Justin's family &nbsp;|&nbsp; The Village Homeschool App &nbsp;|&nbsp; Feb 5, 2026
+</div>
+</body>
+</html>

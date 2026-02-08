@@ -7,9 +7,12 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "vitest": "latest",
-    "jsdom": "latest",
     "@testing-library/dom": "latest",
-    "@testing-library/jest-dom": "latest"
+    "@testing-library/jest-dom": "latest",
+    "jsdom": "latest",
+    "vitest": "latest"
+  },
+  "dependencies": {
+    "pocketbase": "^0.26.8"
   }
 }

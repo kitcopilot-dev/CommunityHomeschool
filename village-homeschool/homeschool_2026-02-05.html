@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏘️ Village Homeschool — Thursday, February 5, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #faf9f7;
+    color: #2d2d2d;
+    padding: 40px 20px;
+    line-height: 1.55;
+  }
+
+  /* ═══ PAGE WRAPPER ═══ */
+  .page { max-width: 760px; margin: 0 auto; }
+
+  /* ═══ MASTHEAD ═══ */
+  .masthead {
+    text-align: center;
+    background: linear-gradient(135deg, #1a3a5c 0%, #2e6da4 100%);
+    color: #fff;
+    border-radius: 16px 16px 0 0;
+    padding: 32px 24px 24px;
+  }
+  .masthead .village-icon { font-size: 36px; margin-bottom: 4px; }
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .masthead .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+  .masthead .date-badge {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ═══ TOP INFO BAR ═══ */
+  .info-bar {
+    display: flex;
+    background: #fff;
+    border-left: 1px solid #e8e4df;
+    border-right: 1px solid #e8e4df;
+  }
+  .info-card {
+    flex: 1;
+    padding: 18px 20px;
+    border-right: 1px solid #eee;
+  }
+  .info-card:last-child { border-right: none; }
+  .info-card .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #999;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .info-card .value { font-size: 14px; font-weight: 600; color: #2d2d2d; }
+  .info-card .detail { font-size: 12px; color: #777; margin-top: 2px; }
+
+  /* ═══ SCRIPTURE BANNER ═══ */
+  .scripture-banner {
+    background: linear-gradient(135deg, #e8f4fd 0%, #d6ecf9 100%);
+    border: 1px solid #b8daf0;
+    border-top: none;
+    padding: 22px 28px;
+    text-align: center;
+  }
+  .scripture-banner .scripture-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #2e6da4;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .scripture-banner blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: #1a3a5c;
+    line-height: 1.5;
+    margin: 0 0 8px;
+    padding: 0 20px;
+  }
+  .scripture-banner .scripture-ref {
+    font-size: 13px;
+    color: #2e6da4;
+    font-weight: 600;
+  }
+
+  /* ═══ KID SECTIONS ═══ */
+  .kid-block {
+    background: #fff;
+    border-left: 1px solid #e8e4df;
+    border-right: 1px solid #e8e4df;
+    border-top: 1px solid #eee;
+    padding: 0;
+  }
+
+  .kid-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    gap: 14px;
+  }
+  .kid-emoji { font-size: 28px; }
+  .kid-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: #1a3a5c;
+  }
+  .kid-header .age-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 10px;
+    background: #eef2f7;
+    color: #2e6da4;
+  }
+
+  /* Color coding per kid */
+  .kid-block.toddler .kid-header { border-bottom: 3px solid #f39c12; }
+  .kid-block.primary .kid-header { border-bottom: 3px solid #27ae60; }
+  .kid-block.elementary .kid-header { border-bottom: 3px solid #8e44ad; }
+  .kid-block.junior .kid-header { border-bottom: 3px solid #e74c3c; }
+
+  .subjects { padding: 0 24px 20px; }
+
+  .subject-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 11px 0;
+    border-bottom: 1px solid #f0efe9;
+  }
+  .subject-row:last-of-type { border-bottom: none; }
+
+  .subject-icon { font-size: 20px; min-width: 26px; text-align: center; padding-top: 1px; }
+  .subject-content { flex: 1; }
+  .subject-name {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #888;
+    margin-bottom: 2px;
+  }
+  .subject-task { font-size: 14px; color: #333; }
+
+  /* ═══ FAITH THOUGHT ═══ */
+  .faith-box {
+    margin: 14px 0 4px;
+    background: #fffbea;
+    border: 1px solid #f0dfa0;
+    border-left: 4px solid #f1c40f;
+    border-radius: 6px;
+    padding: 12px 16px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .faith-box .faith-icon { font-size: 20px; min-width: 24px; }
+  .faith-box .faith-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #b7860a;
+    margin-bottom: 2px;
+  }
+  .faith-box .faith-text { font-size: 13px; color: #5a4a00; }
+
+  /* ═══ DIVIDER ═══ */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ccc, transparent);
+    margin: 4px 0;
+  }
+
+  /* ═══ FOOTER ═══ */
+  .footer {
+    background: #1a3a5c;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 18px;
+    border-radius: 0 0 16px 16px;
+    font-size: 12px;
+  }
+  .footer a { color: rgba(255,255,255,0.9); }
+
+  /* ═══ PRINT ═══ */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { max-width: 100%; }
+    .kid-block { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="village-icon">🏘️</div>
+    <h1>Village Homeschool</h1>
+    <p class="subtitle">Daily Assignments for the Town Family</p>
+    <span class="date-badge">Thursday · February 5, 2026</span>
+  </div>
+
+  <!-- INFO BAR: Word of the Day + This Day in History -->
+  <div class="info-bar">
+    <div class="info-card">
+      <div class="label">📖 Word of the Day</div>
+      <div class="value">Resilient</div>
+      <div class="detail">Able to bounce back from hard times</div>
+    </div>
+    <div class="info-card">
+      <div class="label">📜 This Day in History</div>
+      <div class="value">1869 — The "Welcome Stranger"</div>
+      <div class="detail">The largest gold nugget ever found was discovered in Victoria, Australia — weighing over 72 kg (159 lbs)!</div>
+    </div>
+  </div>
+
+  <!-- SCRIPTURE OF THE DAY -->
+  <div class="scripture-banner">
+    <div class="scripture-label">✝️ Scripture of the Day</div>
+    <blockquote>
+      "And Jesus, when he was baptized, went straightway out of the water: and, lo, the heavens were opened unto him, and he saw the Spirit of God descending like a dove, and lighting upon him."
+    </blockquote>
+    <div class="scripture-ref">— Matthew 3:16</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- TODDLER — AGE 2                                  -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="kid-block toddler">
+    <div class="kid-header">
+      <span class="kid-emoji">🧸</span>
+      <div>
+        <h2>Toddler</h2>
+        <span class="age-tag">Age 2</span>
+      </div>
+    </div>
+    <div class="subjects">
+
+      <div class="subject-row">
+        <span class="subject-icon">🔢</span>
+        <div class="subject-content">
+          <div class="subject-name">Math</div>
+          <div class="subject-task">Grab 5 small items (blocks, toys, cheerios). Count them out loud together: <em>"1… 2… 3… 4… 5!"</em> Put them in a cup, dump them out, and count again.</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">📚</span>
+        <div class="subject-content">
+          <div class="subject-name">Reading</div>
+          <div class="subject-task">Read a picture book together. After each page, ask: <em>"What do you see?"</em> Point out animals, colors, and people.</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">✏️</span>
+        <div class="subject-content">
+          <div class="subject-name">Writing</div>
+          <div class="subject-task">Practice holding a crayon. Draw big circles on paper — they can be "suns," "moons," or faces! Let them scribble freely.</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">🔬</span>
+        <div class="subject-content">
+          <div class="subject-name">Science</div>
+          <div class="subject-task"><strong>Sink or Float!</strong> Fill a bowl with water. Drop in a few toys, a spoon, a block, a leaf. Watch together — which ones float? Which ones sink? Talk about why!</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">🏛️</span>
+        <div class="subject-content">
+          <div class="subject-name">History</div>
+          <div class="subject-task">Show a picture of gold or a shiny coin. Say: <em>"A long, long time ago, someone found a HUGE piece of gold — bigger than you!"</em> Let them touch something shiny.</div>
+        </div>
+      </div>
+
+      <div class="faith-box">
+        <span class="faith-icon">🕊️</span>
+        <div>
+          <div class="faith-label">Faith Thought</div>
+          <div class="faith-text">Look at a picture of Jesus together. Say: <em>"Jesus went into the water to be baptized. A little bird — a dove — came down from heaven! Jesus loves us so much."</em> Give a big hug!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- PRIMARY — AGE 6                                  -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="kid-block primary">
+    <div class="kid-header">
+      <span class="kid-emoji">🌱</span>
+      <div>
+        <h2>Primary</h2>
+        <span class="age-tag">Age 6</span>
+      </div>
+    </div>
+    <div class="subjects">
+
+      <div class="subject-row">
+        <span class="subject-icon">🔢</span>
+        <div class="subject-content">
+          <div class="subject-name">Math</div>
+          <div class="subject-task">Addition Facts to 10. Solve these: <strong>3 + 4 = ?</strong> &nbsp; <strong>6 + 3 = ?</strong> &nbsp; <strong>5 + 5 = ?</strong> &nbsp; <strong>2 + 7 = ?</strong> &nbsp; <strong>8 + 2 = ?</strong><br>Bonus: Use 10 small objects (coins, cereal) to show each problem!</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">📚</span>
+        <div class="subject-content">
+          <div class="subject-name">Reading</div>
+          <div class="subject-task">Read 2–3 pages of your current reader out loud. Pick out <strong>3 new words</strong> you don't know and ask what they mean. Can you use one in a sentence?</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">✏️</span>
+        <div class="subject-content">
+          <div class="subject-name">Writing</div>
+          <div class="subject-task">Write 3 sentences about something you like. Remember: start with a capital letter and end with a period. <em>Try using the word "Resilient" — what does it mean to you?</em></div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">🔬</span>
+        <div class="subject-content">
+          <div class="subject-name">Science</div>
+          <div class="subject-task"><strong>Do Things Float or Sink?</strong> Make a chart with two columns: "Floats" and "Sinks." Test 6 household items in a bowl of water. Fill in your chart!</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">🏛️</span>
+        <div class="subject-content">
+          <div class="subject-name">History</div>
+          <div class="subject-task"><strong>Gold!</strong> Talk about what gold is — shiny, valuable, and found underground. In 1869, two men found the biggest gold nugget ever in Australia. How big do you think it was? (Answer: bigger than a big pumpkin!)</div>
+        </div>
+      </div>
+
+      <div class="faith-box">
+        <span class="faith-icon">🕊️</span>
+        <div>
+          <div class="faith-label">Faith Thought</div>
+          <div class="faith-text">Draw a picture of a <strong>dove</strong> coming down from the sky. The Holy Ghost came like a dove when Jesus was baptized. When do you feel the Holy Ghost? (Hint: when you feel peaceful or happy inside!)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- ELEMENTARY — AGE 9                               -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="kid-block elementary">
+    <div class="kid-header">
+      <span class="kid-emoji">📐</span>
+      <div>
+        <h2>Elementary</h2>
+        <span class="age-tag">Age 9</span>
+      </div>
+    </div>
+    <div class="subjects">
+
+      <div class="subject-row">
+        <span class="subject-icon">🔢</span>
+        <div class="subject-content">
+          <div class="subject-name">Math</div>
+          <div class="subject-task"><strong>Multiplication Challenge!</strong> Solve the 7s and 8s:<br>
+          7×3 = ? &nbsp; 7×6 = ? &nbsp; 7×9 = ? &nbsp; 8×4 = ? &nbsp; 8×7 = ? &nbsp; 8×9 = ?<br>
+          <em>Write them on a flashcard and quiz yourself 3 times!</em></div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">📚</span>
+        <div class="subject-content">
+          <div class="subject-name">Reading</div>
+          <div class="subject-task">Read the next chapter of your book. When you finish, write <strong>3 sentences</strong> summarizing what happened — who did what, and why?</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">✏️</span>
+        <div class="subject-content">
+          <div class="subject-name">Writing</div>
+          <div class="subject-task"><strong>Word of the Day Essay:</strong> Write a short paragraph (5–6 sentences) about what <em>"Resilient"</em> means. Give a real example of a time you or someone you know was resilient. Use at least 2 descriptive adjectives.</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">🔬</span>
+        <div class="subject-content">
+          <div class="subject-name">Science</div>
+          <div class="subject-task"><strong>Metals & Minerals:</strong> Learn about gold, silver, and iron. Answer these: What makes gold so special? Is gold magnetic? (Try with a magnet!) Why is iron used to make tools? Write down 3 facts you learned.</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">🏛️</span>
+        <div class="subject-content">
+          <div class="subject-name">History</div>
+          <div class="subject-task"><strong>The Welcome Stranger:</strong> Research the story of the "Welcome Stranger" gold nugget (1869, Australia). Write a short paragraph: Who found it? How much was it worth? Why did people go looking for gold?</div>
+        </div>
+      </div>
+
+      <div class="faith-box">
+        <span class="faith-icon">🕊️</span>
+        <div>
+          <div class="faith-label">Faith Thought</div>
+          <div class="faith-text">Jesus was perfect — He never sinned. So <em>why</em> did He get baptized? Read <strong>Matthew 3:15</strong> — He said it was to "fulfill all righteousness." Think about this: What does it mean to follow Jesus's example, even when it's not required of us?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- JUNIOR HIGH — AGE 13                             -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="kid-block junior">
+    <div class="kid-header">
+      <span class="kid-emoji">📖</span>
+      <div>
+        <h2>Junior High</h2>
+        <span class="age-tag">Age 13</span>
+      </div>
+    </div>
+    <div class="subjects">
+
+      <div class="subject-row">
+        <span class="subject-icon">🔢</span>
+        <div class="subject-content">
+          <div class="subject-name">Math — Algebra</div>
+          <div class="subject-task">Solve for <em>x</em>:<br>
+          <strong>1.</strong> &nbsp; 3<em>x</em> + 7 = 25 &nbsp;&nbsp;
+          <strong>2.</strong> &nbsp; 2(<em>x</em> − 5) = 14 &nbsp;&nbsp;
+          <strong>3.</strong> &nbsp; 4<em>x</em> − 3 = 5<em>x</em> − 10 &nbsp;&nbsp;
+          <strong>4.</strong> &nbsp; (<em>x</em> + 8) / 2 = 9<br>
+          <em>Show all your steps!</em></div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">📚</span>
+        <div class="subject-content">
+          <div class="subject-name">Reading</div>
+          <div class="subject-task">Read your current book for 30 minutes. Afterward, identify the <strong>main conflict</strong> in what you read. Write 2–3 sentences explaining: What is the problem? How is the character trying to solve it? Is the character being resilient?</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">✏️</span>
+        <div class="subject-content">
+          <div class="subject-name">Writing</div>
+          <div class="subject-task"><strong>Persuasive Paragraph:</strong> Write a paragraph (6–8 sentences) arguing that <em>resilience is the most important quality a person can have.</em> Use at least <strong>2 real-world examples</strong> and a strong concluding sentence. Pay attention to grammar and vocabulary.</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">🔬</span>
+        <div class="subject-content">
+          <div class="subject-name">Science — Chemistry</div>
+          <div class="subject-task"><strong>The Science of Steel:</strong> Research how steel is made from iron (the Bessemer process). Answer: What is an alloy? Why was the invention of steel so important for building bridges and skyscrapers? Connect this to the founding of U.S. Steel in 1901. Write a short summary (4–5 sentences).</div>
+        </div>
+      </div>
+
+      <div class="subject-row">
+        <span class="subject-icon">🏛️</span>
+        <div class="subject-content">
+          <div class="subject-name">History — The Gilded Age</div>
+          <div class="subject-task"><strong>J.P. Morgan & U.S. Steel:</strong> On this date in 1901, J.P. Morgan incorporated U.S. Steel — the first billion-dollar corporation. Research: Who was J.P. Morgan? What was the "Gilded Age"? Why were some people critical of Morgan's business practices? Write a 1-paragraph summary.</div>
+        </div>
+      </div>
+
+      <div class="faith-box">
+        <span class="faith-icon">🕊️</span>
+        <div>
+          <div class="faith-label">Faith Thought</div>
+          <div class="faith-text">Read the account of Jesus' baptism in <strong>Matthew 3:13–17</strong>, then compare it to <strong>Mark 1:9–11</strong> and <strong>Luke 3:21–22</strong>. In a journal or notebook, write down <em>one unique detail</em> each Gospel author includes. Why do you think each writer chose to emphasize different things? What does this tell us about how scripture was written?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🏘️ <strong>Village Homeschool</strong> &mdash; Town Family</p>
+    <p style="margin-top:4px; opacity:0.6;">"Train up a child in the way he should go; even when he is old he will not depart from it." — Proverbs 22:6</p>
+  </div>
+
+</div><!-- /page -->
+</body>
+</html>

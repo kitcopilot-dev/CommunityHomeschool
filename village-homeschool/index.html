@@ -418,7 +418,9 @@
         });
 
         if (typeof initParentPortal === 'function') {
-            initParentPortal(elements);
+            initParentPortal(elements).catch(err => {
+                console.error("Portal initialization error:", err);
+            });
         } else {
             console.error("initParentPortal function not found. Check src/parent-portal.js");
         }

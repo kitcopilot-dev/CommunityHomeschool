@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Village Homeschool – Little Explorer (Age 2) – Feb 5, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Nunito', sans-serif;
+    background:#fdf8f0;
+    color:#3b2f2f;
+    padding:32px 28px;
+    max-width:780px;
+    margin:0 auto;
+  }
+  /* HEADER */
+  .header {
+    text-align:center;
+    background:linear-gradient(135deg,#6b4c3b 0%,#8b6f47 100%);
+    color:#fff;
+    border-radius:18px 18px 0 0;
+    padding:22px 16px 18px;
+  }
+  .header .village-badge {
+    display:inline-block;
+    background:rgba(255,255,255,0.15);
+    border:2px solid rgba(255,255,255,0.35);
+    border-radius:24px;
+    padding:4px 18px;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .header h1 { font-size:28px; font-weight:800; margin-bottom:2px; }
+  .header .subtitle { font-size:14px; opacity:.85; }
+  .header .date-row { font-size:12px; opacity:.7; margin-top:6px; }
+
+  /* AGE BADGE */
+  .age-strip {
+    background:linear-gradient(135deg,#f5a623,#f7c948);
+    text-align:center;
+    padding:10px;
+    font-weight:800;
+    font-size:17px;
+    color:#fff;
+    text-shadow:0 1px 2px rgba(0,0,0,.2);
+    letter-spacing:1px;
+  }
+
+  /* CONTENT WRAPPER */
+  .content {
+    background:#fff;
+    border-radius:0 0 18px 18px;
+    box-shadow:0 4px 18px rgba(0,0,0,.08);
+    padding:24px 26px 28px;
+  }
+
+  /* SCRIPTURE BOX */
+  .scripture-box {
+    background:linear-gradient(135deg,#eef5ee,#dff0df);
+    border-left:5px solid #4caf50;
+    border-radius:10px;
+    padding:16px 18px;
+    margin-bottom:20px;
+  }
+  .scripture-box .label {
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:#2e7d32;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .scripture-box .ref { font-weight:800; color:#2e7d32; font-size:15px; }
+  .scripture-box .verse { font-style:italic; color:#4a4a4a; margin-top:4px; font-size:14px; line-height:1.5; }
+
+  /* HIGHLIGHT ROW */
+  .highlight-row {
+    display:flex;
+    gap:14px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+  }
+  .highlight-card {
+    flex:1;
+    min-width:180px;
+    background:#fef9ec;
+    border:1.5px solid #f0dcc4;
+    border-radius:12px;
+    padding:14px 16px;
+  }
+  .highlight-card .hc-label {
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:#b07d2e;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .highlight-card .hc-word { font-size:18px; font-weight:800; color:#6b4c3b; }
+  .highlight-card .hc-def { font-size:12px; color:#7a6a5a; margin-top:3px; line-height:1.4; }
+
+  /* SECTION */
+  .section {
+    margin-bottom:18px;
+    border:1.5px solid #ede6df;
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .section-header {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 16px;
+    font-weight:700;
+    font-size:15px;
+    color:#fff;
+  }
+  .section-header .icon { font-size:19px; }
+  .section-body {
+    padding:14px 18px;
+    font-size:14px;
+    line-height:1.65;
+    color:#4a4a4a;
+  }
+  .section-body ul { padding-left:20px; }
+  .section-body li { margin-bottom:4px; }
+  .section-body .question {
+    background:#faf5ef;
+    border-radius:8px;
+    padding:8px 12px;
+    margin-top:8px;
+    font-weight:600;
+    color:#6b4c3b;
+  }
+
+  /* COLORS PER SUBJECT */
+  .sh-faith   .section-header { background:linear-gradient(135deg,#43a047,#66bb6a); }
+  .sh-math    .section-header { background:linear-gradient(135deg,#7b1fa2,#ab47bc); }
+  .sh-history .section-header { background:linear-gradient(135deg,#d84315,#ef5350); }
+  .sh-science .section-header { background:linear-gradient(135deg,#0288d1,#42a5f5); }
+  .sh-reading .section-header { background:linear-gradient(135deg,#00695c,#26a69a); }
+  .sh-writing .section-header { background:linear-gradient(135deg,#f57c00,#ffb74d); }
+
+  /* FOOTER */
+  .footer {
+    text-align:center;
+    margin-top:22px;
+    font-size:11px;
+    color:#a89080;
+    border-top:1px solid #ede6df;
+    padding-top:12px;
+  }
+  .footer .heart { color:#e57373; }
+
+  @media print {
+    body { padding:12px; background:#fff; }
+    .header { border-radius:0; }
+    .content { border-radius:0; box-shadow:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="village-badge">🏡 The Village</div>
+  <h1>Daily Homeschool Assignments</h1>
+  <div class="subtitle">Justin's Family</div>
+  <div class="date-row">📅 Thursday, February 5, 2026</div>
+</div>
+<div class="age-strip">🌱 Little Explorer &nbsp;•&nbsp; Age 2</div>
+
+<div class="content">
+
+  <!-- SCRIPTURE OF THE DAY -->
+  <div class="scripture-box">
+    <div class="label">📖 Scripture of the Day</div>
+    <div class="ref">Genesis 6:22</div>
+    <div class="verse">"Thus did Noah: according unto all that God commanded him, so did he."</div>
+  </div>
+
+  <!-- WORD OF THE DAY + THIS DAY IN HISTORY -->
+  <div class="highlight-row">
+    <div class="highlight-card">
+      <div class="hc-label">📝 Word of the Day</div>
+      <div class="hc-word">Adulation</div>
+      <div class="hc-def">Lots of cheering &amp; praise for someone! Like clapping really loud when someone does something great.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="hc-label">🌍 This Day in History</div>
+      <div class="hc-word" style="font-size:14px;">The Golden Rock!</div>
+      <div class="hc-def">On Feb 5, 1869, people found the biggest gold nugget ever — in Australia! It was called the "Welcome Stranger."</div>
+    </div>
+  </div>
+
+  <!-- FAITH THOUGHT -->
+  <div class="section sh-faith">
+    <div class="section-header"><span class="icon">🙏</span> Faith Thought</div>
+    <div class="section-body">
+      <p>Noah listened to God and built a big boat! When we listen and follow directions — just like Noah did — we are being <strong>obedient</strong>.</p>
+      <div class="question">
+        🛶 <strong>Activity:</strong> Build a "boat" out of couch cushions or pillows on the floor. Place stuffed animals inside — <em>two</em> of each kind, just like Noah brought on the Ark! Count them together as you put them in.
+      </div>
+    </div>
+  </div>
+
+  <!-- MATH -->
+  <div class="section sh-math">
+    <div class="section-header"><span class="icon">🔢</span> Math – Counting Pairs</div>
+    <div class="section-body">
+      <p>Noah took <strong>two</strong> of every animal on his boat. Let's practice counting by twos!</p>
+      <ul>
+        <li>Gather 5 pairs of socks (or stuffed animals). Lay them out.</li>
+        <li>Count together: <strong>1… 2… 3… 4… 5… 6… 7… 8… 9… 10!</strong></li>
+        <li>Point to each sock as you count. Can you count all the way to 10?</li>
+      </ul>
+      <div class="question">🎯 Goal: Count to 10 without skipping a number!</div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="section sh-history">
+    <div class="section-header"><span class="icon">🌎</span> History – This Day in History</div>
+    <div class="section-body">
+      <p>A long, long time ago — over 150 years ago! — two men in a faraway land called <strong>Australia</strong> were digging in the dirt and found the <strong>biggest, shiniest gold rock</strong> in the whole world!</p>
+      <p>They called it the <em>"Welcome Stranger"</em> because it was a wonderful surprise.</p>
+      <div class="question">💬 Talk about it: Have you ever found a surprise? What did it feel like?</div>
+    </div>
+  </div>
+
+  <!-- SCIENCE -->
+  <div class="section sh-science">
+    <div class="section-header"><span class="icon">🔬</span> Science – Puddle Watch</div>
+    <div class="section-body">
+      <p>Put a small cup of water in a sunny spot (or outside in a dish). Check on it <strong>two or three times</strong> during the day.</p>
+      <ul>
+        <li>☀️ Morning: How much water is there?</li>
+        <li>🌤️ After lunch: Is it the same? Less?</li>
+        <li>🌅 End of day: Where did the water go?</li>
+      </ul>
+      <div class="question">🌊 The sun makes water disappear — it turns into tiny invisible bits in the air called <strong>water vapor</strong>!</div>
+    </div>
+  </div>
+
+  <!-- READING -->
+  <div class="section sh-reading">
+    <div class="section-header"><span class="icon">📚</span> Reading – Animal Story Time</div>
+    <div class="section-body">
+      <p>Read a picture book about <strong>animals</strong> together (great choices: <em>Dear Zoo</em>, <em>Brown Bear, Brown Bear</em>, or any animal book you have!).</p>
+      <ul>
+        <li>🐾 Point to each animal. What is its name?</li>
+        <li>👣 How many legs does it have?</li>
+        <li>🤽 Can it swim? Can it fly? Can it run?</li>
+      </ul>
+      <div class="question">⭐ Favorite: Which animal was your favorite? Why?</div>
+    </div>
+  </div>
+
+  <!-- WRITING -->
+  <div class="section sh-writing">
+    <div class="section-header"><span class="icon">✏️</span> Writing – Trace &amp; Color</div>
+    <div class="section-body">
+      <p>On a piece of lined paper, <strong>trace the word</strong>:</p>
+      <p style="font-size:32px; font-weight:800; text-align:center; color:#7b1fa2; letter-spacing:6px; margin:8px 0;">B O A T</p>
+      <ul>
+        <li>Trace each letter carefully with a pencil.</li>
+        <li>Then <strong>color a picture of a boat</strong> — add the animals on it!</li>
+      </ul>
+      <div class="question">🎨 Use your favorite colors to make the boat bright and beautiful!</div>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<div class="footer">
+  <span class="heart">♥</span> Made with love for Justin's family &nbsp;|&nbsp; The Village Homeschool App &nbsp;|&nbsp; Feb 5, 2026
+</div>
+
+</body>
+</html>

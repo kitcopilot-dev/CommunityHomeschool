@@ -301,6 +301,20 @@
             <div id="vaultContent">
                 <!-- Overview Tab -->
                 <div class="vault-pane active" id="pane-overview">
+                    <div style="margin-bottom: 3rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                            <h3 style="font-family: var(--font-display); margin: 0;">Course Progress</h3>
+                            <button id="addCourseBtn" style="padding: 0.5rem 1rem; font-size: 0.8rem; background: var(--bg-alt); color: var(--primary-dark); border: 1px solid var(--border);">+ Add Course</button>
+                        </div>
+                        <div id="courseProgressGrid" class="learning-vault-grid" style="grid-template-columns: 1fr;">
+                            <!-- Dynamically populated subjects -->
+                            <div style="text-align: center; padding: 3rem; background: var(--bg-alt); border-radius: var(--radius-md); border: 1px solid var(--border);">
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">No courses tracked yet. Add one to start monitoring progress.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="font-family: var(--font-display); margin-bottom: 1.5rem;">Resource Vault</h3>
                     <div class="learning-vault-grid">
                         <div class="vault-item">
                             <div class="vault-icon">📖</div>
@@ -419,6 +433,83 @@
         </div>
     </div>
 
+    <!-- Modal for editing child -->
+    <div class="overlay" id="editChildModalOverlay">
+        <div class="modal">
+            <h2 style="margin-bottom: 1rem;">Edit Profile</h2>
+            <p style="margin-bottom: 2.5rem; color: var(--text-muted);">Update your child's information.</p>
+            
+            <form id="editChildForm">
+                <input type="hidden" id="editChildId">
+                <div class="form-group">
+                    <h3>Full Name</h3>
+                    <input type="text" id="editChildName" placeholder="e.g. Emma Lynch" required>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                    <div class="form-group">
+                        <h3>Age</h3>
+                        <input type="number" id="editChildAge" placeholder="e.g. 9" required>
+                    </div>
+                    <div class="form-group">
+                        <h3>Grade Level</h3>
+                        <select id="editChildGrade">
+                            <option>Preschool</option>
+                            <option>Kindergarten</option>
+                            <option>1st Grade</option>
+                            <option>2nd Grade</option>
+                            <option>3rd Grade</option>
+                            <option>4th Grade</option>
+                            <option>5th Grade</option>
+                            <option>6th Grade</option>
+                            <option>7th Grade</option>
+                            <option>8th Grade</option>
+                            <option>High School</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 1.5rem;">
+                    <h3>Current Focus</h3>
+                    <input type="text" id="editChildFocus" placeholder="e.g. Astronomy, Early Reading">
+                </div>
+                
+                <div style="display: flex; justify-content: flex-end; gap: 1.5rem; margin-top: 3rem;">
+                    <button type="button" id="closeEditChildModalBtn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border);">Cancel</button>
+                    <button type="submit" id="saveEditChildBtn">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for adding courses -->
+    <div class="overlay" id="courseModalOverlay">
+        <div class="modal">
+            <h2 style="margin-bottom: 1rem;">Track a New Course</h2>
+            <p style="margin-bottom: 2.5rem; color: var(--text-muted);">Set up a course to track daily lesson progress.</p>
+            
+            <form id="courseForm">
+                <div class="form-group">
+                    <h3>Course Name</h3>
+                    <input type="text" name="courseName" placeholder="e.g. Math, Ancient History" required>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                    <div class="form-group">
+                        <h3>Total Lessons</h3>
+                        <input type="number" name="totalLessons" value="180" required>
+                    </div>
+                    <div class="form-group">
+                        <h3>Current Lesson</h3>
+                        <input type="number" name="currentLesson" value="1" required>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: flex-end; gap: 1.5rem; margin-top: 3rem;">
+                    <button type="button" id="closeCourseModalBtn" style="background: transparent; color: var(--text-muted); border: 2px solid var(--border);">Cancel</button>
+                    <button type="submit" id="saveCourseBtn">Add Course</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="./src/manage-kids.js"></script>
     <script>
         const elements = {
@@ -432,7 +523,19 @@
             vaultSubtitle: document.getElementById('vaultSubtitle'),
             backToDashboardBtn: document.getElementById('backToDashboardBtn'),
             parentHomeBtn: document.getElementById('parentHomeBtn'),
-            vaultBtns: document.querySelectorAll('.vault-btn')
+            addCourseBtn: document.getElementById('addCourseBtn'),
+            courseModalOverlay: document.getElementById('courseModalOverlay'),
+            closeCourseModalBtn: document.getElementById('closeCourseModalBtn'),
+            courseForm: document.getElementById('courseForm'),
+            courseProgressGrid: document.getElementById('courseProgressGrid'),
+            editChildModalOverlay: document.getElementById('editChildModalOverlay'),
+            closeEditChildModalBtn: document.getElementById('closeEditChildModalBtn'),
+            editChildForm: document.getElementById('editChildForm'),
+            editChildId: document.getElementById('editChildId'),
+            editChildName: document.getElementById('editChildName'),
+            editChildAge: document.getElementById('editChildAge'),
+            editChildGrade: document.getElementById('editChildGrade'),
+            editChildFocus: document.getElementById('editChildFocus')
         };
 
         if (elements.parentHomeBtn) {
@@ -442,7 +545,9 @@
         }
 
         if (typeof initManageKids === 'function') {
-            initManageKids(elements);
+            initManageKids(elements).catch(err => {
+                console.error("Manage Kids initialization error:", err);
+            });
         }
     </script>
 

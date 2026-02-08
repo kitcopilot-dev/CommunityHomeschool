@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Dev Tracker</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        h1 { color: #58a6ff; margin-bottom: 0.5rem; }
+        .subtitle { color: #8b949e; margin-bottom: 2rem; }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .column {
+            background: #161b22;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #30363d;
+        }
+        .column-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #30363d;
+        }
+        .column-header h2 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .count {
+            background: #30363d;
+            color: #8b949e;
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+        }
+        .task {
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            cursor: default;
+        }
+        .task:hover { border-color: #58a6ff; }
+        .task-title { font-weight: 500; margin-bottom: 0.25rem; }
+        .task-meta { font-size: 0.75rem; color: #8b949e; }
+        .tag {
+            display: inline-block;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-right: 0.25rem;
+        }
+        .tag-bug { background: #f85149; color: white; }
+        .tag-feature { background: #238636; color: white; }
+        .tag-ui { background: #a371f7; color: white; }
+        .tag-backend { background: #58a6ff; color: white; }
+        .updated { text-align: center; color: #8b949e; font-size: 0.8rem; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <h1>🏘️ Village Homeschool</h1>
+    <p class="subtitle">Development Task Tracker • Auto-refreshes every 30s</p>
+
+    <div class="board">
+        <div class="column">
+            <div class="column-header">
+                <h2>📋 Backlog</h2>
+                <span class="count" id="backlog-count">0</span>
+            </div>
+            <div id="backlog">
+                <div class="task">
+                    <div class="task-title">Attendance Logging</div>
+                    <div class="task-meta"><span class="tag tag-feature">feature</span> Track hours per subject</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Lesson Plan Generator</div>
+                    <div class="task-meta"><span class="tag tag-feature">feature</span> AI-powered daily lesson creation</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Behind/Ahead Indicators</div>
+                    <div class="task-meta"><span class="tag tag-ui">ui</span> Dashboard progress warnings</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <h2>🔨 In Progress</h2>
+                <span class="count" id="progress-count">0</span>
+            </div>
+            <div id="in-progress">
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <h2>✅ Done</h2>
+                <span class="count" id="done-count">0</span>
+            </div>
+            <div id="done">
+                <div class="task">
+                    <div class="task-title">Full Coverage Testing</div>
+                    <div class="task-meta"><span class="tag tag-backend">backend</span> 20/20 tests passing for Assignments, GPA, Transcript, Calendar</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">School Year Calendar</div>
+                    <div class="task-meta"><span class="tag tag-feature">feature</span> Set dates, breaks, track school days</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Transcript Generator</div>
+                    <div class="task-meta"><span class="tag tag-feature">feature</span> PDF export with courses, grades, GPA</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">GPA & Grading Analytics</div>
+                    <div class="task-meta"><span class="tag tag-feature">feature</span> Per-child GPA, subject averages, grade distribution</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Assignments & Grading</div>
+                    <div class="task-meta"><span class="tag tag-backend">backend</span> Full CRUD + scoring + filters</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Dashboard aggregated stats</div>
+                    <div class="task-meta"><span class="tag tag-feature">feature</span> Family-wide progress overview and analytics</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Robust Functional Testing</div>
+                    <div class="task-meta"><span class="tag tag-backend">backend</span> Mocked backend flows for child/course/portfolio</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">My State auto-detection</div>
+                    <div class="task-meta"><span class="tag tag-ui">ui</span> Highlight user's state in Legal Guides</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Interactive Progress Buttons</div>
+                    <div class="task-meta"><span class="tag tag-ui">ui</span> Auto-advance lessons from Vault view</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Course Scheduling</div>
+                    <div class="task-meta"><span class="tag tag-feature">feature</span> Select active days (M/W/F vs Tue/Thu)</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Visual Portfolio</div>
+                    <div class="task-meta"><span class="tag tag-feature">feature</span> Basic photo upload for work samples</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Weekly Schedule Tab</div>
+                    <div class="task-meta"><span class="tag tag-ui">ui</span> Desktop grid & mobile day picker</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Polish Pass</div>
+                    <div class="task-meta"><span class="tag tag-ui">ui</span> Loading states, success toasts, better UX</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Next.js + Tailwind 4 Migration</div>
+                    <div class="task-meta"><span class="tag tag-feature">feature</span> village-v2 complete</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">PocketBase integration</div>
+                    <div class="task-meta"><span class="tag tag-backend">backend</span> Auth, children, courses, events</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Edit Child modal</div>
+                    <div class="task-meta"><span class="tag tag-ui">ui</span> Update name/age/grade after creation</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Mark Day Complete button</div>
+                    <div class="task-meta"><span class="tag tag-ui">ui</span> Single-click lesson advancement</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Mobile responsive fixes</div>
+                    <div class="task-meta"><span class="tag tag-ui">ui</span> Profile buttons, vault header</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Login via profiles collection</div>
+                    <div class="task-meta"><span class="tag tag-backend">backend</span> Fixed auth flow</div>
+                </div>
+                <div class="task">
+                    <div class="task-title">Course list auto-refresh</div>
+                    <div class="task-meta"><span class="tag tag-bug">bug</span> Updates immediately after add</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="updated">Last updated: <span id="timestamp"></span></p>
+
+    <script>
+        function updateCounts() {
+            document.getElementById('backlog-count').innerText = document.querySelectorAll('#backlog .task').length;
+            document.getElementById('progress-count').innerText = document.querySelectorAll('#in-progress .task').length;
+            document.getElementById('done-count').innerText = document.querySelectorAll('#done .task').length;
+            document.getElementById('timestamp').innerText = new Date().toLocaleString();
+        }
+        updateCounts();
+        setInterval(() => location.reload(), 30000);
+    </script>
+</body>
+</html>
