@@ -31,6 +31,7 @@ export default function ManageKidsPage() {
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
   const [isPortfolioModalOpen, setIsPortfolioModalOpen] = useState(false);
   const [toast, setToast] = useState<{message: string, type: 'success' | 'error'} | null>(null);
+  const [refreshCount, setRefreshCount] = useState(0);
 
   // Derived state: Always get the latest kid data from the main list
   const selectedKid = kids.find(k => k.id === selectedKidId) || null;
@@ -280,8 +281,12 @@ export default function ManageKidsPage() {
 
       setIsCourseModalOpen(false);
       setEditingCourse(null);
-      await loadKids(); // Refresh everything
+      
+      // Reload kids data from backend
+      await loadKids(); 
+      setRefreshCount(prev => prev + 1);
     } catch (error) {
+      console.error('Save course error:', error);
       setToast({ message: 'Failed to save course', type: 'error' });
     }
   };
@@ -329,9 +334,15 @@ export default function ManageKidsPage() {
   const weekDates = getWeekDates();
 
   const isCourseActiveOnDay = (course: Course, dayShort: string) => {
+    // If no days selected, default to all days (safety)
     if (!course.active_days || course.active_days.trim() === "") return true;
-    const days = course.active_days.split(',').map(d => d.trim());
-    return days.includes(dayShort);
+    
+    // Normalize to array
+    const activeDays = typeof course.active_days === 'string' 
+      ? course.active_days.split(',').map(d => d.trim()) 
+      : Array.isArray(course.active_days) ? course.active_days : [];
+      
+    return activeDays.includes(dayShort);
   };
 
   if (loading) {
@@ -401,7 +412,7 @@ export default function ManageKidsPage() {
             </div>
 
             {activeTab === 'overview' && (
-              <div>
+              <div key={`overview-${refreshCount}`}>
                 <div className="mb-12">
                   <div className="flex justify-between items-center mb-6">
                     <h3 className="font-display text-2xl font-extrabold m-0">Course Progress</h3>
@@ -442,7 +453,7 @@ export default function ManageKidsPage() {
             )}
 
             {activeTab === 'schedule' && (
-              <div className="grid grid-cols-1 sm:grid-cols-5 gap-6">
+              <div key={`schedule-${refreshCount}`} className="grid grid-cols-1 sm:grid-cols-5 gap-6">
                 {weekDates.map((day) => (
                   <div key={day.short} className="bg-bg-alt p-4 rounded-[1.25rem] border border-border">
                     <h5 className="font-display uppercase tracking-wider text-sm mt-0">{day.short} {day.date}</h5>
